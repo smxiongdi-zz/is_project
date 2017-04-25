@@ -18,10 +18,10 @@ app.use('/register', registerRouter);
 app.get('/', ((req, res) => {
 	res.sendFile(path.join(__dirname+'/signin.html'));
 }));
+/*
 app.get('/login', ((req, res) => {
 	res.sendFile(path.join(__dirname+'/signin.html'));
 }));
-/*
 app.get('/register', ((req, res) => {
 	res.sendFile(path.join(__dirname+'/register.html'));
 }));
