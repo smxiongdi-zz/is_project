@@ -16,22 +16,12 @@ userSchema.methods = {
 	
 	encryptPass: function(passPlaintext) {
 
-		const saltRounds = 10;
-
 		if(!passPlaintext) return '';
 		try {
 			const salt = bcrypt.genSalt(10);
 			const hash = bcrypt.hash(passPlaintext, salt);
 			console.log(hash);
 			return hash;
-			/*
-			bcrypt.genSalt(saltRounds, function(err, salt) {
-				bcrypt.hash(passPlaintext, salt, function(err, hash) {
-					console.log(hash);
-					return hash;
-				});
-			});
-			*/
 		} catch(err) {
 			return '';
 		}
