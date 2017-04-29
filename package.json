@@ -10,8 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.4",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "mongoose": "^4.9.6",
+    "node-gyp": "^3.6.0",
+    "openssl": "^1.1.0",
+    "passport": "^0.3.2",
     "pug": "^2.0.0-beta11"
   }
 }

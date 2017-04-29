@@ -1,19 +1,21 @@
-let express = require('express');
-let app = express();
-let bodyParser = require('body-parser');
-let path = require('path');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var path = require('path');
 
 app.use(express.static('static'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let homeRouter = require('./routes/homeRouter.js');
-let loginRouter = require('./routes/loginRouter.js');
-let registerRouter = require('./routes/registerRouter.js');
+var homeRouter = require('./routes/homeRouter.js');
+var loginRouter = require('./routes/loginRouter.js');
+var registerRouter = require('./routes/registerRouter.js');
+var FOFRouter = require('./routes/404Router.js');
 
 app.use('/home', homeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('*', FOFRouter);
 
 app.get('/', ((req, res) => {
 	res.sendFile(path.join(__dirname+'/signin.html'));
@@ -38,6 +40,6 @@ app.get('/test2', ((req, res) => {
 	res.sendFile(path.join(__dirname+'/test.html'));
 }));
 
-app.listen(3000, () => {
-	console.log('listening on 3000');
+app.listen(9876, () => {
+	console.log('listening on 9876', "45.32.207.200");
 });

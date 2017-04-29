@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', ((req, res) => {
-	res.sendFile('/Users/SB/Desktop/express-prac/views/login.html');
+	res.sendFile('/home/zach/is_project/views.login.html');
 }));
 
 router.post('/post', ((req, res) => {
