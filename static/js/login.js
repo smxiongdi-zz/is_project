@@ -6,7 +6,7 @@ function($scope, $http) {
 	$scope.login = function(email) {
 		console.log('sending ' + $scope.email);
 		$http({
-			url: 'http://localhost:3000/login/post',
+			url: 'http://45.32.207.200:9876/login/post',
 			method: 'POST',
 			data: { "email": $scope.email, "pass": $scope.pass },
 			headers: {'Content-Type': 'application/json'}

@@ -1,8 +1,7 @@
 // the /register router
 var express = require('express');
 var router = express.Router();
-
-const saltRounds = 10;
+var Promise = require('promise');
 
 router.get('/', ((req, res) => {
 	res.sendFile('/home/zach/is_project/views/register.html');
@@ -13,21 +12,28 @@ router.post('/post', ((req, res) => {
 	console.log(req.body.email);
 	console.log(req.body);
 
+	var db = require('/home/zach/is_project/models/user_connec.js');
 	var User = require('/home/zach/is_project/models/user_model.js');
 
-	var thisUser = new User({ /*uname: req.body.email, upass: User.encryptPass(req.body.pass)*/ });
+	var thisUser = new User({ /*uname: req.body.email, upass: thisUser.encryptPass(req.body.pass)*/ });
 
 	thisUser.uname = req.body.email;
-	thisUser.upass = thisUser.encryptPass(req.body.pass, function() { thisUser.save() }); 
-
-	console.log(thisUser.pass);
-	/*
-		thisUser.save(function (err, thisUser) {
-			if (err) return console.error(err);
-			else { db.close(); }
-		});
+//	thisUser.upass = thisUser.encryptPass(req.body.pass);
+	//thisUser.regUser(thisUser, req.body.email, req.body.pass, db);
+	
+	var hashpass = thisUser.encryptPass(req.body.pass);
+	hashpass.then((hash, err) => { 
+		thisUser.upass = hash;
+		thisUser.save();
 	});
-	*/
+
+//	console.log(thisUser.pass);
+/*
+	thisUser.save(function (err, thisUser) {
+		if (err) return console.error(err);
+		else { db.close(); }
+	});
+*/
 
 	//
 	res.send({err:0, redirect: '/home'});
