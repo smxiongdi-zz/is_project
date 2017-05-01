@@ -18,8 +18,8 @@ router.post('/post', ((req, res) => {
 	var thisUser = new User({ /*uname: req.body.email, upass: thisUser.encryptPass(req.body.pass)*/ });
 
 	thisUser.uname = req.body.email;
-//	thisUser.upass = thisUser.encryptPass(req.body.pass);
-	//thisUser.regUser(thisUser, req.body.email, req.body.pass, db);
+	// create a new model collection that searches if the email is already approved
+	// userReg ? 'already registered' : userTempReg && !userReg ? 'user conf already sent' : store hash && save
 	
 	var hashpass = thisUser.encryptPass(req.body.pass);
 	hashpass.then((hash, err) => { 
@@ -27,7 +27,6 @@ router.post('/post', ((req, res) => {
 		thisUser.save();
 	});
 
-//	console.log(thisUser.pass);
 /*
 	thisUser.save(function (err, thisUser) {
 		if (err) return console.error(err);
