@@ -1,12 +1,15 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-var userSchema = mongoose.Schema({
+// var db = require('/home/zach/is_project/models/tempUser_connec.js');
+
+var tempUserSchema = mongoose.Schema({
 	uname: String,
-	upass: String
+	upass: String,
+	conf_link: String
 });
 
-userSchema.methods = {
+tempUserSchema.methods = {
 	
 	auth: function(passPlaintext) {
 		return !passPlaintext ? '' : bcrypt.compare(passPlaintext, this.upass);
@@ -19,4 +22,4 @@ userSchema.methods = {
 	
 };
 
-module.exports = mongoose.model('User', userSchema, 'users');
+module.exports = mongoose.model('tempUser', tempUserSchema, 'tempUsers');
