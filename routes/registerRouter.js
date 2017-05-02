@@ -13,12 +13,12 @@ router.post('/post', ((req, res) => {
 	console.log(req.body);
 
 	var db = require('/home/zach/is_project/models/user_connec.js');
-	var User = require('/home/zach/is_project/models/user_model.js');
+	var TempUser = require('/home/zach/is_project/models/temp_user_model.js');
 
-	var thisUser = new User({ /*uname: req.body.email, upass: thisUser.encryptPass(req.body.pass)*/ });
+	var tempUser = new TempUser({ /*uname: req.body.email, upass: tempUser.encryptPass(req.body.pass)*/ });
 	var regUser = User.find({uname: req.body.email}).limit(1);
 
-	thisUser.uname = req.body.email;
+	tempUser.uname = req.body.email;
 	// create a new model collection that searches if the email is already approved
 	// userReg ? 'already registered' : userTempReg && !userReg ? 'user conf already sent' : store hash && save
 
@@ -27,10 +27,10 @@ router.post('/post', ((req, res) => {
 	});
 
 	var hashThis = _ => {
-		var hashpass = thisUser.encryptPass(req.body.pass);
+		var hashpass = tempUser.encryptPass(req.body.pass);
 		hashpass.then((hash, err) => {
-			thisUser.upass = hash;
-			thisUser.save();
+			tempUser.upass = hash;
+			tempUser.save();
 			email_verif();
 		});
 	}
@@ -40,7 +40,7 @@ router.post('/post', ((req, res) => {
 	}
 
 /*
-	thisUser.save(function (err, thisUser) {
+	tempUser.save(function (err, tempUser) {
 		if (err) return console.error(err);
 		else { db.close(); }
 	});
