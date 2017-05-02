@@ -21,16 +21,23 @@ router.post('/post', ((req, res) => {
 	thisUser.uname = req.body.email;
 	// create a new model collection that searches if the email is already approved
 	// userReg ? 'already registered' : userTempReg && !userReg ? 'user conf already sent' : store hash && save
-	
+
 	regUser.then((x, err) => {
-		x.length > 0 ? console.log('already registered' + x) /* call hashpass func */ : console.log('unregistered');
+		x.length > 0 ? console.log('already registered') : hashThis();
 	});
 
-	var hashpass = thisUser.encryptPass(req.body.pass);
-	hashpass.then((hash, err) => { 
-		thisUser.upass = hash;
-		thisUser.save();
-	});
+	var hashThis = _ => {
+		var hashpass = thisUser.encryptPass(req.body.pass);
+		hashpass.then((hash, err) => {
+			thisUser.upass = hash;
+			thisUser.save();
+			email_verif();
+		});
+	}
+
+	var email_verif = _ => {
+		// send email
+	}
 
 /*
 	thisUser.save(function (err, thisUser) {
@@ -39,7 +46,6 @@ router.post('/post', ((req, res) => {
 	});
 */
 
-	//
 	res.send({err:0, redirect: '/home'});
 //	res.redirect('/Users/SB/Desktop/express-prac/views/success.html');
 //	res.sendFile('/Users/SB/Desktop/express-prac/views/register.html');

@@ -1,6 +1,7 @@
 // the /login router
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
 
 router.get('/', ((req, res) => {
 	res.sendFile('/home/zach/is_project/views/login.html');
@@ -18,9 +19,22 @@ router.post('/post', ((req, res) => {
 	console.log("PASSWORD " + req.body.pass);
 
 	var hashpass = loginUser.encryptPass(req.body.pass);
-	var user_array = User.find({uname: loginUser.uname}, function(err, data) { /* console.log(err, data) */});
+	var thisUser = User.find({uname: loginUser.uname}).limit(1);
 
-	user_array.then((x, err) => { 
+	thisUser.then((x, err) => {
+		x.length > 0 ? bcompare() /* compare */ : console.log('no user');
+	});
+
+	var bcompare = thisUser.then((x, err) => {
+		console.log('got here' + x[0].upass);
+		bcrypt.compare(req.body.pass, x[0].upass, function(err, res) {
+			// success, login
+			console.log('success');
+		});
+	});
+
+/*
+	thisUser.then((x, err) => { 
 		x.map((y) => { 
 			console.log(y.uname);
 			bcrypt.compare(req.body.pass, y.upass, function(err, res) {
@@ -28,6 +42,7 @@ router.post('/post', ((req, res) => {
 			});
 		});
 	});	
+*/
 
 
 
