@@ -12,7 +12,7 @@ router.post('/post', ((req, res) => {
 	console.log(req.body.email);
 	console.log(req.body);
 
-	var db = require('/home/zach/is_project/models/user_connec.js');
+	var db = require('/home/zach/is_project/db/user_connec.js');
 	var User = require('/home/zach/is_project/models/user_model.js');
 	var loginUser = new User({});
 	loginUser.uname = req.body.email;
@@ -22,7 +22,8 @@ router.post('/post', ((req, res) => {
 	var thisUser = User.find({uname: loginUser.uname}).limit(1);
 
 	thisUser.then((x, err) => {
-		x.length > 0 ? bcompare() /* compare */ : console.log('no user');
+		// use toasts to display no such user exists
+		x.length > 0 ? bcompare() /* compare */ : res.send({err:0, redirect: '/login'}), console.log('no user');
 	});
 
 	var bcompare = thisUser.then((x, err) => {
@@ -30,6 +31,7 @@ router.post('/post', ((req, res) => {
 		bcrypt.compare(req.body.pass, x[0].upass, function(err, res) {
 			// success, login
 			console.log('success');
+			res.send({err:0, redirect: '/home'});
 		});
 	});
 
@@ -46,7 +48,6 @@ router.post('/post', ((req, res) => {
 
 
 
-	res.send({err:0, redirect: '/home'});
 //	res.redirect('/Users/SB/Desktop/express-prac/views/success.html');
 //	res.sendFile('/Users/SB/Desktop/express-prac/views/regcon.html');
 }));

@@ -11,7 +11,7 @@ function($scope, $http) {
 			data: { "email": $scope.email, "pass": $scope.pass },
 			headers: {'Content-Type': 'application/json'}
 			// headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		}).then(function(data) {
-			window.location = '/home'; })
+		}).then(function(resp) {
+			window.location = resp.data.redirect; })
 	}
 }]);
