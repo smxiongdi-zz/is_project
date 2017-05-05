@@ -2,6 +2,8 @@
 var express = require('express');
 var router = express.Router();
 var Promise = require('promise');
+var randstr = require('randomstring');
+var nev = require('email-verification')(require('mongoose'));
 
 router.get('/', ((req, res) => {
 	res.sendFile('/home/zach/is_project/views/register.html');
@@ -13,7 +15,10 @@ router.post('/post', ((req, res) => {
 	console.log(req.body);
 
 	var db = require('/home/zach/is_project/db/temp_user_connec.js');
+
+	// setup proper promise for both to complete, id est, promises.all()
 	var TempUser = require('/home/zach/is_project/models/temp_user_model.js');
+	var User = require('/home/zach/is_project/models/user_model.js');
 
 	var tempUser = new TempUser({ /*uname: req.body.email, upass: tempUser.encryptPass(req.body.pass)*/ });
 	var regUser = TempUser.find({uname: req.body.email}).limit(1);
@@ -31,6 +36,8 @@ router.post('/post', ((req, res) => {
 		hashpass.then((hash, err) => {
 			tempUser.uname = req.body.email;
 			tempUser.upass = hash;
+			tempUser.conf_link = randstr.generate(10);
+			console.log(tempUser.conf_link);
 			tempUser.save();
 			email_verif();
 			res.send({err:0, redirect: '/home'});

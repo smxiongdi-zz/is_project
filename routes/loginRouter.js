@@ -27,11 +27,10 @@ router.post('/post', ((req, res) => {
 	});
 
 	var bcompare = thisUser.then((x, err) => {
-		console.log('got here' + x[0].upass);
 		bcrypt.compare(req.body.pass, x[0].upass, function(err, res) {
 			// success, login
 			console.log('success');
-			res.send({err:0, redirect: '/home'});
+			res.send({err:0, redirect: '/profile'});
 		});
 	});
 

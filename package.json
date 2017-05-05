@@ -21,6 +21,8 @@
     "openssl": "^1.1.0",
     "passport": "^0.3.2",
     "promise": "^7.1.1",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "randomstring": "^1.1.5",
+    "sweetalert": "^1.1.3"
   }
 }

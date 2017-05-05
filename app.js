@@ -10,11 +10,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var homeRouter = require('./routes/homeRouter.js');
 var loginRouter = require('./routes/loginRouter.js');
 var registerRouter = require('./routes/registerRouter.js');
+var confLinkRouter = require('./routes/confLinkRouter.js');
 var FOFRouter = require('./routes/404Router.js');
 
 app.use('/home', homeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('', confLinkRouter);
 app.use('*', FOFRouter);
 
 app.get('/', ((req, res) => {
