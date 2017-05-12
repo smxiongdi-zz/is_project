@@ -11,4 +11,7 @@ registerRouter:
 	send email with npm nodemailer
 	set up email forwarding
 
+confLinkRouter:
+	solve for multiple get attempts - need to permanently remove entry from tempUsers, but also need to adjust register to check for both temp and perm when registering the temp
+
 
