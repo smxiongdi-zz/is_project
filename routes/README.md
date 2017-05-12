@@ -1,7 +1,8 @@
 routes todo
 ******
 
-failure handlers - wrong email/pass response to angular 
+failure handlers - wrong email/pass response to angular, use toastr/similar ext for notifications
+
 success handlers:
 	nodemailer
 
