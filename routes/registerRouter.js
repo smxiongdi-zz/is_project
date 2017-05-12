@@ -14,7 +14,7 @@ router.post('/post', ((req, res) => {
 	console.log(req.body.email);
 	console.log(req.body);
 
-	var db = require('/home/zach/is_project/db/temp_user_connec.js');
+	var db = require('/home/zach/is_project/db/accounts_connec.js');
 
 	// setup proper promise for both to complete, id est, promises.all()
 	var TempUser = require('/home/zach/is_project/models/temp_user_model.js');

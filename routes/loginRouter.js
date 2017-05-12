@@ -12,7 +12,7 @@ router.post('/post', ((req, res) => {
 	console.log(req.body.email);
 	console.log(req.body);
 
-	var db = require('/home/zach/is_project/db/user_connec.js');
+	var db = require('/home/zach/is_project/db/accounts_connec.js');
 	var User = require('/home/zach/is_project/models/user_model.js');
 	var loginUser = new User({});
 	loginUser.uname = req.body.email;

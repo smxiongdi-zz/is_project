@@ -3,11 +3,12 @@ routes todo
 
 failure handlers - wrong email/pass response to angular 
 success handlers:
-	setup email verification - generate randomized link, handle routing, put into permanent users after click
+	nodemailer
 
 loginRouter:
 
 registerRouter:
-	send email with npm email-verification
+	send email with npm nodemailer
+	set up email forwarding
 
 
