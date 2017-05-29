@@ -22,13 +22,16 @@ router.post('/post', ((req, res) => {
 
 	var tempUser = new TempUser({ /*uname: req.body.email, upass: tempUser.encryptPass(req.body.pass)*/ });
 	var regUser = TempUser.find({uname: req.body.email}).limit(1);
+	var permAccount = User.find({uname: req.body.email}).limit(1);
+	
+	
 
 	// create a new model collection that searches if the email is already approved
 	// userReg ? 'already registered' : userTempReg && !userReg ? 'user conf already sent' : store hash && save
 
 	regUser.then((x, err) => {
 		// use toasts to display 'user already registered'
-		x.length > 0 ? (res.send({ err:0, redirect: '/register'}), console.log('already registered')) : hashThis();
+		x.length > 0 ? (res.send({ err:0, redirect: '/register'}), console.log('already registered')) : permAccount.then((y, err) => { y.length > 0 ? (res.send({ err:0, redirect: '/register'}), console.log('already regd')) : hashThis() });
 	});
 
 	var hashThis = _ => {
@@ -43,6 +46,10 @@ router.post('/post', ((req, res) => {
 			res.send({err:0, redirect: '/home'});
 		});
 	}
+
+	var dbThen = (thisF) => {
+		return thisF.then((x, err) => { x.length > 0 ? 0 : 1 });
+	};
 
 	var email_verif = _ => {
 		// send email

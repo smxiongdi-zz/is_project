@@ -18,6 +18,10 @@ router.get('/register/confirm/:conflink', ((req, res) => {
 		myUser.uname = x[0].uname; myUser.upass = x[0].upass;
 		console.log(myUser);
 		myUser.save();
+
+		TempUser.findByIdAndRemove(x[0]._id, ((err, y) => {
+			console.log('removed');
+		}));
 	});
 
 	// search tempUsers for matching link as in the get
