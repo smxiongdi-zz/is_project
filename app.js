@@ -28,6 +28,7 @@ var loginRouter = require('./routes/loginRouter.js');
 var registerRouter = require('./routes/registerRouter.js');
 var confLinkRouter = require('./routes/confLinkRouter.js');
 var profileRouter = require('./routes/profileRouter.js');
+var testCompRouter = require('./routes/testCompRouter.js');
 var FOFRouter = require('./routes/404Router.js');
 
 app.use('/', homeRouter);
@@ -35,6 +36,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('', confLinkRouter);
 app.use('/profile', profileRouter);
+app.use('/testcomp', testCompRouter);
 app.use('*', FOFRouter);
 
 
