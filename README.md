@@ -1,7 +1,7 @@
 # is_project
 ******
-# integrate mongodb - more under /routes
-# setup nginx reverse proxy
+# DONE integrate mongodb - more under /routes
+# DONE setup nginx reverse proxy
 # add ssl
 
 /static/js - angular files

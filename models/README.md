@@ -1,7 +1,7 @@
 todo
 ******
 user_model:
-	ensure bcrypt.compare functions as expected, return a promise
+DONE	ensure bcrypt.compare functions as expected, return a promise
 
 other models:
 	msg
