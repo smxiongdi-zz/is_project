@@ -12,6 +12,8 @@ router.post('/post', ((req, res) => {
 	console.log(req.body.email);
 	console.log(req.body);
 
+	sdet = req.session;
+
 	var db = require('/home/zach/is_project/db/accounts_connec.js');
 	var User = require('/home/zach/is_project/models/user_model.js');
 	var loginUser = new User({});
@@ -27,9 +29,11 @@ router.post('/post', ((req, res) => {
 	});
 
 	var bcompare = thisUser.then((x, err) => {
-		bcrypt.compare(req.body.pass, x[0].upass, function(err, res) {
+		bcrypt.compare(req.body.pass, x[0].upass, function(err, result) {
 			// success, login
 			console.log('success');
+			sdet.email = req.body.email; 
+			console.log("SDET--- " + sdet.email);
 			res.send({err:0, redirect: '/profile'});
 		});
 	});
