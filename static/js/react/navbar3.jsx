@@ -12,7 +12,7 @@ class NavbarInstance extends React.Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Project Name Here</a>
+            <a href="/">exlang</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>

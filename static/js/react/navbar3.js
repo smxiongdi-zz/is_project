@@ -20,7 +20,7 @@ class NavbarInstance extends React.Component {
           React.createElement(
             "a",
             { href: "#" },
-            "Project Name Here"
+            "exlang"
           )
         )
       ),

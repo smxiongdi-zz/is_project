@@ -2,9 +2,11 @@
 ******
 # DONE integrate mongodb - more under /routes
 # DONE setup nginx reverse proxy
-# add ssl
+# CURRENTLY BEING VERIFIED add ssl 
 
-/static/js - angular files
+currently transitioning to react/redux for testing etc. production site: exlang.io - pending update from dev server ETA ~3 days on working basic features
+
+/static/js/react - react files
 
 /static/css - scss
 

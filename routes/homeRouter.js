@@ -9,8 +9,10 @@ router.get('/', ((req, res) => {
 
 	sdet = req.session;
 
-	if(sdet) { res.render('/home/zach/is_project/views/hp', { uname: sdet.email });}
+	res.sendFile('/home/zach/is_project/views/hp.html');
+	/*if(sdet) { res.render('/home/zach/is_project/views/hp', { uname: sdet.email });}
 	else { res.redirect('/login'); }
+	*/
 
 	console.log(sdet.email);
 }));

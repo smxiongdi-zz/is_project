@@ -6,8 +6,8 @@ router.get('/', ((req, res) => {
 	sdet = req.session;
 
 	console.log("profile SDET---- " + sdet.email);
-	// res.sendFile('/home/zach/is_project/views/profile.html');
-	res.render('/home/zach/is_project/views/profile');
+	res.sendFile('/home/zach/is_project/views/profile.html', { uname: sdet.email });
+//	res.render('/home/zach/is_project/views/profile.html');
 }));
 
 module.exports = router;
