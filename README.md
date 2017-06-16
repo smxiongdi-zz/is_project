@@ -10,7 +10,7 @@ currently transitioning to react/redux for testing etc. production site: exlang.
 
 /static/css - scss
 
-/views - html views - switch to jade later
+/views - html views - simplified greatly w/ react components 
 
 /routes - express routers
 
