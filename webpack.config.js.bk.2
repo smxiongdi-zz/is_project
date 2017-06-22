@@ -1,0 +1,31 @@
+var path = require('path');
+var config = {
+	module: {
+		loaders: [{
+			test: /\.jsx?$/,
+			loader: 'babel-loader',
+			query: {compact: false}
+/*            query:
+            {
+                presets:['es2015', 'react']
+            }
+*/
+		}]
+	},
+};
+
+var topLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		App: path.resolve(__dirname, 'client/App.js'),
+		Header: path.resolve(__dirname, 'client/Header.js'),
+	},
+	output: {
+		path: path.resolve(__dirname, 'client/'),
+		filename: '[name].js'
+	}
+});
+
+module.exports = [
+	topLevelFolderConfig, 
+];
+
