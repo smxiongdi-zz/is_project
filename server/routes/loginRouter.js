@@ -3,9 +3,10 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 
-router.get('/', ((req, res) => {
+/* router.get('/', ((req, res) => {
 	res.sendFile('/home/zach/is_project/views/login.html');
 }));
+*/
 
 router.post('/post', ((req, res) => {
 	console.log('request accepted');
@@ -14,8 +15,8 @@ router.post('/post', ((req, res) => {
 
 	sdet = req.session;
 
-	var db = require('/home/zach/is_project/db/accounts_connec.js');
-	var User = require('/home/zach/is_project/models/user_model.js');
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var User = require('/home/zach/is_project/server/models/user_model.js');
 	var loginUser = new User({});
 	loginUser.uname = req.body.email;
 	console.log("PASSWORD " + req.body.pass);
@@ -25,7 +26,7 @@ router.post('/post', ((req, res) => {
 
 	thisUser.then((x, err) => {
 		// use toasts to display no such user exists
-		x.length > 0 ? bcompare() /* compare */ : res.send({err:0, redirect: '/login'}), console.log('no user');
+		x.length > 0 ? bcompare() /* compare */ : res.send({err:0, redirect: '/login', message: 'no user found'}), console.log('no user');
 	});
 
 	var bcompare = thisUser.then((x, err) => {

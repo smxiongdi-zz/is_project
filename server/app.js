@@ -24,6 +24,10 @@ app.use(session(sess));
 
 var sdet;
 
+var loginRouter = require('./routes/loginRouter.js');
+var registerRouter = require('./routes/registerRouter.js');
+var sessionRouter = require('./routes/sessionRouter.js');
+var confLinkRouter = require('./routes/confLinkRouter.js');
 var homeRouter = require('./routes/homeRouter.js');
 /* 
 var loginRouter = require('./routes/loginRouter.js');
@@ -37,6 +41,10 @@ var counterRouter = require('./routes/counterRouter.js');
 var FOFRouter = require('./routes/404Router.js');
 */
 
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/session', sessionRouter);
+app.use('', confLinkRouter);
 app.use('*', homeRouter);
 /*
 app.use('/login', loginRouter);

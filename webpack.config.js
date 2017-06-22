@@ -58,7 +58,29 @@ var componentsLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var accountsLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		LoginView: APP_DIR + '/components/account/LoginView.jsx',
+		RegisterView: APP_DIR + '/components/account/RegisterView.jsx',
+		accConfirm: APP_DIR + '/components/account/accConfirm.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
+var libLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		grabSession: APP_DIR + '/lib/grabSession.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
 module.exports = [
-	topLevelFolderConfig, componentsLevelFolderConfig,
+	topLevelFolderConfig, componentsLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig,
 ];
 

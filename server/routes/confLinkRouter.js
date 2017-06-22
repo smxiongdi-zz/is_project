@@ -5,9 +5,9 @@ var router = express.Router();
 router.get('/register/confirm/:conflink', ((req, res) => {
 	console.log(req.params.conflink);
 	
-	var db = require('/home/zach/is_project/db/accounts_connec.js');
-	var TempUser = require('/home/zach/is_project/models/temp_user_model.js');
-	var User = require('/home/zach/is_project/models/user_model.js');
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var TempUser = require('/home/zach/is_project/server/models/temp_user_model.js');
+	var User = require('/home/zach/is_project/server/models/user_model.js');
 	
 	var myUser = new User({});
 
@@ -20,6 +20,7 @@ router.get('/register/confirm/:conflink', ((req, res) => {
 		myUser.save();
 
 		TempUser.findByIdAndRemove(x[0]._id, ((err, y) => {
+			res.sendFile('/home/zach/is_project/server/views/regConfirm.html');
 			console.log('removed');
 		}));
 	});

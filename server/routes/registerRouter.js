@@ -5,20 +5,21 @@ var Promise = require('promise');
 var randstr = require('randomstring');
 var nev = require('email-verification')(require('mongoose'));
 
-router.get('/', ((req, res) => {
+/* router.get('/', ((req, res) => {
 	res.sendFile('/home/zach/is_project/views/register.html');
 }));
+*/
 
 router.post('/post', ((req, res) => {
 	console.log('request accepted');
 	console.log(req.body.email);
 	console.log(req.body);
 
-	var db = require('/home/zach/is_project/db/accounts_connec.js');
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 
 	// setup proper promise for both to complete, id est, promises.all()
-	var TempUser = require('/home/zach/is_project/models/temp_user_model.js');
-	var User = require('/home/zach/is_project/models/user_model.js');
+	var TempUser = require('/home/zach/is_project/server/models/temp_user_model.js');
+	var User = require('/home/zach/is_project/server/models/user_model.js');
 
 	var tempUser = new TempUser({ /*uname: req.body.email, upass: tempUser.encryptPass(req.body.pass)*/ });
 	var regUser = TempUser.find({uname: req.body.email}).limit(1);

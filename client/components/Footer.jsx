@@ -5,7 +5,7 @@ class Footer extends React.Component {
 	render () {
 		return (
 			<div className = 'footer'>
-				Link1
+				Support: support@exlang.io | exlang.io
 			</div>
 		)
 	}
