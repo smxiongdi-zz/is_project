@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,QAAS;EAAE,KAAK,EAAC,KAAK;;AACtB,EAAG;EAAE,MAAM,EAAE,CAAC;EAAE,OAAO,EAAE,CAAC;EAAE,QAAQ,EAAC,MAAM;;AAC3C,IAAK;EAAE,OAAO,EAAE,KAAK",
-"sources": ["hp.scss"],
-"names": [],
-"file": "hp.css"
-}
