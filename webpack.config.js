@@ -80,7 +80,17 @@ var libLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var navLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		LRElements: APP_DIR + '/components/nav/LRElements.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
 module.exports = [
-	topLevelFolderConfig, componentsLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig,
+	topLevelFolderConfig, componentsLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig,
 ];
 

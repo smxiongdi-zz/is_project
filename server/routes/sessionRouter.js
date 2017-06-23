@@ -5,7 +5,8 @@ var router = express.Router();
 router.get('/', ((req, res) => {
 	console.log('request accepted');
 
-	res.send({user: req.session.email});
+	console.log(sdet.email);
+	res.send({user: sdet.email});
 
 }));
 

@@ -3,6 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+// styles
+import styles from './css/app.css';
+
 // components
 import MyHeader from './components/MyHeader.jsx';
 import Navbar from './components/Navbar.jsx';
@@ -20,29 +23,32 @@ class App extends React.Component {
 		super();
 		this.state = {
 			username: '',
+			greeting: 'Welcome, would you like to login or register?'
 		}
 	}
 
 	componentDidMount() {
 		loadSessionUsername()
-			.then(userObj => this.setState({username: userObj.user}))
+			.then(userObj => this.setState({username: userObj.user}), console.log(this.state.username))
 	}
 
 	render() {
 		return (
 			<Router>
 				<div className = "App">
-					<Navbar />
+					<Navbar username={this.state.username}/>
 					<Footer />
-					{this.state.username ? 'Hello ' + this.state.username : 'Login or register'}
-					<Switch>
-						<Route exact path = '/' component = { Community } />
-						<Route exact path = '/c' component = { Community } />
-						<Route exact path = '/p' component = { Profile } />
-						<Route exact path = '/login' component = { LoginView } />
-						<Route exact path = '/register' component = { RegisterView } />
-						<Route component = { FourZeroFour } />
-					</Switch>
+					<div className = 'main_content'>
+						{this.state.username ? 'Hello ' + this.state.username : this.state.greeting}
+						<Switch>
+							<Route exact path = '/' component = { Community } />
+							<Route exact path = '/c' component = { Community } />
+							<Route exact path = '/p' component = { Profile } />
+							<Route exact path = '/login' component = { LoginView } />
+							<Route exact path = '/register' component = { RegisterView } />
+							<Route component = { FourZeroFour } />
+						</Switch>
+					</div>
 				</div>
 			</Router>
 		);
