@@ -48,7 +48,6 @@ var componentsLevelFolderConfig = Object.assign({}, config, {
 		Navbar: APP_DIR + '/components/Navbar.jsx',
 		Main: APP_DIR + '/components/Main.jsx',
 		Community: APP_DIR + '/components/Community.jsx',
-		Profile: APP_DIR + '/components/Profile.jsx',
 		Footer: APP_DIR + '/components/Footer.jsx',
 		404: APP_DIR + '/components/404.jsx',
 	},
@@ -80,6 +79,26 @@ var libLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var profileLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		Profile: APP_DIR + '/components/profile/Profile.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
+var communityLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		Profile: APP_DIR + '/components/community/Community.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
 var navLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		LRElements: APP_DIR + '/components/nav/LRElements.jsx',
@@ -91,6 +110,6 @@ var navLevelFolderConfig = Object.assign({}, config, {
 });
 
 module.exports = [
-	topLevelFolderConfig, componentsLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig,
+	topLevelFolderConfig, componentsLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig, profileLevelFolderConfig, communityLevelFolderConfig,
 ];
 
