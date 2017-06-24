@@ -9,6 +9,7 @@ export const loginUser = (userInfo) => {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		},
+		credentials: 'include',
 		body: JSON.stringify(userInfo)
 	}).then(res => res.json());
 }

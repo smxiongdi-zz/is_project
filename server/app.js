@@ -14,15 +14,16 @@ app.set('view engine', 'pug');
 
 // sessions
 app.set('trust proxy', 1);
-var sess = {
-	secret: 'testing',
+//var sess = {
+app.use(session({
+	secret: 'xxxx',
 	resave: true,
 	saveUninitialized: true,
-	cookie: { secure: !true }
-};
-app.use(session(sess));
+	cookie: { secure: false, HttpOnly: false },
+}));
 
-var sdet;
+//app.use(session(sess));
+
 
 var loginRouter = require('./routes/loginRouter.js');
 var registerRouter = require('./routes/registerRouter.js');

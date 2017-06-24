@@ -1,13 +1,11 @@
-// the /login router
+// the /session router
 var express = require('express');
 var router = express.Router();
 
 router.get('/', ((req, res) => {
-	console.log('request accepted');
-
-	console.log(sdet.email);
-	res.send({user: sdet.email});
-
+	sdet = req.session;
+	console.log('SESSION ROUTER FEEDBACK --- ' + sdet.uname);
+	res.send({user: sdet.uname});
 }));
 
 module.exports = router;
