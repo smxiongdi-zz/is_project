@@ -29,7 +29,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		loadSessionUsername()
-			.then(userObj => this.setState({username: userObj.user}), console.log(this.state.username))
+			.then(userObj => this.setState({username: userObj.user}))
 	}
 
 	render() {
@@ -44,8 +44,8 @@ class App extends React.Component {
 							<Route exact path = '/' component = { Community } />
 							<Route exact path = '/c' component = { Community } />
 							<Route exact path = '/p' component = { Profile } />
-							<Route exact path = '/login' component = { LoginView } />
-							<Route exact path = '/register' component = { RegisterView } />
+							<Route exact path = '/login' component = { this.state.username ? Profile : LoginView } />
+							<Route exact path = '/register' component = { this.state.username ? Profile : RegisterView } />
 							<Route component = { FourZeroFour } />
 						</Switch>
 					</div>
