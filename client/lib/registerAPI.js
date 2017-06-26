@@ -1,4 +1,4 @@
-const baseUrl = 'http://107.191.55.190/register/post';
+const baseUrl = '/register/post';
 
 export const registerUser = (newUser) => {
 	return fetch(baseUrl, {

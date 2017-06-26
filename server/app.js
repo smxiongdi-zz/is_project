@@ -26,6 +26,7 @@ app.use(session({
 
 
 var loginRouter = require('./routes/loginRouter.js');
+var logoutRouter = require('./routes/logoutRouter.js');
 var registerRouter = require('./routes/registerRouter.js');
 var sessionRouter = require('./routes/sessionRouter.js');
 var confLinkRouter = require('./routes/confLinkRouter.js');
@@ -43,6 +44,7 @@ var FOFRouter = require('./routes/404Router.js');
 */
 
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/register', registerRouter);
 app.use('/session', sessionRouter);
 app.use('', confLinkRouter);

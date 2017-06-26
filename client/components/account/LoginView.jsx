@@ -18,6 +18,10 @@ class LoginView extends React.Component {
     this.showTempMessage = this.showTempMessage.bind(this);
 	}
 
+	componentDidMount() {
+		console.log('mounting login')
+	}
+
 	handleEmailChange (evt) {
 		this.setState({loginEmail: evt.target.value});
 	}
@@ -30,6 +34,7 @@ class LoginView extends React.Component {
     const userInfo = {email: this.state.loginEmail, pass: this.state.loginPass}
     loginUser(userInfo)
       .then(() => this.showTempMessage('Logging in'), this.setState({ redirectTo: '/' }))
+      /* .then(() => this.showTempMessage('Logging in'), this.props.setLoggedIn(userInfo.email), this.setState({ redirectTo: '/' })) */
   }
 
   showTempMessage (msg) {

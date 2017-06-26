@@ -1,4 +1,4 @@
-const baseUrl = 'http://107.191.55.190/session';
+const baseUrl = '/session';
 
 export const loadSessionUsername = () => {
 	return fetch(baseUrl, {

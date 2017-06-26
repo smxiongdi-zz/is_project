@@ -1,7 +1,28 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { logoutUser } from '.././lib/logoutAPI.js';
+
 class Navbar extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			Logout: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/logout'}} onClick={ this.handleLogout }>Logout</NavLink></div></li>,
+			Login: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/login'}}>Login</NavLink></div></li>,
+			Register: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/register'}}>Register</NavLink></div></li>
+		}
+		this.handleLogout = this.handleLogout.bind(this);
+	}
+	
+	handleLogout (evt) {
+		// evt.preventDefault()
+		logoutUser()
+		this.props.setLoggedOut()
+			//.then(() => this.setState({ redirectTo: '/' }))
+	}
+
+
+
 	render () {
 		return (
 			<div>
@@ -21,6 +42,8 @@ class Navbar extends React.Component {
 							<li className="nav-item">
 								<div className="nav-link" href="#"><NavLink exact activeClassName="active" to = {{pathname: '/p'}} >Profile</NavLink></div>
 							</li>
+							{ this.props.username ? this.state.Logout : this.state.Login }
+							{ !this.props.username ? this.state.Register : '' }
 						</ul>
 					</div>
 				</nav>
