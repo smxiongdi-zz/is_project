@@ -4,14 +4,21 @@
 # DONE setup nginx reverse proxy
 # CURRENTLY BEING VERIFIED add ssl 
 
-currently transitioning to react/redux for testing etc. production site: exlang.io - pending update from dev server ETA ~3 days on working basic features
+<strike>currently transitioning to react/redux for testing etc. production site: exlang.io - pending update from dev server ETA ~3 days on working basic features</strike>
 
-/static/js/react - react files
+/client - react application
+	App.jsx - main jsx file from which all components are routed
+	
+	/build - transpiled jsx to js
+	
+	/components - react components
+	
+	/lib - APIs / tests
 
-/static/css - scss
+/server - express application
 
-/views - html views - simplified greatly w/ react components 
+	/views - html views - simplified greatly w/ react components 
 
-/routes - express routers
+	/routes - express routers
 
-/models - mongoose models
+	/models - mongoose models
