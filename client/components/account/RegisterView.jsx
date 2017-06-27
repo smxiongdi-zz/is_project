@@ -8,7 +8,8 @@ class RegisterView extends React.Component {
     super();
     this.state = {
       registerEmail: '',
-      registerPass: ''
+      registerPass: '',
+			message: ''
     }
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
@@ -32,7 +33,7 @@ class RegisterView extends React.Component {
 
 	showTempMessage (msg) {
 		this.setState({message: msg})
-		setTimeout(() => this.setState({message}: ''), 5000)
+		setTimeout(() => this.setState({message}: ''), window.location.href = '/', 5000)
 	}
 
 	render () {

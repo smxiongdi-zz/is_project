@@ -77,6 +77,8 @@ var libLevelFolderConfig = Object.assign({}, config, {
 var profileLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		Profile: APP_DIR + '/components/profile/Profile.jsx',
+		MyProfile: APP_DIR + '/components/profile/MyProfile.jsx',
+		EditProfile: APP_DIR + '/components/profile/EditProfile.jsx',
 	},
 	output: {
 		path: BUILD_DIR,

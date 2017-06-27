@@ -1,4 +1,4 @@
-const baseUrl = '/session';
+const baseUrl = '/api/session';
 
 export const loadSessionUsername = () => {
 	return fetch(baseUrl, {

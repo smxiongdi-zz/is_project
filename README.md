@@ -22,3 +22,13 @@
 	/routes - express routers
 
 	/models - mongoose models
+
+
+TO DO
+******
+profiles
+	edit profile view / APIs
+	view profile / url params to get ID num
+	
+community
+	search view / url params to retrieve list

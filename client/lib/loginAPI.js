@@ -1,6 +1,6 @@
 // POST API endpoint for the login service
 // expects a username (email) and password
-const baseUrl = '/login/post';
+const baseUrl = '/api/login';
 
 export const loginUser = (userInfo) => {
 	return fetch(baseUrl, {

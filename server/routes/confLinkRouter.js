@@ -20,14 +20,13 @@ router.get('/register/confirm/:conflink', ((req, res) => {
 		myUser.save();
 
 		TempUser.findByIdAndRemove(x[0]._id, ((err, y) => {
-			res.sendFile('/home/zach/is_project/server/views/regConfirm.html');
+			res.sendFile('/home/zach/is_project/server/views/hp.html');
 			console.log('removed');
 		}));
 	});
 
 	// search tempUsers for matching link as in the get
 	// place tempUser in users then remove from tempUsers
-//	res.sendFile('/home/zach/is_project/views/404.html');
 }));
 
 module.exports = router;

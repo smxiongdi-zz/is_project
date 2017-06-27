@@ -1,4 +1,4 @@
-const baseUrl = '/register/post';
+const baseUrl = '/api/register';
 
 export const registerUser = (newUser) => {
 	return fetch(baseUrl, {

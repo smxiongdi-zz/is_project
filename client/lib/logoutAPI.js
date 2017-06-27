@@ -1,5 +1,5 @@
 // POST API endpoint for the logout service
-const baseUrl = '/logout/post';
+const baseUrl = '/api/logout';
 
 export const logoutUser = () => {
 	return fetch(baseUrl, {
