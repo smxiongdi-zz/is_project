@@ -7,14 +7,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styles from './css/app.css';
 
 // components
-import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
+import Navbar from './components/nav/Navbar.jsx';
+import Footer from './components/nav/Footer.jsx';
 import Home from './components/home/Home.jsx';
 import Community from './components/community/Community.jsx';
 import Profile from './components/profile/Profile.jsx';
 import LoginView from './components/account/LoginView.jsx';
 import RegisterView from './components/account/RegisterView.jsx';
-import FourZeroFour from './components/404.jsx';
+import FourZeroFour from './components/misc/404.jsx';
 import { loadSessionUsername } from './lib/grabSession.jsx';
 
 class App extends React.Component {

@@ -30,10 +30,10 @@ class LoginView extends React.Component {
 	}
 
   handleSubmit (evt) {
-    evt.preventDefault()
+//    evt.preventDefault()
     const userInfo = {email: this.state.loginEmail, pass: this.state.loginPass}
     loginUser(userInfo)
-      .then(() => this.showTempMessage('Logging in'), this.setState({ redirectTo: '/' }))
+      .then(() => this.showTempMessage('Logging in'), this.setState({ redirectTo: '/' }), window.location.reload())
       /* .then(() => this.showTempMessage('Logging in'), this.props.setLoggedIn(userInfo.email), this.setState({ redirectTo: '/' })) */
   }
 
