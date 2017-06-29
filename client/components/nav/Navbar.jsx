@@ -9,7 +9,8 @@ class Navbar extends React.Component {
 		this.state = {
 			Logout: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/logout'}} onClick={ this.handleLogout }>Logout</NavLink></div></li>,
 			Login: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/login'}}>Login</NavLink></div></li>,
-			Register: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/register'}}>Register</NavLink></div></li>
+			Register: <li className='nav-item'><div className='nav-link'><NavLink exact activeClassName='active' to = {{pathname: '/register'}}>Register</NavLink></div></li>,
+			Profile: <li className="nav-item"> <div className="nav-link" href="#"><NavLink exact activeClassName="active" to = {{pathname: '/p'}} >Profile</NavLink></div> </li>
 		}
 		this.handleLogout = this.handleLogout.bind(this);
 	}
@@ -39,9 +40,7 @@ class Navbar extends React.Component {
 							<li className="nav-item">
 								<div className="nav-link" href="#"><NavLink exact activeClassName="active" to = {{pathname: '/c'}} >Community</NavLink></div>
 							</li>
-							<li className="nav-item">
-								<div className="nav-link" href="#"><NavLink exact activeClassName="active" to = {{pathname: '/p'}} >Profile</NavLink></div>
-							</li>
+							{ this.props.username ? this.state.Profile : '' }
 							{ this.props.username ? this.state.Logout : this.state.Login }
 							{ !this.props.username ? this.state.Register : '' }
 						</ul>

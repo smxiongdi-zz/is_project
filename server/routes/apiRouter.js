@@ -81,9 +81,52 @@ router.post('/register', ((req, res) => {
 // session api 
 router.get('/session', ((req, res) => {
 	res.setHeader('Access-Control-Allow-Credentials', 'true');
-	console.log('SESSION ROUTER FEEDBACK --- ' + req.session.uname);
 	
 	res.send({user: req.session.uname});
+}));
+
+router.get('/profile_load', ((req, res) => {
+	console.log('HELLO');
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
+	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
+	userProfile.then((x, err) => {
+		console.log('IN HERE');
+		x.length > 0 ? res.send({profile_name: userProfile.name}) : console.log('no profile')/* no profile */ ; 
+	});
+}));
+
+router.post('/profile_edit', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
+//	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
+/*	userProfile.then((x, err) => {
+		x.length == 0 ? userProfile = new Profile({req.body. : 
+	});
+*/
+
+	var userProfile = !userProfile ? new Profile({}) : Profile.find({uname: req.session.uname}).limit(1);
+	req.session.uname ? editProf() : console.log('uname not set');
+
+	console.log("UNAME ---" + req.session.uname);
+	console.log("PROFILE OBJ: --- " + req.body.loc);
+
+	function editProf() {
+		userProfile.uname = req.session.uname || userProfile.uname;
+		userProfile.name = req.body.name || userProfile.name;
+		userProfile.lang_learning = req.body.lang_learning || userProfile.lang_learning;
+		userProfile.lang_native = req.body.lang_native || userProfile.lang_native;
+		userProfile.loc = req.body.loc || userProfile.loc;
+		userProfile.bday = req.body.bday || userProfile.bday;
+		userProfile.sex = req.body.sex || userProfile.sex;
+		userProfile.pic = req.body.pic || userProfile.pic;
+		userProfile.save();
+	}
+
+	var createProfile = _ => {
+
+	}
+
 }));
 
 module.exports = router;

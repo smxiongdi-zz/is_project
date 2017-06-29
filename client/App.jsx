@@ -17,6 +17,8 @@ import LoginView from './components/account/LoginView.jsx';
 import RegisterView from './components/account/RegisterView.jsx';
 import FourZeroFour from './components/misc/404.jsx';
 import { loadSessionUsername } from './lib/grabSession.jsx';
+import { loadUserProfile } from './lib/profile/grabProfile.jsx';
+import { editProfile } from './lib/profile/editProfile.jsx';
 
 class App extends React.Component {
 
@@ -29,7 +31,7 @@ class App extends React.Component {
 				profile_name: 'Test Name',
 				lang_native: 'Eng',
 				lang_learning: 'Rus',
-				bday: '03/22/94',
+				bday: '1994-03-22',
 				sex: 'male',
 				pic: '/path/pic/etc',
 				loc: 'ks'
@@ -37,11 +39,23 @@ class App extends React.Component {
 		}
 		this.setLoggedOut = this.setLoggedOut.bind(this)
 		this.setLoggedIn= this.setLoggedIn.bind(this)
+
+		this.updateProfile = this.updateProfile.bind(this)
+
+    this.handleProfileNameChange = this.handleProfileNameChange.bind(this);
+    this.handleLangNativeChange = this.handleLangNativeChange.bind(this);
+    this.handleLangLearningChange = this.handleLangLearningChange.bind(this);
+    this.handleBirthdayChange = this.handleBirthdayChange.bind(this);
+    this.handleSexChange = this.handleSexChange.bind(this);
+    this.handlePicChange = this.handlePicChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
 	}
 
 	componentDidMount() {
 		loadSessionUsername()
 			.then(userObj => this.setState({username: userObj.user}))
+		loadUserProfile()
+			.then(userProf => console.log('PROFILE -- ' + userProf))
 	}
 
 	setLoggedOut() {
@@ -51,7 +65,54 @@ class App extends React.Component {
 	setLoggedIn(u) {
 		this.setState({username: u})
 	}
-		
+
+	updateProfile (profObj) {
+		this.setState({profile: profObj})
+	}
+
+	handleProfileNameChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.profile_name = evt.target.value
+		this.updateProfile(tempProfile)
+	}
+
+	handleLangNativeChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.lang_native = evt.target.value
+		this.updateProfile(tempProfile)
+	}
+
+	handleLangLearningChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.lang_learning = evt.target.value
+		this.updateProfile(tempProfile)
+	}
+
+	handleBirthdayChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.bday = evt.target.value
+		this.updateProfile(tempProfile)
+	}
+
+	handleSexChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.sex = evt.target.value
+		this.updateProfile(tempProfile)
+		this.setState({profile: tempProfile})
+	}
+
+	handlePicChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.pic = evt.target.value
+		this.updateProfile(tempProfile)
+	}
+
+	handleLocationChange (evt) {
+		var tempProfile = this.state.profile
+		tempProfile.loc = evt.target.value
+		this.updateProfile(tempProfile)
+	}
+
 	render() {
 		return (
 			<Router>
@@ -66,7 +127,7 @@ class App extends React.Component {
 							{/*<Route exact path = '/p' component = { Profile } /> 
 							<Route exact path = '/p/edit' component = { EditProfile }/>  */}
 							<Route exact path = '/p' render={(props) => (<Profile username={this.state.username} profile={this.state.profile} />)} />
-							<Route exact path = '/p/edit' render={(props) => (<EditProfile username={this.state.username} profile={this.state.profile} />)} />
+							<Route exact path = '/p/edit' render={(props) => (<EditProfile username={this.state.username} profile={this.state.profile} handleProfileNameChange={this.handleProfileNameChange} handleLangNativeChange={this.handleLangNativeChange} handleLangLearningChange={this.handleLangLearningChange} handleBirthdayChange={this.handleBirthdayChange} handleSexChange={this.handleSexChange} handlePicChange={this.handlePicChange} handleLocationChange={this.handleLocationChange} handleEditProfile={this.handleEditProfile} />)} />
 							<Route exact path = '/login' component = { this.state.username ? Profile : LoginView } />
 							{/* <Route exact path = '/login' render = {(props) => (<LoginView setLoggedIn={this.setLoggedIn} username={this.state.username} {...props} />)} /> */}
 							<Route exact path = '/register' component = { this.state.username ? Profile : RegisterView } />

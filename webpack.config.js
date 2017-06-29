@@ -117,7 +117,18 @@ var homeLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var libProfileLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		editProfile: APP_DIR + '/lib/profile/editProfile.jsx',
+		grabProfile: APP_DIR + '/lib/profile/grabProfile.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
 module.exports = [
-	topLevelFolderConfig, miscLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig, profileLevelFolderConfig, communityLevelFolderConfig, homeLevelFolderConfig
+	topLevelFolderConfig, miscLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig, profileLevelFolderConfig, communityLevelFolderConfig, homeLevelFolderConfig, libProfileLevelFolderConfig
 ];
 
