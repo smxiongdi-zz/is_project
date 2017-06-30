@@ -28,13 +28,13 @@ class App extends React.Component {
 			username: '',
 			greeting: 'Welcome, would you like to login or register?',
 			profile: { 
-				profile_name: 'Test Name',
-				lang_native: 'Eng',
-				lang_learning: 'Rus',
-				bday: '1994-03-22',
-				sex: 'male',
-				pic: '/path/pic/etc',
-				loc: 'ks'
+				name: '',
+				lang_native: '',
+				lang_learning: '',
+				bday: '',
+				sex: '',
+				pic: '',
+				loc: ''
 			}
 		}
 		this.setLoggedOut = this.setLoggedOut.bind(this)
@@ -55,7 +55,7 @@ class App extends React.Component {
 		loadSessionUsername()
 			.then(userObj => this.setState({username: userObj.user}))
 		loadUserProfile()
-			.then(userProf => console.log('PROFILE -- ' + userProf))
+			.then(userProf => this.updateProfile(userProf[0]))
 	}
 
 	setLoggedOut() {

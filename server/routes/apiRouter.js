@@ -92,8 +92,25 @@ router.get('/profile_load', ((req, res) => {
 	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
 	userProfile.then((x, err) => {
 		console.log('IN HERE');
-		x.length > 0 ? res.send({profile_name: userProfile.name}) : console.log('no profile')/* no profile */ ; 
+		// res.write and then res.end()
+		console.log('DATE -- ' + x[0].bday);
+		console.log('new DATE -- ' + x[0].bday.toISOString().split('T')[0]);
+		
+		x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
+		console.log('SENDING ' + x);
 	});
+
+	function sendProf() {
+		console.log('here')
+		res.write({profile_name: userProfile.name})
+		res.write({lang_native: userProfile.lang_native})
+		res.write({lang_learning: userProfile.lang_learning})
+		res.write({bday: userProfile.bday})
+		res.write({sex: userProfile.sex})
+		res.write({pic: userProfile.pic})
+		res.write({loc: userProfile.loc})
+		res.end()
+	}
 }));
 
 router.post('/profile_edit', ((req, res) => {

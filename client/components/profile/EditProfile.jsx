@@ -38,7 +38,7 @@ class EditProfile extends React.Component {
 				<div className="form-group row">
 					<label for="name_field" className="col-2 col-form-label">Profile Name</label>
 					<div className="col-10">
-						<input className="form-control" type="text" onChange={this.props.handleProfileNameChange} value={this.props.profile.profile_name} id="profile_name_field"/>
+						<input className="form-control" type="text" onChange={this.props.handleProfileNameChange} value={this.props.profile.name} id="profile_name_field"/>
 					</div>
 				</div>
 				<div className="form-group row">

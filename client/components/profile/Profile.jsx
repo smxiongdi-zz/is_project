@@ -27,7 +27,7 @@ class Profile extends React.Component {
 				<h2>Profile view </h2>
 				<Link to='/p/edit'>Edit profile</Link>
 				{ /* <Route path = '/view/:num' component = { ProfileView }/> */ }
-				<div className='profile_name'>Name: {this.props.profile.profile_name}</div>
+				<div className='profile_name'>Name: {this.props.profile.name}</div>
 				<div className='lang_native'>Speaks: {this.props.profile.lang_native}</div>
 				<div className='lang_learning'>Learning: {this.props.profile.lang_learning}</div>
 				<div className='bday'>Birthday: {this.props.profile.bday}</div>
