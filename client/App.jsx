@@ -37,6 +37,8 @@ class App extends React.Component {
 				loc: ''
 			}
 		}
+		this.handleEditProfile = this.handleEditProfile.bind(this)
+
 		this.setLoggedOut = this.setLoggedOut.bind(this)
 		this.setLoggedIn= this.setLoggedIn.bind(this)
 
@@ -58,6 +60,10 @@ class App extends React.Component {
 			.then(userProf => this.updateProfile(userProf[0]))
 	}
 
+	handleEditProfile() {
+		editProfile(this.state.profile)
+	}
+
 	setLoggedOut() {
 		this.setState({username: ''})
 	}
@@ -72,7 +78,7 @@ class App extends React.Component {
 
 	handleProfileNameChange (evt) {
 		var tempProfile = this.state.profile
-		tempProfile.profile_name = evt.target.value
+		tempProfile.name = evt.target.value
 		this.updateProfile(tempProfile)
 	}
 

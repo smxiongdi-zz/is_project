@@ -11,7 +11,7 @@ class EditProfile extends React.Component {
 			lang_selection: [ "English", "French", "Spanish", "Chinese", "German", "Russian" ],
 			sex: ["Male", "Female"]
 		}
-		this.handleEditProfile = this.handleEditProfile.bind(this)
+//		this.handleEditProfile = this.handleEditProfile.bind(this)
 	}
 
 	componentDidMount() {
@@ -21,10 +21,11 @@ class EditProfile extends React.Component {
 	}
 
 
-	handleEditProfile () {
+/*	handleEditProfile () {
 		// pass args to profile edit API
 		editProfile(this.props.profile)
 	}
+*/
 
 
 	handleSubmit (...args) {
@@ -74,7 +75,7 @@ class EditProfile extends React.Component {
 						<input className="form-control" type="date" onChange={this.props.handleBirthdayChange} value={this.props.profile.bday} id="bday_select"/>
 					</div>
 				</div>
-				<button type="submit" className="btn btn-primary" onClick={this.handleEditProfile}>Submit Changes</button>
+				<button type="submit" className="btn btn-primary" onClick={this.props.handleEditProfile}>Submit Changes</button>
 			</div>
 		)
 	}

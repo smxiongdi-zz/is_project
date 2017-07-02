@@ -94,23 +94,14 @@ router.get('/profile_load', ((req, res) => {
 		console.log('IN HERE');
 		// res.write and then res.end()
 		console.log('DATE -- ' + x[0].bday);
-		console.log('new DATE -- ' + x[0].bday.toISOString().split('T')[0]);
+		var newbday = x[0].bday.toISOString().split('T')[0];
+		console.log('new ' + newbday);
 		
 		x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
+		// x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
 		console.log('SENDING ' + x);
 	});
 
-	function sendProf() {
-		console.log('here')
-		res.write({profile_name: userProfile.name})
-		res.write({lang_native: userProfile.lang_native})
-		res.write({lang_learning: userProfile.lang_learning})
-		res.write({bday: userProfile.bday})
-		res.write({sex: userProfile.sex})
-		res.write({pic: userProfile.pic})
-		res.write({loc: userProfile.loc})
-		res.end()
-	}
 }));
 
 router.post('/profile_edit', ((req, res) => {
@@ -126,11 +117,13 @@ router.post('/profile_edit', ((req, res) => {
 	req.session.uname ? editProf() : console.log('uname not set');
 
 	console.log("UNAME ---" + req.session.uname);
+	console.log("NAME ---" + req.body.name);
 	console.log("PROFILE OBJ: --- " + req.body.loc);
 
 	function editProf() {
-		userProfile.uname = req.session.uname || userProfile.uname;
-		userProfile.name = req.body.name || userProfile.name;
+		console.log('EDITING');
+		userProfile.uname = req.session.uname ? req.session.uname : userProfile.uname;
+		userProfile.name = req.body.name ? req.body.name : userProfile.name;
 		userProfile.lang_learning = req.body.lang_learning || userProfile.lang_learning;
 		userProfile.lang_native = req.body.lang_native || userProfile.lang_native;
 		userProfile.loc = req.body.loc || userProfile.loc;
@@ -138,6 +131,7 @@ router.post('/profile_edit', ((req, res) => {
 		userProfile.sex = req.body.sex || userProfile.sex;
 		userProfile.pic = req.body.pic || userProfile.pic;
 		userProfile.save();
+		res.send({status: 'good'});
 	}
 
 	var createProfile = _ => {
