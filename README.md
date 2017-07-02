@@ -27,8 +27,11 @@
 TO DO
 ******
 profiles
-	edit profile view / APIs
-	view profile / url params to get ID num
+	<strike>edit profile view / APIs</strike>
+	<strike>view profile / url params to get ID num</strike>
 	
 community
 	search view / url params to retrieve list
+
+accounts
+	captcha for registration, re-enable email sending on production
