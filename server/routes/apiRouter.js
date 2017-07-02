@@ -94,8 +94,8 @@ router.get('/profile_load', ((req, res) => {
 		console.log('IN HERE');
 		// res.write and then res.end()
 		console.log('DATE -- ' + x[0].bday);
-		var newbday = x[0].bday.toISOString().split('T')[0];
-		console.log('new ' + newbday);
+//		var newbday = x[0].bday.toISOString().split('T')[0];
+//		console.log('new ' + newbday);
 		
 		x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
 		// x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
@@ -107,30 +107,33 @@ router.get('/profile_load', ((req, res) => {
 router.post('/profile_edit', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
-//	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
+	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
 /*	userProfile.then((x, err) => {
 		x.length == 0 ? userProfile = new Profile({req.body. : 
 	});
 */
 
-	var userProfile = !userProfile ? new Profile({}) : Profile.find({uname: req.session.uname}).limit(1);
-	req.session.uname ? editProf() : console.log('uname not set');
+	userProfile.then((x, err) => { x.length > 0 ? editProf(x[0]) : editProf(new Profile({}))})
+
+//	var userProfile = !userProfilex.name ? new Profile({}) : userProfilex;
+	console.log('my userprof: --- ' + userProfile.name);
+//	req.session.uname ? editProf() : console.log('uname not set');
 
 	console.log("UNAME ---" + req.session.uname);
 	console.log("NAME ---" + req.body.name);
 	console.log("PROFILE OBJ: --- " + req.body.loc);
 
-	function editProf() {
+	function editProf(y) {
 		console.log('EDITING');
-		userProfile.uname = req.session.uname ? req.session.uname : userProfile.uname;
-		userProfile.name = req.body.name ? req.body.name : userProfile.name;
-		userProfile.lang_learning = req.body.lang_learning || userProfile.lang_learning;
-		userProfile.lang_native = req.body.lang_native || userProfile.lang_native;
-		userProfile.loc = req.body.loc || userProfile.loc;
-		userProfile.bday = req.body.bday || userProfile.bday;
-		userProfile.sex = req.body.sex || userProfile.sex;
-		userProfile.pic = req.body.pic || userProfile.pic;
-		userProfile.save();
+		y.uname = req.session.uname ? req.session.uname : y.uname;
+		y.name = req.body.name ? req.body.name : y.name;
+		y.lang_learning = req.body.lang_learning ? req.body.lang_learning : y.lang_learning; // || y.lang_learning;
+		y.lang_native = req.body.lang_native ? req.body.lang_native : y.lang_native;// || y.lang_native;
+		y.loc = req.body.loc;// || y.loc;
+		y.bday = req.body.bday;// || y.bday;
+		y.sex = req.body.sex;// || y.sex;
+		y.pic = req.body.pic;// || y.pic;
+		y.save();
 		res.send({status: 'good'});
 	}
 
