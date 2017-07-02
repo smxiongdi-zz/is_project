@@ -11,6 +11,7 @@ import Navbar from './components/nav/Navbar.jsx';
 import Footer from './components/nav/Footer.jsx';
 import Home from './components/home/Home.jsx';
 import Community from './components/community/Community.jsx';
+import UserProfile from './components/community/UserProfile.jsx';
 import Profile from './components/profile/Profile.jsx';
 import EditProfile from './components/profile/EditProfile.jsx';
 import LoginView from './components/account/LoginView.jsx';
@@ -134,6 +135,7 @@ class App extends React.Component {
 							<Route exact path = '/p/edit' component = { EditProfile }/>  */}
 							<Route exact path = '/p' render={(props) => (<Profile username={this.state.username} profile={this.state.profile} />)} />
 							<Route exact path = '/p/edit' render={(props) => (<EditProfile username={this.state.username} profile={this.state.profile} handleProfileNameChange={this.handleProfileNameChange} handleLangNativeChange={this.handleLangNativeChange} handleLangLearningChange={this.handleLangLearningChange} handleBirthdayChange={this.handleBirthdayChange} handleSexChange={this.handleSexChange} handlePicChange={this.handlePicChange} handleLocationChange={this.handleLocationChange} handleEditProfile={this.handleEditProfile} />)} />
+							<Route path = '/p/:user_id' component = { UserProfile } />
 							<Route exact path = '/login' component = { this.state.username ? Profile : LoginView } />
 							{/* <Route exact path = '/login' render = {(props) => (<LoginView setLoggedIn={this.setLoggedIn} username={this.state.username} {...props} />)} /> */}
 							<Route exact path = '/register' component = { this.state.username ? Profile : RegisterView } />

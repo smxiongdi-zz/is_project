@@ -94,8 +94,6 @@ router.get('/profile_load', ((req, res) => {
 		console.log('IN HERE');
 		// res.write and then res.end()
 		console.log('DATE -- ' + x[0].bday);
-//		var newbday = x[0].bday.toISOString().split('T')[0];
-//		console.log('new ' + newbday);
 		
 		x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
 		// x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
@@ -141,6 +139,24 @@ router.post('/profile_edit', ((req, res) => {
 
 	}
 
+}));
+
+// community load api
+router.get('/community_load', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
+	// eventually add in searchable params and pass in via url
+	var userProfiles = Profile.find({});
+	userProfiles.then((x, err) => res.send(x));
+}));
+
+router.post('/user_profile', ((req, res) => {
+	console.log('user id sent -- ' + req.body.user_id);
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
+	// eventually add in searchable params and pass in via url
+	var user_profile = Profile.find({_id: req.body.user_id}).limit(1);
+	user_profile.then((x, err) => res.send(x[0]));
 }));
 
 module.exports = router;

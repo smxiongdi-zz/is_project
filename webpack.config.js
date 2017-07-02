@@ -88,7 +88,8 @@ var profileLevelFolderConfig = Object.assign({}, config, {
 
 var communityLevelFolderConfig = Object.assign({}, config, {
 	entry: {
-		Profile: APP_DIR + '/components/community/Community.jsx',
+		Community: APP_DIR + '/components/community/Community.jsx',
+		UserProfile: APP_DIR + '/components/community/UserProfile.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -128,7 +129,18 @@ var libProfileLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var libCommunityLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		grabCommunity: APP_DIR + '/lib/community/grabCommunity.jsx',
+		grabUserProfile: APP_DIR + '/lib/community/grabUserProfile.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
 module.exports = [
-	topLevelFolderConfig, miscLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig, profileLevelFolderConfig, communityLevelFolderConfig, homeLevelFolderConfig, libProfileLevelFolderConfig
+	topLevelFolderConfig, miscLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig, profileLevelFolderConfig, communityLevelFolderConfig, homeLevelFolderConfig, libProfileLevelFolderConfig, libCommunityLevelFolderConfig
 ];
 

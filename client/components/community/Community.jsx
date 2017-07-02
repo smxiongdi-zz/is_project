@@ -1,16 +1,27 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
+
+import { loadCommunityMembers } from '../.././lib/community/grabCommunity.jsx';
 
 class Community extends React.Component {
+
+	constructor() {
+		super()
+		this.state = {
+			commObj: [] 
+		}
+	}
+
+	componentDidMount() {
+		loadCommunityMembers()
+			.then((commObj) => this.setState({commObj: commObj}))
+	}
+
 	render() {
 		return (
 			<div>
 				<h2>Community view </h2>
-				<Switch>
-					{ /* <Route exact path = '/' component = { MyCommunity }/>
-					<Route exact path = '/edit' component = { MyCommunityEdit }/>
-					<Route path = '/view/:num' component = { CommunityView }/> */ }
-				</Switch>
+				{ this.state.commObj.map((x) => <div className="member"><Link to={'/p/' + x._id}>{x.name}</Link></div>)}
 			</div>
 		)
 	}
