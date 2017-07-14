@@ -6,6 +6,8 @@ var Promise = require('promise');
 var randstr = require('randomstring');
 var nev = require('email-verification')(require('mongoose'));
 
+const nodemailer = require('nodemailer');
+
 // login API
 router.post('/login', ((req, res) => {
 
@@ -63,7 +65,7 @@ router.post('/register', ((req, res) => {
 			tempUser.upass = hash;
 			tempUser.conf_link = randstr.generate(10);
 			tempUser.save();
-			email_verif();
+			email_verif(req.body.email, tempUser.conf_link);
 			res.send({err:0, redirect: '/home'});
 		});
 	}
@@ -72,8 +74,33 @@ router.post('/register', ((req, res) => {
 		return thisF.then((x, err) => { x.length > 0 ? 0 : 1 });
 	};
 
-	var email_verif = _ => {
+	var email_verif = (ev_email, ev_link) => {
 		// send email
+
+		let transporter = nodemailer.createTransport({
+			host: 'smtp.gmail.com',
+			port: 465,
+			secure: true,
+			auth: {
+				user: 'admin@exlang.io',
+				pass: 'w4ngYANGbu!uo'
+			}
+		});
+
+		let mailOptions = {
+			from: '"The exlang.io team" <admin@exlang.io>',
+			to: ev_email,
+			subject: "Confirm your email",
+			text: "Hello, please confirm your email by going to the following link: http://107.191.55.190/register/confirm/"+ev_link,
+			html: "<b>Hello, please confirm your email by going to the following link: <br/> http://107.191.55.190/register/confirm/"+ev_link+"</b>"
+		}
+		
+		transporter.sendMail(mailOptions, (error, info) => {
+			if (error) {
+				return console.log(error);
+			}
+			console.log('msg %s sent: %s', info.messageId, info.response);
+		});
 	}
 
 }));

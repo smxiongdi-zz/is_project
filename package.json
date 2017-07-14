@@ -34,6 +34,7 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-form": "^1.2.8",
+    "react-grecaptcha": "^1.1.7",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.0",
@@ -51,6 +52,8 @@
     "css-loader": "^0.28.4",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "react-gcaptcha": "^3.8.1",
+    "react-recaptcha": "^2.3.2",
     "style-loader": "^0.18.2"
   }
 }

@@ -21,6 +21,14 @@ import { loadSessionUsername } from './lib/grabSession.jsx';
 import { loadUserProfile } from './lib/profile/grabProfile.jsx';
 import { editProfile } from './lib/profile/editProfile.jsx';
 
+// redux
+import { createStore } from 'redux';
+import { getState } from 'redux';
+import { Provider } from 'react-redux';
+
+// reducer
+
+
 class App extends React.Component {
 
 	constructor() {
@@ -148,4 +156,4 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(/*<Provider store = { store }>*/<App />, document.getElementById('root'));
