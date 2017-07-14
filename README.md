@@ -7,6 +7,9 @@
 <strike>currently transitioning to react/redux for testing etc. production site: exlang.io - pending update from dev server ETA ~3 days on working basic features</strike>
 
 /client - react application
+
+# need to implement redux state container - in progress
+
 	App.jsx - main jsx file from which all components are routed
 	
 	/build - transpiled jsx to js
@@ -34,4 +37,4 @@ community
 	search view / url params to retrieve list
 
 accounts
-	captcha for registration, re-enable email sending on production
+<strike>	captcha for registration, re-enable email sending on production</strike>
