@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { logoutUser } from '../.././lib/logoutAPI.js';
-
 class Navbar extends React.Component {
 	constructor() {
 		super();
@@ -17,8 +15,8 @@ class Navbar extends React.Component {
 	
 	handleLogout (evt) {
 		// evt.preventDefault()
-		logoutUser()
-		this.props.setLoggedOut()
+		this.props.logoutUser()
+		//this.props.setLoggedOut()
 			//.then(() => this.setState({ redirectTo: '/' }))
 	}
 

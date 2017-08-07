@@ -4,6 +4,7 @@ var router = express.Router();
 
 router.get('/register/confirm/:conflink', ((req, res) => {
 	console.log(req.params.conflink);
+	res.sendFile('/home/zach/is_project/server/views/hp.html');
 	
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var TempUser = require('/home/zach/is_project/server/models/temp_user_model.js');
@@ -20,7 +21,6 @@ router.get('/register/confirm/:conflink', ((req, res) => {
 		myUser.save();
 
 		TempUser.findByIdAndRemove(x[0]._id, ((err, y) => {
-			res.sendFile('/home/zach/is_project/server/views/hp.html');
 			console.log('removed');
 		}));
 	});

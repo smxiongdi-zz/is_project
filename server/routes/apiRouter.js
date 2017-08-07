@@ -28,6 +28,7 @@ router.post('/login', ((req, res) => {
 		bcrypt.compare(req.body.pass, x[0].upass, function(err, result) {
 			req.session.uname = req.body.email;
 			req.session.save();
+			res.send({username: req.body.email});
 		});
 	});
 
@@ -122,7 +123,7 @@ router.get('/profile_load', ((req, res) => {
 		// res.write and then res.end()
 		console.log('DATE -- ' + x[0].bday);
 		
-		x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
+		x.length > 0 ? res.send(x[0]) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
 		// x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
 		console.log('SENDING ' + x);
 	});
@@ -182,6 +183,7 @@ router.post('/user_profile', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
 	// eventually add in searchable params and pass in via url
+	console.log("USER ID :  " + req.body.user_id);
 	var user_profile = Profile.find({_id: req.body.user_id}).limit(1);
 	user_profile.then((x, err) => res.send(x[0]));
 }));

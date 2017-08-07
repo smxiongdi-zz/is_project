@@ -35,6 +35,9 @@ var config = {
 var topLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		App: APP_DIR + '/App.jsx',
+		Root: APP_DIR + '/Root.jsx',
+		index: APP_DIR + '/index.jsx',
+		configureStore: APP_DIR + '/configureStore.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -52,55 +55,25 @@ var miscLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
-var accountsLevelFolderConfig = Object.assign({}, config, {
-	entry: {
-		LoginView: APP_DIR + '/components/account/LoginView.jsx',
-		RegisterView: APP_DIR + '/components/account/RegisterView.jsx',
-		accConfirm: APP_DIR + '/components/account/accConfirm.jsx',
-	},
-	output: {
-		path: BUILD_DIR,
-		filename: '[name].js'
-	}
-});
-
-var libLevelFolderConfig = Object.assign({}, config, {
-	entry: {
-		grabSession: APP_DIR + '/lib/grabSession.jsx',
-	},
-	output: {
-		path: BUILD_DIR,
-		filename: '[name].js'
-	}
-});
-
-var profileLevelFolderConfig = Object.assign({}, config, {
-	entry: {
-		Profile: APP_DIR + '/components/profile/Profile.jsx',
-		MyProfile: APP_DIR + '/components/profile/MyProfile.jsx',
-		EditProfile: APP_DIR + '/components/profile/EditProfile.jsx',
-	},
-	output: {
-		path: BUILD_DIR,
-		filename: '[name].js'
-	}
-});
-
-var communityLevelFolderConfig = Object.assign({}, config, {
-	entry: {
-		Community: APP_DIR + '/components/community/Community.jsx',
-		UserProfile: APP_DIR + '/components/community/UserProfile.jsx',
-	},
-	output: {
-		path: BUILD_DIR,
-		filename: '[name].js'
-	}
-});
-
 var navLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		Navbar: APP_DIR + '/components/nav/Navbar.jsx',
+		NavbarContainer: APP_DIR + '/components/nav/NavbarContainer.jsx',
 		Footer: APP_DIR + '/components/nav/Footer.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
+
+var accountLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		LoginPage: APP_DIR + '/components/account/LoginPage.jsx',
+		LoginContainer: APP_DIR + '/components/account/LoginContainer.jsx',
+		RegisterPage: APP_DIR + '/components/account/RegisterPage.jsx',
+		RegisterContainer: APP_DIR + '/components/account/RegisterContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -110,7 +83,8 @@ var navLevelFolderConfig = Object.assign({}, config, {
 
 var homeLevelFolderConfig = Object.assign({}, config, {
 	entry: {
-		Home: APP_DIR + '/components/home/Home.jsx',
+		LP: APP_DIR + '/components/home/LP.jsx',
+		HomeContainer: APP_DIR + '/components/home/HomeContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -118,10 +92,12 @@ var homeLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
-var libProfileLevelFolderConfig = Object.assign({}, config, {
+var communityLevelFolderConfig = Object.assign({}, config, {
 	entry: {
-		editProfile: APP_DIR + '/lib/profile/editProfile.jsx',
-		grabProfile: APP_DIR + '/lib/profile/grabProfile.jsx',
+		CommunityPage: APP_DIR + '/components/community/CommunityPage.jsx',
+		CommunityContainer: APP_DIR + '/components/community/CommunityContainer.jsx',
+		UserProfilePage: APP_DIR + '/components/community/UserProfilePage.jsx',
+		UserProfileContainer: APP_DIR + '/components/community/UserProfileContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -129,10 +105,10 @@ var libProfileLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
-var libCommunityLevelFolderConfig = Object.assign({}, config, {
+var profileLevelFolderConfig = Object.assign({}, config, {
 	entry: {
-		grabCommunity: APP_DIR + '/lib/community/grabCommunity.jsx',
-		grabUserProfile: APP_DIR + '/lib/community/grabUserProfile.jsx',
+		ProfilePage: APP_DIR + '/components/profile/ProfilePage.jsx',
+		ProfileContainer: APP_DIR + '/components/profile/ProfileContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -141,6 +117,6 @@ var libCommunityLevelFolderConfig = Object.assign({}, config, {
 });
 
 module.exports = [
-	topLevelFolderConfig, miscLevelFolderConfig, accountsLevelFolderConfig, libLevelFolderConfig, navLevelFolderConfig, profileLevelFolderConfig, communityLevelFolderConfig, homeLevelFolderConfig, libProfileLevelFolderConfig, libCommunityLevelFolderConfig
+	topLevelFolderConfig, miscLevelFolderConfig, homeLevelFolderConfig, navLevelFolderConfig, accountLevelFolderConfig, communityLevelFolderConfig, profileLevelFolderConfig
 ];
 
