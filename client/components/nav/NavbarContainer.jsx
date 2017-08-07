@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { logoutUser } from '../.././redux/actions/credActions';
 import Navbar from './Navbar.jsx';
 
 // container component for nav
@@ -13,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return ({
-		logoutUser: () => dispatch(logoutUser()),
+		dispatch,
 	})
 }
 

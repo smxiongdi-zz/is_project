@@ -72,6 +72,8 @@ var accountLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		LoginPage: APP_DIR + '/components/account/LoginPage.jsx',
 		LoginContainer: APP_DIR + '/components/account/LoginContainer.jsx',
+		LogoutPage: APP_DIR + '/components/account/LogoutPage.jsx',
+		LogoutContainer: APP_DIR + '/components/account/LogoutContainer.jsx',
 		RegisterPage: APP_DIR + '/components/account/RegisterPage.jsx',
 		RegisterContainer: APP_DIR + '/components/account/RegisterContainer.jsx',
 	},
@@ -109,6 +111,8 @@ var profileLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		ProfilePage: APP_DIR + '/components/profile/ProfilePage.jsx',
 		ProfileContainer: APP_DIR + '/components/profile/ProfileContainer.jsx',
+		EditProfilePage: APP_DIR + '/components/profile/EditProfilePage.jsx',
+		EditProfileContainer: APP_DIR + '/components/profile/EditProfileContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,

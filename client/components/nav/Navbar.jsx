@@ -14,8 +14,6 @@ class Navbar extends React.Component {
 	}
 	
 	handleLogout (evt) {
-		// evt.preventDefault()
-		this.props.logoutUser()
 		//this.props.setLoggedOut()
 			//.then(() => this.setState({ redirectTo: '/' }))
 	}

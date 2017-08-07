@@ -48,6 +48,12 @@ const apiReducer = (state = [], action) => {
 					profile: action.profile,
 					message: action.message
 			})
+		case 'UPDATE_PROFILE_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					profile: action.profile,
+					message: action.message
+			})
 		default: 
 			return state
 	}

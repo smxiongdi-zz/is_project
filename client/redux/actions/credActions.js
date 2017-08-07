@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 //import * as schema from './schema';
-import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile } from '../.././api/index'
+import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile } from '../.././api/index'
 import { getIsFetching, getMessage } from '../reducers/exlang';
 
 export const fetchCredentials = () => (dispatch, getState) => {
@@ -97,6 +97,7 @@ export const logoutUser = () => (dispatch) => {
 				type: 'LOGOUT_USER_SUCCESS',
 				isFetching: false,
 				username: '',
+				message: 'Thank you for logging out, now returning to the homepage.',
 			});
 		},
 		error => {
@@ -175,6 +176,31 @@ export const fetchMyDetails = () => (dispatch, getState) => {
 				type: 'FETCH_MY_DETAILS_SUCCESS',
 				isFetching: false,
 				profile: response
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
+export const editMyProfile = (edited) => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return editProfile(edited).then(
+		response => {
+			dispatch({
+				type: 'UPDATE_PROFILE_SUCCESS',
+				isFetching: false,
 			});
 		},
 		error => {
