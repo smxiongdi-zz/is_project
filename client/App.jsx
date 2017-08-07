@@ -12,6 +12,7 @@ import Footer from './components/nav/Footer.jsx';
 import HomeContainer from './components/home/HomeContainer.jsx';
 import LoginContainer from './components/account/LoginContainer.jsx';
 import LogoutContainer from './components/account/LogoutContainer.jsx';
+import accConfirmContainer from './components/account/accConfirmContainer.jsx';
 import RegisterContainer from './components/account/RegisterContainer.jsx';
 import CommunityContainer from './components/community/CommunityContainer.jsx';
 import ProfileContainer from './components/profile/ProfileContainer.jsx';
@@ -36,6 +37,7 @@ class App extends React.Component {
 								<Route exact path ="/login" component = { LoginContainer } />
 								<Route exact path ="/logout" component = { LogoutContainer } />
 								<Route exact path ="/register" component = { RegisterContainer } />
+								<Route path ="/confirm/:user_id" component = { accConfirmContainer } />
 								<Route exact path ="/c" component = { CommunityContainer } />
 								<Route exact path ="/p" component = { ProfileContainer } />
 								<Route exact path ="/p/edit" component = { EditProfileContainer } />

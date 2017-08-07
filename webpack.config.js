@@ -76,6 +76,8 @@ var accountLevelFolderConfig = Object.assign({}, config, {
 		LogoutContainer: APP_DIR + '/components/account/LogoutContainer.jsx',
 		RegisterPage: APP_DIR + '/components/account/RegisterPage.jsx',
 		RegisterContainer: APP_DIR + '/components/account/RegisterContainer.jsx',
+		accConfirmPage: APP_DIR + '/components/account/accConfirmPage.jsx',
+		accConfirmContainer: APP_DIR + '/components/account/accConfirmContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -100,6 +102,7 @@ var communityLevelFolderConfig = Object.assign({}, config, {
 		CommunityContainer: APP_DIR + '/components/community/CommunityContainer.jsx',
 		UserProfilePage: APP_DIR + '/components/community/UserProfilePage.jsx',
 		UserProfileContainer: APP_DIR + '/components/community/UserProfileContainer.jsx',
+		UserLinkComponent: APP_DIR + '/components/community/UserLinkComponent.jsx',
 	},
 	output: {
 		path: BUILD_DIR,

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 114);
+/******/ 	return __webpack_require__(__webpack_require__.s = 86);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -981,45 +981,6 @@ eval("/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router__ = __we
 
 "use strict";
 eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _react = __webpack_require__(/*! react */ 1);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 2);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar UserLinkComponent = function UserLinkComponent(props) {\n\tvar myComponent = void 0;\n\tif (props.commLinkObj.name && props.commLinkObj.lang_native[0] && props.commLinkObj.lang_learning[0] && props.commLinkObj.sex) {\n\t\tmyComponent = _react2.default.createElement(\n\t\t\t'li',\n\t\t\t{ className: 'list-group-item community-member' },\n\t\t\t_react2.default.createElement(\n\t\t\t\t_reactRouterDom.Link,\n\t\t\t\t{ to: '/p/' + props.commLinkObj._id },\n\t\t\t\tprops.commLinkObj.name,\n\t\t\t\t' ',\n\t\t\t\t_react2.default.createElement('br', null),\n\t\t\t\t'Speaks: ',\n\t\t\t\tprops.commLinkObj.lang_native[0],\n\t\t\t\t_react2.default.createElement('br', null),\n\t\t\t\t'Learning: ',\n\t\t\t\tprops.commLinkObj.lang_learning[0],\n\t\t\t\t' ',\n\t\t\t\t_react2.default.createElement('br', null),\n\t\t\t\t'Gender: ',\n\t\t\t\tprops.commLinkObj.sex,\n\t\t\t\t' '\n\t\t\t)\n\t\t);\n\t} else {\n\t\tmyComponent = null;\n\t}\n\treturn _react2.default.createElement(\n\t\t'div',\n\t\t{ className: 'UserLinkComponent' },\n\t\tmyComponent\n\t);\n};\n\n// PRESENTATIONAL COMPONENT\n\nexports.default = UserLinkComponent;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiODYuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vY2xpZW50L2NvbXBvbmVudHMvY29tbXVuaXR5L1VzZXJMaW5rQ29tcG9uZW50LmpzeD83ZmRiIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nO1xuXG5jb25zdCBVc2VyTGlua0NvbXBvbmVudCA9IChwcm9wcykgPT4ge1xuXHRsZXQgbXlDb21wb25lbnQ7XG5cdGlmKHByb3BzLmNvbW1MaW5rT2JqLm5hbWUgJiYgcHJvcHMuY29tbUxpbmtPYmoubGFuZ19uYXRpdmVbMF0gJiYgcHJvcHMuY29tbUxpbmtPYmoubGFuZ19sZWFybmluZ1swXSAmJiBwcm9wcy5jb21tTGlua09iai5zZXgpIHtcblx0XHRteUNvbXBvbmVudCA9IFxuXHRcdDxsaSBjbGFzc05hbWUgPSBcImxpc3QtZ3JvdXAtaXRlbSBjb21tdW5pdHktbWVtYmVyXCI+IFxuXHRcdDxMaW5rIHRvID17Jy9wLycgKyBwcm9wcy5jb21tTGlua09iai5faWR9PlxuXHRcdHtwcm9wcy5jb21tTGlua09iai5uYW1lfSA8YnIvPiBcblx0XHRTcGVha3M6IHtwcm9wcy5jb21tTGlua09iai5sYW5nX25hdGl2ZVswXX08YnIvPiBcblx0XHRMZWFybmluZzoge3Byb3BzLmNvbW1MaW5rT2JqLmxhbmdfbGVhcm5pbmdbMF19IDxici8+IFxuXHRcdEdlbmRlcjoge3Byb3BzLmNvbW1MaW5rT2JqLnNleH0gPC9MaW5rPlxuXHRcdDwvbGk+IFxuXHR9XG5cdGVsc2Uge1xuXHRcdG15Q29tcG9uZW50ID0gbnVsbFxuXHR9XG5cdHJldHVybiAoXG5cdFx0PGRpdiBjbGFzc05hbWU9XCJVc2VyTGlua0NvbXBvbmVudFwiPlxuXHRcdFx0XHRcblx0XHRcdFx0ey8qXG5cdFx0XHRcdDxMaW5rIHRvID17Jy9wLycgKyBwcm9wcy5jb21tTGlua09iai5faWR9PiBcblx0XHRcdFx0XHR7cHJvcHMuY29tbUxpbmtPYmoubmFtZX0gPGJyLz5cblx0XHRcdFx0XHRTcGVha3M6IHtwcm9wcy5jb21tTGlua09iai5sYW5nX25hdGl2ZVswXX08YnIvPlxuXHRcdFx0XHRcdExlYXJuaW5nOiB7cHJvcHMuY29tbUxpbmtPYmoubGFuZ19sZWFybmluZ1swXX0gPGJyLz5cblx0XHRcdFx0XHRHZW5kZXI6IHtwcm9wcy5jb21tTGlua09iai5zZXByb3BzLmNvbW1MaW5rT2JqfSBcblx0XHRcdFx0PC9MaW5rPiBcblx0XHRcdFx0R2FyYmFnZSB0ZXh0XG5cdFx0XHRcdCovfVxuXHRcdFx0XHR7bXlDb21wb25lbnR9XG5cdFx0PC9kaXY+XG5cdClcbn1cblxuXG4vLyBQUkVTRU5UQVRJT05BTCBDT01QT05FTlRcblxuZXhwb3J0IGRlZmF1bHQgVXNlckxpbmtDb21wb25lbnQ7XG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gY2xpZW50L2NvbXBvbmVudHMvY29tbXVuaXR5L1VzZXJMaW5rQ29tcG9uZW50LmpzeCJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFEQTtBQUNBO0FBREE7QUFFQTtBQUFBO0FBRkE7QUFHQTtBQUhBO0FBR0E7QUFIQTtBQUlBO0FBSkE7QUFBQTtBQURBO0FBT0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBV0E7QUFYQTtBQWNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///86\n");
-
-/***/ }),
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */
-/*!*******************************************************!*\
-  !*** ./client/components/community/CommunityPage.jsx ***!
-  \*******************************************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 1);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 2);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ 33);\n\nvar _UserLinkComponent = __webpack_require__(/*! ./UserLinkComponent.jsx */ 86);\n\nvar _UserLinkComponent2 = _interopRequireDefault(_UserLinkComponent);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar CommunityPage = function (_React$Component) {\n\t_inherits(CommunityPage, _React$Component);\n\n\tfunction CommunityPage() {\n\t\t_classCallCheck(this, CommunityPage);\n\n\t\tvar _this = _possibleConstructorReturn(this, (CommunityPage.__proto__ || Object.getPrototypeOf(CommunityPage)).call(this));\n\n\t\t_this.state = {};\n\t\treturn _this;\n\t}\n\n\t_createClass(CommunityPage, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {\n\t\t\tthis.props.fetchCommunityList();\n\t\t}\n\t}, {\n\t\tkey: 'mapUserLinks',\n\t\tvalue: function mapUserLinks(x) {}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\treturn _react2.default.createElement(\n\t\t\t\t'div',\n\t\t\t\tnull,\n\t\t\t\t_react2.default.createElement(\n\t\t\t\t\t'h2',\n\t\t\t\t\tnull,\n\t\t\t\t\tthis.props.title\n\t\t\t\t),\n\t\t\t\t_react2.default.createElement(\n\t\t\t\t\t'ul',\n\t\t\t\t\t{ className: 'list-group' },\n\t\t\t\t\tconsole.log(this.props.commObj),\n\t\t\t\t\tthis.props.commObj ? this.props.commObj.map(function (x) {\n\t\t\t\t\t\treturn _react2.default.createElement(_UserLinkComponent2.default, { commLinkObj: x });\n\t\t\t\t\t}) : ''\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn CommunityPage;\n}(_react2.default.Component);\n\n// PRESENTATIONAL COMPONENT\n\nexports.default = CommunityPage;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTE0LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2NsaWVudC9jb21wb25lbnRzL2NvbW11bml0eS9Db21tdW5pdHlQYWdlLmpzeD8zYWJlIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nO1xuaW1wb3J0IFVzZXJMaW5rQ29tcG9uZW50IGZyb20gJy4vVXNlckxpbmtDb21wb25lbnQuanN4JztcblxuY2xhc3MgQ29tbXVuaXR5UGFnZSBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG5cblx0Y29uc3RydWN0b3IoKSB7XG5cdFx0c3VwZXIoKTtcblx0XHR0aGlzLnN0YXRlID0ge1xuXHRcdH1cblx0fVxuXG5cdGNvbXBvbmVudERpZE1vdW50KCkge1xuXHRcdHRoaXMucHJvcHMuZmV0Y2hDb21tdW5pdHlMaXN0KCk7XG5cdH1cblxuXHRtYXBVc2VyTGlua3MoeCkge1xuXG5cdH1cblxuXHRyZW5kZXIoKSB7XG5cdFx0cmV0dXJuIChcblx0XHRcdDxkaXY+XG5cdFx0XHRcdDxoMj57dGhpcy5wcm9wcy50aXRsZX08L2gyPlxuXHRcdFx0XHQ8dWwgY2xhc3NOYW1lPVwibGlzdC1ncm91cFwiPlxuXHRcdFx0XHR7LyogdGhpcy5wcm9wcy5mZXRjaENvbW11bml0eUxpc3QoKS50aGVuKCh4KSA9PiB7IHgubWFwKCh5KSA9PiA8bGkgY2xhc3NOYW1lPVwibGlzdC1ncm91cC1pdGVtIG1lbWJlclwiPjxMaW5rIHRvPXsnL3AvJyArIHkuX2lkLnRvU3RyaW5nKCl9Pnt5Lm5hbWUudG9TdHJpbmcoKX08L0xpbms+PC9saT4pfSkgKi99XG5cdFx0XHRcdHsgY29uc29sZS5sb2codGhpcy5wcm9wcy5jb21tT2JqKSB9XG5cdFx0XHRcdHsvKiB0aGlzLnByb3BzLmNvbW1PYmogPyB0aGlzLnByb3BzLmNvbW1PYmoubWFwKCh4KSA9PiA8bGkgY2xhc3NOYW1lID0gXCJsaXN0LWdyb3VwLWl0ZW0gY29tbXVuaXR5LW1lbWJlclwiPiA8TGluayB0byA9eycvcC8nICsgeC5faWR9PiB7eC5uYW1lfSA8YnIvPlNwZWFrczoge3gubGFuZ19uYXRpdmVbMF19PGJyLz5MZWFybmluZzoge3gubGFuZ19sZWFybmluZ1swXX0gPGJyLz5HZW5kZXI6IHt4LnNleH0gPC9MaW5rPiA8L2xpPiApIDogJycgKi99XG5cdFx0XHRcdHsgdGhpcy5wcm9wcy5jb21tT2JqID8gdGhpcy5wcm9wcy5jb21tT2JqLm1hcCgoeCkgPT4gPFVzZXJMaW5rQ29tcG9uZW50IGNvbW1MaW5rT2JqID0ge3h9IC8+ICkgOiAnJyB9XG5cdFx0XHRcdDwvdWw+XG5cdFx0XHQ8L2Rpdj5cblx0XHQpXG5cdH1cbn1cblxuXG4vLyBQUkVTRU5UQVRJT05BTCBDT01QT05FTlRcblxuZXhwb3J0IGRlZmF1bHQgQ29tbXVuaXR5UGFnZTtcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBjbGllbnQvY29tcG9uZW50cy9jb21tdW5pdHkvQ29tbXVuaXR5UGFnZS5qc3giXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTtBQUFBO0FBQ0E7Ozs7Ozs7Ozs7O0FBQ0E7OztBQUVBO0FBQUE7QUFDQTtBQURBO0FBQ0E7QUFDQTtBQUZBO0FBSUE7QUFDQTs7O0FBQ0E7QUFDQTtBQUNBOzs7QUFFQTs7O0FBSUE7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBRUE7QUFFQTtBQUFBO0FBQUE7QUFKQTtBQUZBO0FBVUE7Ozs7QUE1QkE7QUFDQTtBQStCQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///114\n");
 
 /***/ })
 /******/ ]);

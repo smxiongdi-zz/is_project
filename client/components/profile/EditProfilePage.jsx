@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { editMyProfile } from '../../redux/actions/credActions';
 
 class EditProfilePage extends React.Component {
@@ -72,13 +72,16 @@ class EditProfilePage extends React.Component {
 		this.updateProfile(tempProf);
 	}
 
-	updateProfile(newProf) { this.setState({profile: newProf}) }
+	updateProfile(newProf) { 
+		this.setState({profile: newProf})
+	}
 
 	handleEditProfile () {
 		// pass args to profile edit API
-		this.props.dispatch(editMyProfile(this.state.profile));
-		this.props.fetchMyDetails();
-		window.location.href='/p';
+		this.props.dispatch(editMyProfile(this.state.profile))
+		this.props.fetchMyDetails()
+		this.props.history.push('/')
+		//window.location.href='/p';
 	}
 
 	render() {

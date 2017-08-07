@@ -115,3 +115,16 @@ export const editProfile = (profile_obj) => {
 		body: JSON.stringify(profile_obj)
 	}).then(res => res.json())
 }
+
+export const confirmAccount = (confUrl) => {
+	const baseUrl = '/confirm';
+	return fetch(baseUrl, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		credentials: 'include',
+		body: JSON.stringify(confUrl)
+	}).then(res => res.json())
+}

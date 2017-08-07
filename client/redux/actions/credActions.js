@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 //import * as schema from './schema';
-import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile } from '../.././api/index'
+import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount } from '../.././api/index'
 import { getIsFetching, getMessage } from '../reducers/exlang';
 
 export const fetchCredentials = () => (dispatch, getState) => {
@@ -96,7 +96,7 @@ export const logoutUser = () => (dispatch) => {
 			dispatch({
 				type: 'LOGOUT_USER_SUCCESS',
 				isFetching: false,
-				username: '',
+				username: null,
 				message: 'Thank you for logging out, now returning to the homepage.',
 			});
 		},
@@ -208,6 +208,32 @@ export const editMyProfile = (edited) => (dispatch, getState) => {
 				type: 'API_FAILURE',
 				isFetching: false,
 				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
+export const confirmMyAccount = (confUrl) => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return confirmAccount(confUrl).then(
+		response => {
+			dispatch({
+				type: 'CONFIRM_ACCOUNT_SUCCESS',
+				isFetching: false,
+				message: 'Thank you for confirming your account. Please login - redirecting to login page now.',
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure - Logout',
 			});
 		}
 	);

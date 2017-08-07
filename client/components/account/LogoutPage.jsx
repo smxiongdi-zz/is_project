@@ -5,7 +5,7 @@ class LogoutPage extends React.Component {
 
 	componentDidMount() {
 		this.props.logoutUser();
-		setTimeout(() => window.location.href = '/', 5000);
+		setTimeout(() => this.props.history.push('/'), 5000);
 	}
 
 	render () {
@@ -19,11 +19,6 @@ class LogoutPage extends React.Component {
 }
 
 LogoutPage.propTypes = {
-  inputEmail: React.PropTypes.string.isRequired,
-  inputPass: React.PropTypes.string.isRequired,
-  handlePassChange: React.PropTypes.func,
-  handleEmailChange: React.PropTypes.func
 }
-
 
 export default LogoutPage;

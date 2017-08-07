@@ -38,6 +38,7 @@ router.post('/login', ((req, res) => {
 router.post('/logout', ((req, res) => {
 	console.log('request accepted');
 	req.session.destroy();
+	res.send({response:'good'});
 }));
 
 // register API 
@@ -92,8 +93,8 @@ router.post('/register', ((req, res) => {
 			from: '"The exlang.io team" <admin@exlang.io>',
 			to: ev_email,
 			subject: "Confirm your email",
-			text: "Hello, please confirm your email by going to the following link: http://107.191.55.190/register/confirm/"+ev_link,
-			html: "<b>Hello, please confirm your email by going to the following link: <br/> http://107.191.55.190/register/confirm/"+ev_link+"</b>"
+			text: "Hello, please confirm your email by going to the following link: http://107.191.55.190/confirm/"+ev_link,
+			html: "<b>Hello, please confirm your email by going to the following link: <br/> http://107.191.55.190/confirm/"+ev_link+"</b>"
 		}
 		
 		transporter.sendMail(mailOptions, (error, info) => {

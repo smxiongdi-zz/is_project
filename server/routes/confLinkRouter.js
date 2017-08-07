@@ -1,10 +1,9 @@
-// the /register router
+// the /register/confirm router
 var express = require('express');
 var router = express.Router();
 
-router.get('/register/confirm/:conflink', ((req, res) => {
-	console.log(req.params.conflink);
-	res.sendFile('/home/zach/is_project/server/views/hp.html');
+router.post('/confirm', ((req, res) => {
+//	console.log(req.params.conflink);
 	
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var TempUser = require('/home/zach/is_project/server/models/temp_user_model.js');
@@ -12,7 +11,8 @@ router.get('/register/confirm/:conflink', ((req, res) => {
 	
 	var myUser = new User({});
 
-	var found = TempUser.find({conf_link: req.params.conflink}).limit(1);
+	// var found = TempUser.find({conf_link: req.params.conflink}).limit(1);
+	var found = TempUser.find({conf_link: req.body.confUrl}).limit(1);
 	found.then((x, err) => {
 		console.log('am i in here');
 		console.log(x[0].conf_link);
@@ -22,6 +22,7 @@ router.get('/register/confirm/:conflink', ((req, res) => {
 
 		TempUser.findByIdAndRemove(x[0]._id, ((err, y) => {
 			console.log('removed');
+			res.send({response:'good'});
 		}));
 	});
 
