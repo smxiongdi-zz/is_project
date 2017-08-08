@@ -46,7 +46,7 @@ class RegisterPage extends React.Component {
 	}
 
 	showTempMessage (msg) {
-		setTimeout(() => window.location.href = '/', 5000)
+		setTimeout(() => this.props.history.push('/'), 5000)
 	}
 
 	render () {

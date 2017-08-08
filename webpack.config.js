@@ -103,6 +103,9 @@ var communityLevelFolderConfig = Object.assign({}, config, {
 		UserProfilePage: APP_DIR + '/components/community/UserProfilePage.jsx',
 		UserProfileContainer: APP_DIR + '/components/community/UserProfileContainer.jsx',
 		UserLinkComponent: APP_DIR + '/components/community/UserLinkComponent.jsx',
+		UserLinkContainer: APP_DIR + '/components/community/UserLinkContainer.jsx',
+		UserSearchComponent: APP_DIR + '/components/community/UserSearchComponent.jsx',
+		UserSearchContainer: APP_DIR + '/components/community/UserSearchContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,

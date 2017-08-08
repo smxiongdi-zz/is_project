@@ -213,8 +213,7 @@ export const editMyProfile = (edited) => (dispatch, getState) => {
 	);
 };
 
-export const confirmMyAccount = (confUrl) => (dispatch, getState) => {
-/*	if(getIsFetching(getState())) {
+export const confirmMyAccount = (confUrl) => (dispatch, getState) => { /*	if(getIsFetching(getState())) {
 		return Promise.resolve();
 	}
 */
@@ -238,3 +237,15 @@ export const confirmMyAccount = (confUrl) => (dispatch, getState) => {
 		}
 	);
 };
+
+export const setNativeVisibility = (visNative) => {
+	return { type: 'SET_NATIVE_VISIBILITY', visNative }
+}
+
+export const setLearningVisibility = (visLearning) => {
+	return { type: 'SET_LEARNING_VISIBILITY', visLearning}
+}
+
+export const setGenderVisibility = (visGender) => {
+	return { type: 'SET_GENDER_VISIBILITY', visGender }
+}

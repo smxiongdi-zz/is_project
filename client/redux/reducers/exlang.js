@@ -55,8 +55,37 @@ const apiReducer = (state = [], action) => {
 					profile: action.profile,
 					message: action.message
 			})
+		case 'SET_NATIVE_VISIBILITY':
+			return Object.assign({}, state, {
+				visNative: action.visNative
+			})
+		case 'SET_LEARNING_VISIBILITY':
+			return Object.assign({}, state, {
+				visLearning: action.visLearning
+			})
+		case 'SET_GENDER_VISIBILITY':
+			return Object.assign({}, state, {
+				visGender: action.visGender
+			})
 		default: 
 			return state
+	}
+}
+
+const visibilityReducer = (state = [], action) => {
+	switch(action.type) {
+		case 'SET_NATIVE_VISIBILITY':
+			return Object.assign({}, state, {
+				visNative: action.visNative
+			})
+		case 'SET_LEARNING_VISIBILITY':
+			return Object.assign({}, state, {
+				visLearning: action.visLearning
+			})
+		case 'SET_GENDER_VISIBILITY':
+			return Object.assign({}, state, {
+				visGender: action.visGender
+			})
 	}
 }
 
@@ -73,11 +102,11 @@ const inputReducer = (state = [], action) => {
 	}
 }
 
-export default apiReducer /*combineReducers({
+export default apiReducer 
+/*export default combineReducers({
 	apiReducer,
-	inputReducer
-})
-*/
+	visibilityReducer
+})*/
 
 /*export const getIsFetching = (state) => state.isFetching
 export const getMessage = (state) => state.message*/

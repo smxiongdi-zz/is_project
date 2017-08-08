@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import UserLinkComponent from './UserLinkComponent.jsx';
+import UserSearchComponent from './UserSearchComponent.jsx';
 
 const mapStateToProps = state => {
   return ({
@@ -15,6 +15,6 @@ const mapDispatchToProps = dispatch => {
   })
 }
 
-const UserLinkContainer = connect(mapStateToProps, null)(UserLinkComponent);
-export default UserLinkContainer;
+const UserSearchContainer = connect(mapStateToProps, null)(UserSearchComponent);
+export default UserSearchContainer;
 
