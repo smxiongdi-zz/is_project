@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 //import * as schema from './schema';
-import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount } from '../.././api/index'
+import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount, fetchNotifications, fetchFriends, sendNotification, addFriend, rejectFriend, alreadyRequested } from '../.././api/index'
 import { getIsFetching, getMessage } from '../reducers/exlang';
 
 export const fetchCredentials = () => (dispatch, getState) => {
@@ -238,6 +238,160 @@ export const confirmMyAccount = (confUrl) => (dispatch, getState) => { /*	if(get
 	);
 };
 
+export const fetchMyNotifications = () => (dispatch, getState) => { /*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return fetchNotifications().then(
+		response => {
+			dispatch({
+				type: 'FETCH_NOTIFICATIONS_SUCCESS',
+				isFetching: false,
+				notObj: response,
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure - Logout',
+			});
+		}
+	);
+};
+
+export const fetchMyFriends = () => (dispatch, getState) => { /*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return fetchFriends().then(
+		response => {
+			dispatch({
+				type: 'FETCH_FRIENDS_SUCCESS',
+				isFetching: false,
+				friendObj: response,
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure - Logout',
+			});
+		}
+	);
+};
+
+export const sendMyNotification = (notification_info) => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return sendNotification(notification_info).then(
+		response => {
+			dispatch({
+				type: 'SEND_NOTIFICATION_SUCCESS',
+				isFetching: false,
+				message: 'notification sent',
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
+export const addMyFriend = (addFriendObj) => (dispatch, getState) => { /*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return addFriend(addFriendObj).then(
+		response => {
+			dispatch({
+				type: 'ADD_FRIEND_SUCCESS',
+				isFetching: false,
+				message: 'Friend added',
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure - Logout',
+			});
+		}
+	);
+};
+
+export const rejectFriendRequest = (not_id) => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return rejectFriend(not_id).then(
+		response => {
+			dispatch({
+				type: 'REJECT_FRIEND_REQUEST_SUCCESS',
+				isFetching: false,
+				message: 'Request deleted',
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
+export const isRequested = (id_pkg) => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return alreadyRequested(id_pkg).then(
+		response => {
+			dispatch({
+				type: 'ALREADY_REQUESTED_CHECK_SUCCESS',
+				isFetching: false,
+				message: 'Request deleted',
+				alreadyRequested: response,
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
 export const setNativeVisibility = (visNative) => {
 	return { type: 'SET_NATIVE_VISIBILITY', visNative }
 }
@@ -248,4 +402,8 @@ export const setLearningVisibility = (visLearning) => {
 
 export const setGenderVisibility = (visGender) => {
 	return { type: 'SET_GENDER_VISIBILITY', visGender }
+}
+
+export const setAlreadyRequested = () => {
+	return { type: 'SET_ALREADY_REQUESTED', alreadyRequested: true }
 }

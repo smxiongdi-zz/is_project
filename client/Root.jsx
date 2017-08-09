@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, browserHistory } from 'react-router';
-import App from './App.jsx';
+import AppContainer from './AppContainer.jsx';
 
 class Root extends React.Component {
 	render() {
@@ -9,8 +9,7 @@ class Root extends React.Component {
 			<div className="Root">
 				<Router history = {browserHistory}>
 					<Switch>
-						<Route path ="/" component = { App } />
-						<div>hi</div>
+						<Route path ="/" component = { AppContainer } />
 					</Switch>
 				</Router>
 			</div>

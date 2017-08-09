@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../.././redux/actions/credActions';
+import { loginUser, fetchMyDetails } from '../.././redux/actions/credActions';
 import LoginPage from './LoginPage.jsx';
 
 const mapStateToProps = state => {
@@ -13,11 +13,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    accountAction: () => dispatch(loginUser),
+		fetchMyDetails: () => dispatch(fetchMyDetails()),
 		dispatch: dispatch,
   })
 }
 
-const LoginContainer = connect(mapStateToProps, null)(LoginPage);
+const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 export default LoginContainer;
 

@@ -128,3 +128,89 @@ export const confirmAccount = (confUrl) => {
 		body: JSON.stringify(confUrl)
 	}).then(res => res.json())
 }
+
+export const sendNotification = (notificationInfo) => {
+	const baseUrl = '/api/send_notification';
+	return fetch(baseUrl, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		credentials: 'include',
+		body: JSON.stringify(notificationInfo)
+	}).then(res => res.json());
+}
+
+export const fetchNotifications= () => {
+	const baseUrl = '/api/notifications';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include'
+		})
+		.then(res => res.json())
+}
+
+export const fetchFriends = () => {
+	const baseUrl = '/api/is_friend';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include'
+		})
+		.then(res => res.json())
+}
+
+export const addFriend = (addFriendObj) => {
+	const baseUrl = '/api/add_friend';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
+			body: JSON.stringify(addFriendObj)
+		})
+		.then(res => res.json())
+}
+
+export const rejectFriend = (not_id) => {
+	const baseUrl = '/api/reject_friend';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
+			body: JSON.stringify(not_id)
+		})
+		.then(res => res.json())
+}
+
+export const alreadyRequested = (id_pkg) => {
+	const baseUrl = '/api/is_requested';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
+			body: JSON.stringify(id_pkg)
+		})
+		.then(res => res.json())
+}

@@ -16,6 +16,7 @@ import accConfirmContainer from './components/account/accConfirmContainer.jsx';
 import RegisterContainer from './components/account/RegisterContainer.jsx';
 import CommunityContainer from './components/community/CommunityContainer.jsx';
 import ProfileContainer from './components/profile/ProfileContainer.jsx';
+import NotificationContainer from './components/notifications/NotificationContainer.jsx';
 import UserProfileContainer from './components/community/UserProfileContainer.jsx';
 import EditProfileContainer from './components/profile/EditProfileContainer.jsx';
 // import FourZeroFour from './components/misc/404.jsx';
@@ -23,6 +24,15 @@ import EditProfileContainer from './components/profile/EditProfileContainer.jsx'
 //actions
 
 class App extends React.Component {
+
+	constructor() {
+		super()
+	}
+
+	componentDidMount() {
+		this.props.fetchCredentials();
+		this.props.fetchMyDetails();
+	}
 
 	render() {
 		return (
@@ -42,6 +52,7 @@ class App extends React.Component {
 								<Route exact path ="/p" component = { ProfileContainer } />
 								<Route exact path ="/p/edit" component = { EditProfileContainer } />
 								<Route path ="/p/:user_id" component = { UserProfileContainer } />
+								<Route exact path ="/notifications" component = { NotificationContainer } />
 							</Switch>
 						</div>
 					</div>

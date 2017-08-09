@@ -189,4 +189,93 @@ router.post('/user_profile', ((req, res) => {
 	user_profile.then((x, err) => res.send(x[0]));
 }));
 
+router.post('/send_notification', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var Notification = require('/home/zach/is_project/server/models/notification_model.js');
+
+	var not_obj = new Notification({});	
+	not_obj.not_title = req.body.title;
+	not_obj.not_message = req.body.message;
+	not_obj.not_read = false,
+	not_obj.not_owner = req.body.sendTo;
+	not_obj.not_from = req.body.from_name;
+	not_obj.not_from_id = req.body.from_id;
+	not_obj.not_friend_request = req.body.isFriendRequest;
+	not_obj.save();
+	res.send({response:'good'});
+
+}));
+
+// takes user ID to retrieve their notifications
+// to do: verify user id with user session - possible POST forgery if others happen to know user's db id - DONE
+router.post('/notifications', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var User= require('/home/zach/is_project/server/models/profile_model.js');
+	var myUser= User.find({uname: req.session.uname}).limit(1);
+	var Notification = require('/home/zach/is_project/server/models/notification_model.js');
+
+	myUser.then((x, err) => {
+		console.log('USER: ' + x);
+		console.log('USER ID: ' + x[0]._id);
+		var userNotifications = Notification.find({not_owner: x[0]._id});
+		userNotifications.then((y, err) => {
+			console.log(y);
+			res.send(y);
+		});
+	});
+	
+}));
+
+// takes user ID to retrieve their notifications
+// to do: verify user id with user session - possible POST forgery if others happen to know user's db id - DONE
+router.post('/is_friend', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var User= require('/home/zach/is_project/server/models/profile_model.js');
+	var myUser= User.find({uname: req.session.uname}).limit(1);
+	var Friend= require('/home/zach/is_project/server/models/friend_model.js');
+
+	myUser.then((x, err) => {
+		var myFriendObj= Friend.find({$or:[{user_id_one: x[0]._id}, {user_id_two: x[0]._id}]});
+		myFriendObj.then((y, err) => res.send(y));
+	});
+	
+}));
+
+router.post('/add_friend', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var Friend= require('/home/zach/is_project/server/models/friend_model.js');
+	var myFriendObj = new Friend({});
+
+	myFriendObj.user_id_one = req.body.user_id_one;
+	myFriendObj.user_id_two = req.body.user_id_two;
+
+	myFriendObj.save();
+	res.send({response:'good'});
+	
+}));
+
+router.post('/reject_friend', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var Notification= require('/home/zach/is_project/server/models/notification_model.js');
+	Notification.findByIdAndRemove(req.body.not_id, ((err, x) => {
+		res.send({response:'good'});
+	}));
+
+}));
+
+router.post('/is_requested', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var Notification= require('/home/zach/is_project/server/models/notification_model.js');
+	var isRequested= Notification.find({not_owner: req.body.id_two, not_from_id: req.body.id_one});
+	isRequested.then((y, err) => {
+			!y[0]._id ? res.send(false) : res.send(true)
+	});
+}));
+
 module.exports = router;

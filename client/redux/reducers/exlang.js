@@ -29,6 +29,9 @@ const apiReducer = (state = [], action) => {
 		case 'LOGOUT_USER_SUCCESS':
 			return Object.assign({}, state, {
 					username: action.username,
+					profile: null,
+					friendObj: null,
+					notObj: null,
 					isFetching: action.isFetching,
 					message: action.message
 			})
@@ -55,6 +58,37 @@ const apiReducer = (state = [], action) => {
 					profile: action.profile,
 					message: action.message
 			})
+		case 'FETCH_NOTIFICATIONS_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					notObj: action.notObj,
+			})
+		case 'FETCH_FRIENDS_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					friendObj: action.friendObj,
+			})
+		case 'ADD_FRIEND_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					friendObj: action.friendObj,
+			})
+		case 'SEND_NOTIFICATION_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+			})
+		case 'REJECT_FRIEND_REQUEST_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+			})
+		case 'ALREADY_REQUESTED_CHECK_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+					alreadyRequested: action.alreadyRequested,
+			})
 		case 'SET_NATIVE_VISIBILITY':
 			return Object.assign({}, state, {
 				visNative: action.visNative
@@ -66,6 +100,10 @@ const apiReducer = (state = [], action) => {
 		case 'SET_GENDER_VISIBILITY':
 			return Object.assign({}, state, {
 				visGender: action.visGender
+			})
+		case 'SET_ALREADY_REQUESTED':
+			return Object.assign({}, state, {
+				alreadyRequested: action.alreadyRequested
 			})
 		default: 
 			return state

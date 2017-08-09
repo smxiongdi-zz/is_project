@@ -7,7 +7,7 @@ class LandingPage extends React.Component {
 
 	componentDidMount() {
 //		!this.state.username ? this.props.loginUser() : '';
-		!this.props.username ? this.props.loadUser() : '' ;
+		//!this.props.username ? this.props.loadUser() : '' ;
 	}
 
 	render() {

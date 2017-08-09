@@ -35,6 +35,7 @@ var config = {
 var topLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		App: APP_DIR + '/App.jsx',
+		AppContainer: APP_DIR + '/AppContainer.jsx',
 		Root: APP_DIR + '/Root.jsx',
 		index: APP_DIR + '/index.jsx',
 		configureStore: APP_DIR + '/configureStore.jsx',
@@ -89,6 +90,19 @@ var homeLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		LP: APP_DIR + '/components/home/LP.jsx',
 		HomeContainer: APP_DIR + '/components/home/HomeContainer.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
+var notificationsLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		NotificationPage: APP_DIR + '/components/home/NotificationPage.jsx',
+		NotificationContainer: APP_DIR + '/components/home/NotificationContainer.jsx',
+		NotificationLinkComponent: APP_DIR + '/components/home/NotificationLinkComponent.jsx',
+		NotificationLinkContainer: APP_DIR + '/components/home/NotificationLinkContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,

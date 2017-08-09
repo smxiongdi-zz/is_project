@@ -4,6 +4,7 @@ import UserLinkComponent from './UserLinkComponent.jsx';
 
 const mapStateToProps = state => {
   return ({
+		profile: state.profile,
 		visNative: state.visNative,
 		visLearning: state.visLearning,
 		visGender: state.visGender,

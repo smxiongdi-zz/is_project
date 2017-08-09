@@ -46,7 +46,7 @@ class LoginPage extends React.Component {
 	}
 
 	showTempMessage (msg) {
-		setTimeout(() => this.props.history.push('/'), 5000)
+		setTimeout(() => { this.props.history.push('/'); window.location.reload(); }, 5000)
 	}
 
 	render () {
