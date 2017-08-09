@@ -51,17 +51,24 @@ class NotificationLinkComponent extends React.Component {
 	}
 	*/
 	render() {
-		let myAcceptFriendButton = <button type="button" className="btn btn-success" onClick={this.acceptFriend}>Accept Friend Request</button>;
-		let myRejectFriendButton = <button type="button" className="btn btn-danger" onClick={this.rejectFriend}>Reject Friend Request</button>;
+		let myAcceptFriendButton = <button type="button" className="btn btn-success float-right" onClick={this.acceptFriend}>Accept Friend Request</button>;
+		let myRejectFriendButton = <button type="button" className="btn btn-danger float-right" onClick={this.rejectFriend}>Reject Friend Request</button>;
 		var messageDate = new Date(this.props.notLinkObj.sent_time);
 		let myComponent = 
 		<li className = "list-group-item user-notification"> 
+		<div className="row">
+		<div className="col-8">
 		From: {this.props.notLinkObj.not_from} <br/> 
 		Time: {messageDate.toString()} <br/> 
 		Title: {this.props.notLinkObj.not_title}<br/> 
-		Message: {this.props.notLinkObj.not_message}<br/> 
+		Message: {this.props.notLinkObj.not_message}
+		</div>
+		<div className="col-4">
 		{this.props.notLinkObj.not_friend_request ? myAcceptFriendButton : '' }
+		<br/><br/>
 		{this.props.notLinkObj.not_friend_request ? myRejectFriendButton : '' }
+		</div>
+		</div>
 		</li> 
 		return (
 			<div className="NotificationLinkComponent">

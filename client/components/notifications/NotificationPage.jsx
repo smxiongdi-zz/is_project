@@ -21,7 +21,7 @@ class NotificationPage extends React.Component {
 			<div>
 				<h4>{this.props.title}</h4>
 				<ul className="list-group">
-				{ this.props.notObj ? this.props.notObj.map((x) => <NotificationLinkContainer notLinkObj = {x} /> ) : '' }
+				{ this.props.notObj ? this.props.notObj.map((x) => <NotificationLinkContainer notLinkObj = {x} /> ) : 'You have no notifications at this time' }
 				</ul>
 			</div>
 		)

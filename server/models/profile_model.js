@@ -9,7 +9,8 @@ var profileSchema = mongoose.Schema({
 	bday: Date, // user birthday
 	sex: String, // user gender
 	pic: String, //string path in static files
-	loc: String // user location
+	loc: String, // user location
+	about_me: String,
 });
 
 /* profileSchema.methods = {

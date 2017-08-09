@@ -118,11 +118,24 @@ router.get('/profile_load', ((req, res) => {
 	console.log('HELLO');
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
-	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
+	var userProfile = Profile.find({uname: req.session.uname}).lean();
 	userProfile.then((x, err) => {
 		console.log('IN HERE');
 		// res.write and then res.end()
 		console.log('DATE -- ' + x[0].bday);
+		var date = new Date(x[0].bday);
+/*
+		var dateMonth = date.getMonth+1;
+		var dateDay = date.getDate();
+		var dateYear = date.getFullYear();
+		dateDay = dateDay < 10 ? "0" + dateDay.toString() : dateDay.toString();
+		dateMonth = dateMonth < 10 ? "0" + dateMonth.toString() : dateMonth.toString();
+		
+		x[0].bday = dateYear.toString() + '-' + dateMonth + '-' + dateDay;
+*/
+		x[0].bday = date.toISOString().substring(0, 10);
+
+//		x[0].bday = x[0].bday.split('T')[0];
 		
 		x.length > 0 ? res.send(x[0]) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
 		// x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
@@ -160,6 +173,7 @@ router.post('/profile_edit', ((req, res) => {
 		y.bday = req.body.bday;// || y.bday;
 		y.sex = req.body.sex;// || y.sex;
 		y.pic = req.body.pic;// || y.pic;
+		y.about_me = req.body.about_me;
 		y.save();
 		res.send({status: 'good'});
 	}

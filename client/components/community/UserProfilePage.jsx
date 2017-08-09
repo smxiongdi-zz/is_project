@@ -23,6 +23,21 @@ class UserProfilePage extends React.Component {
 
 	render() {
 		let isFriend = false;
+		let userSpeaks = '';
+		let userLearning = '';
+		
+
+		if(this.props.selectedUser) {
+			this.props.selectedUser.lang_native.map((x) => {
+				userSpeaks += x + ' ';	
+			})
+
+			this.props.selectedUser.lang_learning.map((x) => {
+				userLearning += x + ' ';	
+			})
+		}
+
+
 		let alreadyRequested = <button type="button" className="btn btn-secondary" disabled>Friendship request pending</button>;
 		let addFriend = <button type="button" className="btn btn-success" onClick={this.sendFriendRequest}>+add friend</button>; 
 		let sendMessage = <button type="button" className="btn btn-primary">send message</button>; 
@@ -37,19 +52,33 @@ class UserProfilePage extends React.Component {
 			});
 		}
 
+		let profileActionButton;
+		if(isFriend) { profileActionButton = sendMessage }
+		else if(this.props.alreadyRequested) { profileActionButton = alreadyRequested }
+		else { profileActionButton = addFriend }
+
 		return (
 			<div>
-				<h4>{ this.props.title ? this.props.title : '' }
-				{ this.props.isFriend ? sendMessage : this.props.alreadyRequested ? alreadyRequested : addFriend }</h4>
+				<h4>
+				<div className="row">
+				<div className="col-4">
+				{ this.props.title ? this.props.title : '' }
+				</div>
+				<div className="col-2">
+				{ this.props.username ? profileActionButton : ''}
+				</div>
+				</div>
+				</h4>
 				<h3>{this.props.match.params.user_id}</h3>
 				<h3>{this.props.selectedUser ? this.props.selectedUser.name : 'No such user' }</h3>
-				<h4>Speaks: {this.props.selectedUser ? this.props.selectedUser.lang_native : ''}</h4>
-				<h4>Learning: {this.props.selectedUser ? this.props.selectedUser.lang_learning : ''}</h4>
+				<h4>Speaks: {userSpeaks}</h4>
+				<h4>Learning: {userLearning}</h4>
 {/*				<h4>Speaks: {this.state.profile.lang_native.map((x) => {x + ' '})}</h4>
 				<h4>Learning: {this.state.profile.lang_learning.map((x) => {x + ' '})}</h4>
 */}
 				<h4>Location: {this.props.selectedUser ? this.props.selectedUser.loc : ''}</h4>
 				<h4>Gender: {this.props.selectedUser ? this.props.selectedUser.sex : ''}</h4>
+				<h4>About:<br /> {this.props.selectedUser ? this.props.selectedUser.about_me: ''}</h4>
 			</div>
 		)
 	}

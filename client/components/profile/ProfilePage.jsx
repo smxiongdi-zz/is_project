@@ -9,14 +9,55 @@ class ProfilePage extends React.Component {
 	}
 
 	render() {
+
+	let EditProfile =
+	<div className="col-2">
+	<Link to='/p/edit'>Edit profile</Link>
+	</div>
+	let ViewNotifications =
+	<div className="col-4">
+	<Link to='/notifications'>View notifications</Link>
+	</div>
+	let Name =
+	<div className='profile_name'>Name: { this.props.profile ? this.props.profile.name : '' }</div>
+	let NativeLang = "Native language(s): ";
+	let LearningLang = "Learning language(s): ";
+	if(this.props.profile) {
+		if(this.props.profile.lang_native[0]) {
+			NativeLang+=this.props.profile.lang_native[0] + ' '
+		}
+		if(this.props.profile.lang_native[1]) {
+			NativeLang+=this.props.profile.lang_native[1] + ' '
+		}
+		if(this.props.profile.lang_native[2]) {
+			NativeLang+=this.props.profile.lang_native[2]
+		}
+
+		if(this.props.profile.lang_learning[0]) {
+			LearningLang+=this.props.profile.lang_learning[0] + ' '
+		}
+		if(this.props.profile.lang_learning[1]) {
+			LearningLang+=this.props.profile.lang_learning[1] + ' '
+		}
+		if(this.props.profile.lang_learning[2]) {
+			LearningLang+=this.props.profile.lang_learning[2]
+		}
+	}
+			
+		
+
+
 		return (
 			<div>
 				<h2>{ this.props.title ? this.props.title : '' }</h2>
-				<Link to='/p/edit'>Edit profile</Link>
+				<div className ="row">
+					{EditProfile}
+					{ViewNotifications}
+				</div>
 				{ /* <Route path = '/view/:num' component = { ProfileView }/> */ }
-				<div className='profile_name'>Name: { this.props.profile ? this.props.profile.name : '' }</div>
-				<div className='lang_native'>Speaks: { this.props.profile ? this.props.profile.lang_native.map((x) => {x + ' '}) : '' }</div>
-				<div className='lang_learning'>Learning: { this.props.profile ? this.props.profile.lang_learning.map((x) => {x + ' '}) : '' }</div>
+				{Name}
+				<div className = "native"> {NativeLang} </div>
+				<div className = "learning"> {LearningLang} </div>
 				<div className='bday'>Birthday: { this.props.profile ? this.props.profile.bday : '' }</div>
 				<div className='loc'>Location: { this.props.profile ? this.props.profile.loc : '' }</div>
 				<div className='sex'>Gender: { this.props.profile ? this.props.profile.sex : '' }</div>
