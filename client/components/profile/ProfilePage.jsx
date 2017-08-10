@@ -11,22 +11,22 @@ class ProfilePage extends React.Component {
 	render() {
 
 	let EditProfile =
-	<div className="col-2">
+	<div className="col-1">
 	<Link to='/p/edit'><button type="button" className="btn btn-outline-primary btn-sm">Edit profile</button></Link>
 	</div>
 	let ViewNotifications =
-	<div className="col-4">
+	<div className="col-2">
 	<Link to='/notifications'><button type="button" className="btn btn-outline-primary btn-sm">View notifications</button></Link>
 	</div>
 	let ViewFriends =
-	<div className="col-2">
+	<div className="col-1">
 	<Link to='/friends'><button type="button" className="btn btn-outline-primary btn-sm">View friends</button></Link>
 	</div>
-	let Name =
-	<div className='profile_name'>Name: { this.props.profile ? this.props.profile.name : '' }</div>
-	let NativeLang = "Native language(s): ";
-	let LearningLang = "Learning language(s): ";
+	let Name = '';
+	let NativeLang = '';
+	let LearningLang = '';
 	if(this.props.profile) {
+    Name = this.props.profile.name;
 		if(this.props.profile.lang_native[0]) {
 			NativeLang+=this.props.profile.lang_native[0] + ' '
 		}
@@ -53,25 +53,35 @@ class ProfilePage extends React.Component {
 
 		return (
 			<div>
-				<h2>{ this.props.title ? this.props.title : '' }</h2>
+				<div className="container">
+				<h1 className="display-4">{ Name }</h1>
 				<div className ="row">
 					{EditProfile}
-					{ViewNotifications}
 					{ViewFriends}
+					{ViewNotifications}
 				</div>
 				{ /* <Route path = '/view/:num' component = { ProfileView }/> */ }
-				{Name}
-				<div className = "native"> {NativeLang} </div>
-				<div className = "learning"> {LearningLang} </div>
-				<div className='bday'>Birthday: { this.props.profile ? this.props.profile.bday : '' }</div>
-				<div className='loc'>Location: { this.props.profile ? this.props.profile.loc : '' }</div>
-				<div className='sex'>Gender: { this.props.profile ? this.props.profile.sex : '' }</div>
-				<div className='pic'>Pic path:{ this.props.profile ? this.props.profile.pic : '' }</div>
-				{ /*
-				<div class = 'native_language' value = {this.props.profile.lang_native}></div>
-				<div class = 'learning_language' value = {this.props.profile.lang_learning}></div>
-				<div class = 'learning_language' value = {this.props.profile.lang_learning}></div>
-				*/ }
+				<div className ="row">
+				<div className = "col-2">Native language(s):  </div>
+				<div className = "col"> {NativeLang} </div>
+				</div>
+				<div className ="row">
+				<div className = "col-2">Learning language(s): </div>
+				<div className = "col"> {LearningLang} </div>
+				</div>
+				<div className ="row">
+				<div className='col-2'>Birthday: </div>
+				<div className="col">{ this.props.profile ? this.props.profile.bday : '' }</div>
+				</div>
+				<div className ="row">
+				<div className='col-2'>Location: </div>
+				<div className="col">{ this.props.profile ? this.props.profile.loc : '' }</div>
+				</div>
+				<div className ="row">
+				<div className='col-2'>Gender: </div>
+				<div className="col">{ this.props.profile ? this.props.profile.sex : '' }</div>
+				</div>
+				</div>
 			</div>
 		)
 	}

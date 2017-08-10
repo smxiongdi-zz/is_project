@@ -57,26 +57,38 @@ class UserProfilePage extends React.Component {
 
 		return (
 			<div>
-				<h4>
+				<div className="container">
 				<div className="row">
 				<div className="col-4">
-				{ this.props.title ? this.props.title : '' }
+				<h1 className="display-4">
+				{this.props.selectedUser ? this.props.selectedUser.name : 'No such user' }
+				</h1>
 				</div>
 				<div className="col-2">
 				{ this.props.username ? profileActionButton : ''}
 				</div>
 				</div>
-				</h4>
-				<h3>{this.props.match.params.user_id}</h3>
-				<h3>{this.props.selectedUser ? this.props.selectedUser.name : 'No such user' }</h3>
-				<h4>Speaks: {userSpeaks}</h4>
-				<h4>Learning: {userLearning}</h4>
-{/*				<h4>Speaks: {this.state.profile.lang_native.map((x) => {x + ' '})}</h4>
-				<h4>Learning: {this.state.profile.lang_learning.map((x) => {x + ' '})}</h4>
-*/}
-				<h4>Location: {this.props.selectedUser ? this.props.selectedUser.loc : ''}</h4>
-				<h4>Gender: {this.props.selectedUser ? this.props.selectedUser.sex : ''}</h4>
-				<h4>About:<br /> {this.props.selectedUser ? this.props.selectedUser.about_me: ''}</h4>
+				</div>
+				<div className="container">
+				<div className="row">
+				<div className="col-1">Speaks:</div>
+				<div className="col"> {userSpeaks}</div>
+				</div>
+				<div className="row">
+				<div className="col-1">Learning: </div>
+				<div className="col">{userLearning}</div>
+				</div>
+				<div className="row">
+				<div className="col-1">Location: </div>
+				<div className="col">{this.props.selectedUser ? this.props.selectedUser.loc : ''}</div>
+				</div>
+				<div className="row">
+				<div className="col-1">Gender: </div>
+				<div className="col-1">{this.props.selectedUser ? this.props.selectedUser.sex : ''}</div>
+				</div>
+				<div>About:<br /></div>
+				<div>{this.props.selectedUser ? this.props.selectedUser.about_me: ''}</div>
+				</div>
 			</div>
 		)
 	}

@@ -41,7 +41,7 @@ class MessageChainPage extends React.Component {
 		}
 
 		if(message_chain) {
-			message_chain.sort((a, b) => { return new Date(b.sent_time) - new Date(a.sent_time) })
+			message_chain.sort((b, a) => { return new Date(b.sent_time) - new Date(a.sent_time) })
 		}
 
 		return (
