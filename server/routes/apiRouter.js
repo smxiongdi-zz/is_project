@@ -320,11 +320,16 @@ router.post('/get_friend_profiles', ((req, res) => {
 			// push all my friends' ids onto an array
 			var myFriendsIds = [];
 			y.map((z) => {
-				if(z.user_id_one == x[0]._id) {
+				console.log("MY ID: " + x[0]._id);
+				console.log("ID 1: " + z.user_id_one);
+				console.log("ID 2: " + z.user_id_two);
+				if(z.user_id_one.equals(x[0]._id)) {
 					myFriendsIds.push(z.user_id_two);
+					console.log("FRIEND ID ADDED 2: " + z.user_id_two);
 				}
 				else {
 					myFriendsIds.push(z.user_id_one);
+					console.log("FRIEND ID ADDED 1: " + z.user_id_one);
 				}	
 			});
 			// find all profiles associated with the friends' ids array

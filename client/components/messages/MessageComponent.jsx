@@ -12,7 +12,7 @@ const MessageComponent = (props) => {
 		<li className = "list-group-item top-level-message"> 
 		<div className = "row">
 		<div className = "col-12">
-		{props.selectedUser.name} said on {sentDate.toDateString()}:
+		{props.selectedUser.name} said on {sentDate.toDateString()}:&nbsp;  
 		</div>
 		</div><br />
 		<div className = "row">
