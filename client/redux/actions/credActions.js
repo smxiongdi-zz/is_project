@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 //import * as schema from './schema';
-import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount, fetchNotifications, fetchFriends, sendNotification, addFriend, rejectFriend, alreadyRequested } from '../.././api/index'
+import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount, fetchNotifications, fetchFriends, sendNotification, addFriend, rejectFriend, alreadyRequested, sendMessage, fetchFriendsProfiles } from '../.././api/index'
 import { getIsFetching, getMessage } from '../reducers/exlang';
 
 export const fetchCredentials = () => (dispatch, getState) => {
@@ -391,6 +391,60 @@ export const isRequested = (id_pkg) => (dispatch, getState) => {
 		}
 	);
 };
+
+export const sendMyMessage = (msg_pkg) => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return sendMessage(msg_pkg).then(
+		response => {
+			dispatch({
+				type: 'SEND_MESSAGE_SUCCESS',
+				isFetching: false,
+				message: 'Message sent',
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
+export const fetchMyFriendsProfiles = () => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return fetchFriendsProfiles().then(
+		response => {
+			dispatch({
+				type: 'FETCH_FRIENDS_PROFILES_SUCCESS',
+				isFetching: false,
+				message: 'Profiles received',
+				myFriendsProfilesObj: response,
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
+
 
 export const setNativeVisibility = (visNative) => {
 	return { type: 'SET_NATIVE_VISIBILITY', visNative }

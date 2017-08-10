@@ -214,3 +214,33 @@ export const alreadyRequested = (id_pkg) => {
 		})
 		.then(res => res.json())
 }
+
+export const sendMessage = (msg_pkg) => {
+	const baseUrl = '/api/send_message';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
+			body: JSON.stringify(msg_pkg)
+		})
+		.then(res => res.json())
+}
+
+export const fetchFriendsProfiles = () => {
+	const baseUrl = '/api/get_friend_profiles';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include'
+		})
+		.then(res => res.json())
+}
+

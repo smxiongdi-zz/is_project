@@ -9,7 +9,7 @@ const mapStateToProps = state => {
     title: 'User Details page',
 		profile: state.profile,
 		selectedUser: state.selectedUser,
-		myFriendsProfilesObj: state.myFriendsProfilesObj,
+		friendObj: state.friendObj,
 		alreadyRequested: state.alreadyRequested,
   })
 }

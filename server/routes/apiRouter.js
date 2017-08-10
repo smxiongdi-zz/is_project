@@ -292,4 +292,49 @@ router.post('/is_requested', ((req, res) => {
 	});
 }));
 
+router.post('/send_message', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var Message = require('/home/zach/is_project/server/models/message_model.js');
+
+	var msg_chain = Message({sender_id: req.body.sender_id, receiver_id: req.body.receiver_id, msg_content: req.body.content});
+	msg_chain.save();
+	res.send({response: 'good'});
+
+}));
+
+router.post('/get_friend_profiles', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var User= require('/home/zach/is_project/server/models/profile_model.js');
+
+	// get my user id
+	var myUser= User.find({uname: req.session.uname}).limit(1);
+	var Friend= require('/home/zach/is_project/server/models/friend_model.js');
+
+	// once my id is fetched
+	myUser.then((x, err) => {
+		// get all my associated friends
+		var myFriendObj = Friend.find({$or:[{user_id_one: x[0]._id}, {user_id_two: x[0]._id}]});
+		// once my associated friends are fetched
+		myFriendObj.then((y, err) => {
+			// push all my friends' ids onto an array
+			var myFriendsIds = [];
+			y.map((z) => {
+				if(z.user_id_one == x[0]._id) {
+					myFriendsIds.push(z.user_id_two);
+				}
+				else {
+					myFriendsIds.push(z.user_id_one);
+				}	
+			});
+			// find all profiles associated with the friends' ids array
+			var myFriendProfilesObj= User.find({_id:{$in: [myFriendsIds]}});
+			// send back the found documents
+			myFriendProfilesObj.then((finalObjResp, err) => {	
+				res.send(finalObjResp);
+			})	
+		})
+	});
+}));
+
 module.exports = router;

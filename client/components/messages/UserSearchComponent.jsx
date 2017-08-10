@@ -45,8 +45,7 @@ class UserSearchComponent extends React.Component {
 		<div className="col-2">
 		<select id="lang_native" className="custom-select" onChange={this.handleEditNative} value={this.state.lang_native_search}>
 		<option selected disabled>Select a native language</option>
-		<option selected value=''>{this.props.visNative ? this.props.visNative : 'Any language' }</option>
-		{ this.props.visNative ? <option value=''>Any language</option> : '' }
+		<option selected value=''>{this.props.visNative ? this.props.visNative : 'Any language'}</option>
 		{lang_selection.map((x) => <option value = {x}>{x}</option>)}
 		</select>
 		</div>
@@ -54,7 +53,6 @@ class UserSearchComponent extends React.Component {
 		<select id="lang_learning" className="custom-select" onChange={this.handleEditLearning} value={this.state.lang_learning_search}>
 		<option selected disabled>Select a learning language</option>
 		<option selected value=''>{this.props.visLearning ? this.props.visLearning : 'Any language'}</option>
-		{ this.props.visLearning ? <option value=''>Any language</option> : '' }
 		{lang_selection.map((x) => <option value = {x}>{x}</option>)}
 		</select>
 		</div>
@@ -62,7 +60,6 @@ class UserSearchComponent extends React.Component {
 		<select id="gender" className="custom-select" onChange={this.handleEditGender} value={this.state.gender_search}>
 		<option selected disabled>Select gender</option>
 		<option selected value=''>{this.props.visGender ? this.props.visGender : 'Either gender'}</option>
-		{ this.props.visGender ? <option value=''>Either gender</option> : '' }
 		{gender.map((x) => <option value = {x}>{x}</option>)}
 		</select>
 		</div>

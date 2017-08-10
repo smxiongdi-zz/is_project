@@ -51,8 +51,8 @@ class NotificationLinkComponent extends React.Component {
 	}
 	*/
 	render() {
-		let myAcceptFriendButton = <button type="button" className="btn btn-success float-right" onClick={this.acceptFriend}>Accept Friend Request</button>;
-		let myRejectFriendButton = <button type="button" className="btn btn-danger float-right" onClick={this.rejectFriend}>Reject Friend Request</button>;
+		let myAcceptFriendButton = <button type="button" className="btn btn-outline-success btn-sm float-right" onClick={this.acceptFriend}>Accept Friend Request</button>;
+		let myRejectFriendButton = <button type="button" className="btn btn-outline-danger btn-sm float-right" onClick={this.rejectFriend}>Reject Friend Request</button>;
 		var messageDate = new Date(this.props.notLinkObj.sent_time);
 		let myComponent = 
 		<li className = "list-group-item user-notification"> 

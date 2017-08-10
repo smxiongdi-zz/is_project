@@ -38,15 +38,13 @@ class UserProfilePage extends React.Component {
 		}
 
 
-		let alreadyRequested = <button type="button" className="btn btn-secondary" disabled>Friendship request pending</button>;
-		let addFriend = <button type="button" className="btn btn-success" onClick={this.sendFriendRequest}>+add friend</button>; 
-		let sendMessage = <button type="button" className="btn btn-primary">send message</button>; 
-		if(this.props.friendObj) {
-			this.props.friendObj.map((x) => {
-				if(x.user_id_one == this.props.selectedUser._id) {
-					isFriend = true;
-				}
-				else if(x.user_id_two == this.props.selectedUser._id) {
+		let alreadyRequested = <button type="button" className="btn btn-outline-secondary btn-sm" disabled>Friendship request pending</button>;
+		let addFriend = <button type="button" className="btn btn-outline-success btn-sm" onClick={this.sendFriendRequest}>+add friend</button>; 
+		let sendMessage = <Link to = {'/messages/' + this.props.match.params.user_id}><button type="button" className="btn btn-outline-primary btn-sm">send message</button></Link>; 
+
+		if(this.props.myFriendsProfilesObj && this.props.selectedUser) {
+			this.props.myFriendsProfilesObj.map((x) => {
+				if(x._id == this.props.selectedUser._id) {
 					isFriend = true;
 				}
 			});

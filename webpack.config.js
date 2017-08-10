@@ -140,6 +140,20 @@ var profileLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var messagesLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		MessagesPage: APP_DIR + '/components/misc/MessagesPage.jsx',
+		MessagesContainer: APP_DIR + '/components/misc/MessagesContainer.jsx',
+		MessageLinkPage: APP_DIR + '/components/misc/MessageLinkPage.jsx',
+		MessageLinkContainer: APP_DIR + '/components/misc/MessageLinkContainer.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
+
 module.exports = [
 	topLevelFolderConfig, miscLevelFolderConfig, homeLevelFolderConfig, navLevelFolderConfig, accountLevelFolderConfig, communityLevelFolderConfig, profileLevelFolderConfig
 ];

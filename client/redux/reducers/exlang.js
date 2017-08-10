@@ -89,6 +89,17 @@ const apiReducer = (state = [], action) => {
 					message: action.message,
 					alreadyRequested: action.alreadyRequested,
 			})
+		case 'SEND_MESSAGE_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+			})
+		case 'FETCH_FRIENDS_PROFILES_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+					myFriendsProfilesObj: action.myFriendsProfilesObj,
+			})
 		case 'SET_NATIVE_VISIBILITY':
 			return Object.assign({}, state, {
 				visNative: action.visNative

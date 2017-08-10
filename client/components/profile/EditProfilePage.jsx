@@ -191,7 +191,7 @@ class EditProfilePage extends React.Component {
 		<textarea className="form-control" rows="3" value={this.state.profile.about_me} onChange={this.handleEditAboutMe}></textarea>
 		</div>
 		let SubmitChange =
-		<button type="submit" className="btn btn-primary" onClick={this.handleEditProfile}>Submit Changes</button>
+		<button type="submit" className="btn btn-outline-primary" onClick={this.handleEditProfile}>Submit Changes</button>
 	
 
 
