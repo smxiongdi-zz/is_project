@@ -333,7 +333,7 @@ router.post('/get_friend_profiles', ((req, res) => {
 				}	
 			});
 			// find all profiles associated with the friends' ids array
-			var myFriendProfilesObj= User.find({_id:{$in: [myFriendsIds]}});
+			var myFriendProfilesObj= User.find({_id:{$in: myFriendsIds}});
 			// send back the found documents
 			myFriendProfilesObj.then((finalObjResp, err) => {	
 				res.send(finalObjResp);
