@@ -296,7 +296,7 @@ router.post('/send_message', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Message = require('/home/zach/is_project/server/models/message_model.js');
 
-	var msg_chain = Message({sender_id: req.body.sender_id, receiver_id: req.body.receiver_id, msg_content: req.body.content});
+	var msg_chain = Message({sender_id: req.body.sender_id, receiver_id: req.body.receiver_id, msg_content: req.body.msg_content});
 	msg_chain.save();
 	res.send({response: 'good'});
 
@@ -333,6 +333,26 @@ router.post('/get_friend_profiles', ((req, res) => {
 			myFriendProfilesObj.then((finalObjResp, err) => {	
 				res.send(finalObjResp);
 			})	
+		})
+	});
+}));
+
+router.post('/get_messages', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var User = require('/home/zach/is_project/server/models/profile_model.js');
+
+	// get my user id
+	var myUser = User.find({uname: req.session.uname}).limit(1);
+	var Message = require('/home/zach/is_project/server/models/message_model.js');
+
+	// once my id is fetched
+	myUser.then((x, err) => {
+		// get all my associated friends
+		var myMessageObj = Message.find({$or:[{sender_id: x[0]._id}, {receiver_id: x[0]._id}]});
+		// once my associated friends are fetched
+		myMessageObj.then((y, err) => {
+				res.send(y);
 		})
 	});
 }));

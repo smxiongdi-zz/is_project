@@ -140,12 +140,25 @@ var profileLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
+var friendsLevelFolderConfig = Object.assign({}, config, {
+	entry: {
+		FriendsPage: APP_DIR + '/components/friends/FriendsPage.jsx',
+		FriendsContainer: APP_DIR + '/components/friends/FriendsContainer.jsx',
+		FriendsLinkComponent: APP_DIR + '/components/friends/FriendsLinkComponent.jsx',
+		FriendsLinkContainer: APP_DIR + '/components/friends/FriendsLinkContainer.jsx',
+	},
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js'
+	}
+});
+
 var messagesLevelFolderConfig = Object.assign({}, config, {
 	entry: {
-		MessagesPage: APP_DIR + '/components/misc/MessagesPage.jsx',
-		MessagesContainer: APP_DIR + '/components/misc/MessagesContainer.jsx',
-		MessageLinkPage: APP_DIR + '/components/misc/MessageLinkPage.jsx',
-		MessageLinkContainer: APP_DIR + '/components/misc/MessageLinkContainer.jsx',
+		MessageChainPage: APP_DIR + '/components/messages/MessageChainPage.jsx',
+		MessageChainContainer: APP_DIR + '/components/messages/MessageChainContainer.jsx',
+		MessageComponent: APP_DIR + '/components/messages/MessageComponent.jsx',
+		MessageContainer: APP_DIR + '/components/messages/MessageContainer.jsx',
 	},
 	output: {
 		path: BUILD_DIR,
@@ -155,6 +168,6 @@ var messagesLevelFolderConfig = Object.assign({}, config, {
 
 
 module.exports = [
-	topLevelFolderConfig, miscLevelFolderConfig, homeLevelFolderConfig, navLevelFolderConfig, accountLevelFolderConfig, communityLevelFolderConfig, profileLevelFolderConfig
+	topLevelFolderConfig, miscLevelFolderConfig, homeLevelFolderConfig, navLevelFolderConfig, accountLevelFolderConfig, communityLevelFolderConfig, profileLevelFolderConfig, friendsLevelFolderConfig, messagesLevelFolderConfig
 ];
 

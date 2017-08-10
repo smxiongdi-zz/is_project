@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 class ProfilePage extends React.Component {
 
 	componentDidMount() {
-		!this.props.username ? window.location.href='/login' : console.log('profile loaded')
+//		!this.props.username ? window.location.href='/login' : console.log('profile loaded')
 		this.props.fetchMyDetails();
 	}
 

@@ -16,6 +16,8 @@ class NotificationLinkComponent extends React.Component {
 
 	acceptFriend() {
 		this.props.dispatch(addMyFriend({user_id_one: this.props.notLinkObj.not_owner, user_id_two: this.props.notLinkObj.not_from_id}))
+		// this is just to delete the notification
+		this.props.dispatch(rejectFriendRequest({not_id: this.props.notLinkObj._id}))
 	}
 
 	rejectFriend() {

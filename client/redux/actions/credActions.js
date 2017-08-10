@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 //import * as schema from './schema';
-import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount, fetchNotifications, fetchFriends, sendNotification, addFriend, rejectFriend, alreadyRequested, sendMessage, fetchFriendsProfiles } from '../.././api/index'
+import { fetchUsername, loginAPI, registerAPI, logoutAPI, fetchCommunity, fetchUserProfile, fetchMyProfile, editProfile, confirmAccount, fetchNotifications, fetchFriends, sendNotification, addFriend, rejectFriend, alreadyRequested, sendMessage, fetchFriendsProfiles, fetchMessages } from '../.././api/index'
 import { getIsFetching, getMessage } from '../reducers/exlang';
 
 export const fetchCredentials = () => (dispatch, getState) => {
@@ -445,6 +445,32 @@ export const fetchMyFriendsProfiles = () => (dispatch, getState) => {
 	);
 };
 
+export const fetchMyMessages = () => (dispatch, getState) => {
+/*	if(getIsFetching(getState())) {
+		return Promise.resolve();
+	}
+*/
+
+	dispatch({ type: 'NETWORK_REQUEST', isFetching: true }); 
+
+	return fetchMessages().then(
+		response => {
+			dispatch({
+				type: 'FETCH_MESSAGES_SUCCESS',
+				isFetching: false,
+				message: 'Messages received',
+				myMessages: response,
+			});
+		},
+		error => {
+			dispatch({
+				type: 'API_FAILURE',
+				isFetching: false,
+				message: error.message || 'API Failure.',
+			});
+		}
+	);
+};
 
 export const setNativeVisibility = (visNative) => {
 	return { type: 'SET_NATIVE_VISIBILITY', visNative }

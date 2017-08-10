@@ -94,6 +94,12 @@ const apiReducer = (state = [], action) => {
 					isFetching: action.isFetching,
 					message: action.message,
 			})
+		case 'FETCH_MESSAGES_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+					myMessages: action.myMessages,
+			})
 		case 'FETCH_FRIENDS_PROFILES_SUCCESS':
 			return Object.assign({}, state, {
 					isFetching: action.isFetching,

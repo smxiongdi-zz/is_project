@@ -6,6 +6,7 @@ import LandingPage from './LP.jsx';
 const mapStateToProps = state => {
 	return ({ 
 		username: state.username,
+		profile: state.profile,
 		title: 'exlang.io dashboard',
 		lpmessage: '',
 	})

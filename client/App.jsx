@@ -19,7 +19,8 @@ import ProfileContainer from './components/profile/ProfileContainer.jsx';
 import NotificationContainer from './components/notifications/NotificationContainer.jsx';
 import UserProfileContainer from './components/community/UserProfileContainer.jsx';
 import EditProfileContainer from './components/profile/EditProfileContainer.jsx';
-import MessagesContainer from './components/messages/MessagesContainer.jsx';
+import FriendsContainer from './components/friends/FriendsContainer.jsx';
+import MessageChainContainer from './components/messages/MessageChainContainer.jsx';
 // import FourZeroFour from './components/misc/404.jsx';
 
 //actions
@@ -34,6 +35,7 @@ class App extends React.Component {
 		this.props.fetchCredentials();
 		this.props.fetchMyDetails();
 		this.props.fetchMyFriendsProfiles();
+		this.props.fetchMyMessages();
 	}
 
 	render() {
@@ -55,7 +57,9 @@ class App extends React.Component {
 								<Route exact path ="/p/edit" component = { EditProfileContainer } />
 								<Route path ="/p/:user_id" component = { UserProfileContainer } />
 								<Route exact path ="/notifications" component = { NotificationContainer } />
-								<Route exact path ="/friends" component = { MessagesContainer } />
+								<Route exact path ="/friends" component = { FriendsContainer } />
+								<Route exact path ="/messages" component = { FriendsContainer } />
+								<Route path ="/messages/:user_id" component = { MessageChainContainer } />
 							</Switch>
 						</div>
 					</div>

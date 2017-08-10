@@ -1,26 +1,26 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchMyFriends } from '../.././redux/actions/credActions';
-import UserProfilePage from './UserProfilePage.jsx';
+import { fetchUserDetails } from '../.././redux/actions/credActions';
+import MessageChainPage from './MessageChainPage.jsx';
 
 const mapStateToProps = state => {
   return ({
 		username: state.username,
-    title: 'User Details page',
+    title: 'Message page',
 		profile: state.profile,
 		selectedUser: state.selectedUser,
-		friendObj: state.friendObj,
-		alreadyRequested: state.alreadyRequested,
+		myMessages: state.myMessages,
+		myFriendsProfilesObj: state.myFriendsProfilesObj,
   })
 }
 
 const mapDispatchToProps = dispatch => {
   return ({
 		dispatch,
-		fetchMyFriends: () => dispatch(fetchMyFriends()),
+		fetchUserDetails: () => dispatch(fetchUserDetails()),
   })
 }
 
-const UserProfileContainer = connect(mapStateToProps, mapDispatchToProps)(UserProfilePage);
-export default UserProfileContainer;
+const MessageChainContainer = connect(mapStateToProps, mapDispatchToProps)(MessageChainPage);
+export default MessageChainContainer;
 

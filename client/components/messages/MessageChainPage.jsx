@@ -1,38 +1,61 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import { fetchUserDetails, sendMyNotification, isRequested, setAlreadyRequested } from '../.././redux/actions/credActions';
+import { sendMyMessage, fetchUserDetails } from '../.././redux/actions/credActions';
+import MessageContainer from './MessageContainer.jsx';
 
 class MessageChainPage extends React.Component {
 
 	constructor() {
 		super()
+		this.state = {
+			response: '',
+		}
+		this.handleResponseChange = this.handleResponseChange.bind(this);
+		this.sendMessage = this.sendMessage.bind(this);
 	}
 
 	componentDidMount() {
-		console.log("PROPS : " + this.props.match.params.user_id);
 		this.props.dispatch(fetchUserDetails({user_id: this.props.match.params.user_id}));
-		this.props.dispatch(isRequested({id_one: this.props.profile._id, id_two: this.props.match.params.user_id}));
-		this.props.fetchMyFriends();
+	}
+
+	handleResponseChange(evt) {
+		this.setState({response: evt.target.value});
+	}
+
+	sendMessage() {
+		this.props.dispatch(sendMyMessage({sender_id: this.props.profile._id, receiver_id: this.props.match.params.user_id, msg_content: this.state.response}));
 	}
 
 	render() {
-		let isFriend = false;
+		let message_chain = [];
 
-		if(this.props.friendObj) {
-			this.props.friendObj.map((x) => {
-				if(x.user_id_one == this.props.match.params.user_id) {
-					isFriend = true;
+		if(this.props.myMessages) {
+			this.props.myMessages.map((x) => {
+				if(x.sender_id == this.props.match.params.user_id) {
+					message_chain.push(x);
 				}
-				else if(x.user_id_two == this.props.match.params.user_id) {
-					isFriend = true;
+				else if(x.receiver_id== this.props.match.params.user_id) {
+					message_chain.push(x);
 				}
 			});
 		}
 
+		if(message_chain) {
+			message_chain.sort((a, b) => { return new Date(b.sent_time) - new Date(a.sent_time) })
+		}
+
 		return (
 			<div>
-				<h4>Message chain page</h4>
-				{ !isFriend ? "Sorry, we don't know how you got here. Try <a href='/'>returning home</a>" : '' }
+				<h1 className="display-4">{ this.props.selectedUser ? this.props.selectedUser.name : '' }</h1>
+				<ul>
+				{ message_chain ? message_chain.map((x) => <MessageContainer message={x}  />) : 'No messages exist' }
+				</ul>
+				<div className="form-group">
+				<label htmlFor="message_response">Message input: </label>
+				<textarea className="form-control" rows="3" value={this.state.response} onChange={this.handleResponseChange}></textarea>
+				</div>
+				<button type="button" className="btn btn-outline-primary" onClick={this.sendMessage}>Send message</button>
+				
 			</div>
 		)
 	}

@@ -244,3 +244,16 @@ export const fetchFriendsProfiles = () => {
 		.then(res => res.json())
 }
 
+export const fetchMessages= () => {
+	const baseUrl = '/api/get_messages';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include'
+		})
+		.then(res => res.json())
+}
