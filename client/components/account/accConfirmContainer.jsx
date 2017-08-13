@@ -4,8 +4,8 @@ import accConfirmPage from './accConfirmPage.jsx';
 
 const mapStateToProps = state => {
   return ({
-    title: 'Confirmation page',
-		message: state.message,
+    title: 'Account confirmation',
+		message: 'Thank you for confirming your account',
   })
 }
 

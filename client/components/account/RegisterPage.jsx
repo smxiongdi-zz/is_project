@@ -57,7 +57,7 @@ class RegisterPage extends React.Component {
 					<div className="form-group inpfield">
 						<label htmlFor="inpEmail">Email address</label>
 						<input type="email" className="form-control" id="inpEmail" placeholder="Email" onChange={this.handleEmailChange} value={this.state.inputEmail}/>
-						<small id="emailHelp" className="form-text text-muted">We will never share your email with tanyone else.</small>
+						<small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
 					</div>
 					<div className="form-group inpfield">
 						<label htmlFor="inpPass">Password</label>
@@ -65,6 +65,7 @@ class RegisterPage extends React.Component {
 					</div>
 					<Recaptcha
 						sitekey='6Lf2CykUAAAAAB_oB_wPueIqrIjZq8sdb5ml4ox9'
+//            sitekey='6LeJsCwUAAAAAOWaqwG1PDGw6pU5FpYc-YKLOJsF'
 						verifyCallback={this.handleRecaptcha}
 						theme="dark"
 					/>

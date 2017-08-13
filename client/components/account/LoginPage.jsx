@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
   }
 	handleRecaptcha (key) {
 		console.log('mykey ' + key)
-		//verifyCaptcha(key, '6Lf2CykUAAAAAMv03m_pvF8DL9Wph8fnW14SEwaN')
+//		verifyCaptcha({response: key, secret: '6Lf2CykUAAAAAMv03m_pvF8DL9Wph8fnW14SEwaN'})
 		//	.then((x) => console.log(x))
 		this.setState({captcha: true})
 	}

@@ -14,7 +14,7 @@ class accConfirmPage extends React.Component {
 	render() {
 		return (
 			<div className = "confirmationPage">
-				<h3>Account Confirmation</h3>
+				<h1 className="display-4">Account Confirmation</h1>
 				{this.props.message ? this.props.message : ''}
 			</div>
 		);
