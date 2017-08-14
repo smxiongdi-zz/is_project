@@ -59,17 +59,51 @@ class NotificationLinkComponent extends React.Component {
 		var messageDate = new Date(this.props.notLinkObj.sent_time);
 		let myComponent = 
 		<li className = "list-group-item user-notification"> 
+		<div className="container">
 		<div className="row">
-		<div className="col-8">
-		From: {this.props.notLinkObj.not_from} <br/> 
-		Time: {messageDate.toString()} <br/> 
-		Title: {this.props.notLinkObj.not_title}<br/> 
-		Message: {this.props.notLinkObj.not_message}
+		<div className="col-2">
+		From: 
 		</div>
-		<div className="col-4">
+		<div className="col">
+		{this.props.notLinkObj.not_from} <br/> 
+		</div>
+		</div>
+		<div className="row">
+		<div className="col-2">
+		Time: 
+		</div>
+		<div className="col">
+		{messageDate.toDateString()} <br/> 
+		</div>
+		</div>
+		<div className="row">
+		<div className="col-2">
+		Title: 
+		</div>
+		<div className="col">
+		{this.props.notLinkObj.not_title}<br/> 
+		</div>
+		</div>
+		<div className="row">
+		<div className="col-2">
+		Message: 
+		</div>
+		<div className="col">
+		{this.props.notLinkObj.not_message}
+		</div>
+		</div>
+		<div className="row">
+		<div className="col-2">
 		{this.props.notLinkObj.not_friend_request ? myAcceptFriendButton : '' }
-		<br/><br/>
+		</div>
+		<div className="col-2">
 		{this.props.notLinkObj.not_friend_request ? myRejectFriendButton : '' }
+		</div>
+		<div className="col-2">
+		<Link to ={'/p/' + this.props.notLinkObj.not_from_id}> 
+		<button type = "button" className = "btn btn-outline-info btn-sm">View their profile</button>
+		</Link>
+		</div>
 		</div>
 		</div>
 		</li> 

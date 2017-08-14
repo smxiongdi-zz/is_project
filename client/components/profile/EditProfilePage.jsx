@@ -1,4 +1,5 @@
 import React from 'react';
+import Dropzone from 'react-dropzone';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { editMyProfile } from '../../redux/actions/credActions';
 
@@ -26,6 +27,7 @@ class EditProfilePage extends React.Component {
 		
 		this.updateProfile = this.updateProfile.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this)
+		this.onImageDrop = this.onImageDrop.bind(this);
 	}
 
 	componentDidMount() {
@@ -119,6 +121,14 @@ class EditProfilePage extends React.Component {
 		//window.location.href='/p';
 	}
 
+	onImageDrop(filesArray) {
+		var tempProf = this.state.profile;
+		tempProf.pic=filesArray[0];
+		console.log(filesArray[0]);
+		this.updateProfile(tempProf);
+//		this.setState({picFile: filesArray[0]});
+	}
+
 	render() {
 		let ProfileName =
 		<div className="form-group row"> 
@@ -192,13 +202,21 @@ class EditProfilePage extends React.Component {
 		</div>
 		let SubmitChange =
 		<button type="submit" className="btn btn-outline-primary" onClick={this.handleEditProfile}>Submit Changes</button>
+
+		let ImageDrop = 
+		<div className="form-group row">
+		<label htmlFor="img_field" className="col-5 col-form-label">Image</label>
+		<div className="col-2">
+		<Dropzone multiple={false} accept="image/*" onDrop={this.onImageDrop}> <p>Drop an image or select a faile to upload</p> </Dropzone>
+		</div>
+		</div>
 	
 
 
 
 		return (
 			<div>
-				<h2>{this.props.title ? this.props.title : ''}</h2>
+				<h1 className="display-4">{this.props.title ? this.props.title : ''}</h1>
 				{ProfileName}
 				{Location}
 				<div className="form-group row">
@@ -217,6 +235,7 @@ class EditProfilePage extends React.Component {
 				{BDayOption}
 				{AboutMe}
 				{SubmitChange}
+				{ImageDrop}
 			</div>
 		)
 	}

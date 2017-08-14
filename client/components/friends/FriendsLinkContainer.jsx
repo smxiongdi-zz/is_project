@@ -4,6 +4,7 @@ import FriendsLinkComponent from './FriendsLinkComponent.jsx';
 
 const mapStateToProps = state => {
   return ({
+		profile: state.profile,
   })
 }
 

@@ -41,7 +41,7 @@ class UserSearchComponent extends React.Component {
 		myComponent =
 		<div className="container">
 		<div className="row row-bordered">
-		<h4>exlang community directory</h4>
+		<h1 className="display-4">community </h1>
 		<div className="col-2">
 		<select id="lang_native" className="custom-select" onChange={this.handleEditNative} value={this.state.lang_native_search}>
 		<option selected disabled>Select a native language</option>

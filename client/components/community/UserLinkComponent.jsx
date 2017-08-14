@@ -18,7 +18,7 @@ const UserLinkComponent = (props) => {
 	})
 
 	let myComponent;
-	if(props.commLinkObj.name && props.commLinkObj.lang_native[0] && props.commLinkObj.lang_learning[0] && props.commLinkObj.sex) {
+	if(props.commLinkObj.name && props.commLinkObj.lang_native[0] && props.commLinkObj.lang_learning[0] && props.commLinkObj.sex && props.profile) {
 		if((props.visNative != null && props.visNative != '') && (activeNative == false)) {
 			myComponent = null
 		}
@@ -28,7 +28,7 @@ const UserLinkComponent = (props) => {
 		else if((props.visGender != null && props.visGender != '') && props.visGender != props.commLinkObj.sex) {
 			myComponent = null
 		}
-//		else if(props.profile._id == props.commLinkObj._id) { myComponent = null }
+		else if(props.profile._id == props.commLinkObj._id) { myComponent = null }
 		else {
 			myComponent = 
 			<li className = "list-group-item community-member"> 

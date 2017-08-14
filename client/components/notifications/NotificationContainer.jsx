@@ -6,7 +6,7 @@ import NotificationPage from './NotificationPage.jsx';
 const mapStateToProps = state => {
   return ({
 		username: state.username,
-    title: 'Notifications page',
+    title: 'Notifications ',
 		notObj: state.notObj,
     lpmessage: '',
   })

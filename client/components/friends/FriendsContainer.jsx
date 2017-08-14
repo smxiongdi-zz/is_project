@@ -6,7 +6,7 @@ import FriendsPage from './FriendsPage.jsx';
 const mapStateToProps = state => {
   return ({
 		username: state.username,
-    title: 'Friends page',
+    title: 'Friends ',
 		profile: state.profile,
 		myFriendsProfilesObj: state.myFriendsProfilesObj,
     lpmessage: '',

@@ -36,7 +36,6 @@ router.post('/login', ((req, res) => {
 
 // logout API 
 router.post('/logout', ((req, res) => {
-	console.log('request accepted');
 	req.session.destroy();
 	res.send({response:'good'});
 }));
@@ -49,13 +48,11 @@ router.post('/register', ((req, res) => {
 	var TempUser = require('/home/zach/is_project/server/models/temp_user_model.js');
 	var User = require('/home/zach/is_project/server/models/user_model.js');
 
-	var tempUser = new TempUser({ /*uname: req.body.email, upass: tempUser.encryptPass(req.body.pass)*/ });
+	var tempUser = new TempUser({});
 	var regUser = TempUser.find({uname: req.body.email}).limit(1);
 	var permAccount = User.find({uname: req.body.email}).limit(1);
 	
 	// create a new model collection that searches if the email is already approved
-	// userReg ? 'already registered' : userTempReg && !userReg ? 'user conf already sent' : store hash && save
-
 	regUser.then((x, err) => {
 		x.length > 0 ? (res.send({ err:0, redirect: '/register'}), console.log('already registered')) : permAccount.then((y, err) => { y.length > 0 ? (res.send({ err:0, redirect: '/register'}), console.log('already regd')) : hashThis() });
 	});
@@ -108,38 +105,23 @@ router.post('/register', ((req, res) => {
 }));
 
 // session api 
-router.get('/session', ((req, res) => {
+router.post('/session', ((req, res) => {
 	res.setHeader('Access-Control-Allow-Credentials', 'true');
 	
 	res.send({user: req.session.uname});
 }));
 
-router.get('/profile_load', ((req, res) => {
-	console.log('HELLO');
+router.post('/profile_load', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
 	var userProfile = Profile.find({uname: req.session.uname}).lean();
 	userProfile.then((x, err) => {
-		console.log('IN HERE');
-		// res.write and then res.end()
-		console.log('DATE -- ' + x[0].bday);
+
 		var date = new Date(x[0].bday);
-/*
-		var dateMonth = date.getMonth+1;
-		var dateDay = date.getDate();
-		var dateYear = date.getFullYear();
-		dateDay = dateDay < 10 ? "0" + dateDay.toString() : dateDay.toString();
-		dateMonth = dateMonth < 10 ? "0" + dateMonth.toString() : dateMonth.toString();
-		
-		x[0].bday = dateYear.toString() + '-' + dateMonth + '-' + dateDay;
-*/
+
 		x[0].bday = date.toISOString().substring(0, 10);
 
-//		x[0].bday = x[0].bday.split('T')[0];
-		
-		x.length > 0 ? res.send(x[0]) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
-		// x.length > 0 ? res.send(x) /*sendProf()*/ : console.log('no profile')/* no profile */ ; 
-		console.log('SENDING ' + x);
+		x.length > 0 ? res.send(x[0]) : res.send('') ; 
 	});
 
 }));
@@ -148,23 +130,12 @@ router.post('/profile_edit', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
 	var userProfile = Profile.find({uname: req.session.uname}).limit(1);
-/*	userProfile.then((x, err) => {
-		x.length == 0 ? userProfile = new Profile({req.body. : 
-	});
-*/
+
+	console.log("PIC INFO: " + req.body.pic);
 
 	userProfile.then((x, err) => { x.length > 0 ? editProf(x[0]) : editProf(new Profile({}))})
 
-//	var userProfile = !userProfilex.name ? new Profile({}) : userProfilex;
-	console.log('my userprof: --- ' + userProfile.name);
-//	req.session.uname ? editProf() : console.log('uname not set');
-
-	console.log("UNAME ---" + req.session.uname);
-	console.log("NAME ---" + req.body.name);
-	console.log("PROFILE OBJ: --- " + req.body.loc);
-
 	function editProf(y) {
-		console.log('EDITING');
 		y.uname = req.session.uname ? req.session.uname : y.uname;
 		y.name = req.body.name ? req.body.name : y.name;
 		y.lang_learning = req.body.lang_learning ? req.body.lang_learning : y.lang_learning; // || y.lang_learning;
@@ -172,9 +143,11 @@ router.post('/profile_edit', ((req, res) => {
 		y.loc = req.body.loc;// || y.loc;
 		y.bday = req.body.bday;// || y.bday;
 		y.sex = req.body.sex;// || y.sex;
-		y.pic = req.body.pic;// || y.pic;
 		y.about_me = req.body.about_me;
+		// get y ID before saving pic
+		y.pic = y._id ;// || y.pic; this is the cloudinary public_id
 		y.save();
+
 		res.send({status: 'good'});
 	}
 
@@ -188,17 +161,14 @@ router.post('/profile_edit', ((req, res) => {
 router.get('/community_load', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
-	// eventually add in searchable params and pass in via url
 	var userProfiles = Profile.find({});
 	userProfiles.then((x, err) => res.send(x));
 }));
 
 router.post('/user_profile', ((req, res) => {
-	console.log('user id sent -- ' + req.body.user_id);
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 	var Profile = require('/home/zach/is_project/server/models/profile_model.js');
 	// eventually add in searchable params and pass in via url
-	console.log("USER ID :  " + req.body.user_id);
 	var user_profile = Profile.find({_id: req.body.user_id}).limit(1);
 	user_profile.then((x, err) => res.send(x[0]));
 }));
@@ -231,11 +201,8 @@ router.post('/notifications', ((req, res) => {
 	var Notification = require('/home/zach/is_project/server/models/notification_model.js');
 
 	myUser.then((x, err) => {
-		console.log('USER: ' + x);
-		console.log('USER ID: ' + x[0]._id);
 		var userNotifications = Notification.find({not_owner: x[0]._id});
 		userNotifications.then((y, err) => {
-			console.log(y);
 			res.send(y);
 		});
 	});
@@ -286,9 +253,9 @@ router.post('/is_requested', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
 
 	var Notification= require('/home/zach/is_project/server/models/notification_model.js');
-	var isRequested= Notification.find({not_owner: req.body.id_two, not_from_id: req.body.id_one});
+	var isRequested= Notification.find({$or:[{not_owner: req.body.id_two, not_from_id: req.body.id_one}, {not_owner: req.body.id_one, not_from_id: req.body.id_two}]});
 	isRequested.then((y, err) => {
-			!y[0]._id ? res.send(false) : res.send(true)
+			!y[0] ? res.send(false) : res.send(true)
 	});
 }));
 
@@ -304,7 +271,6 @@ router.post('/send_message', ((req, res) => {
 
 router.post('/get_friend_profiles', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
-
 	var User= require('/home/zach/is_project/server/models/profile_model.js');
 
 	// get my user id
@@ -320,23 +286,19 @@ router.post('/get_friend_profiles', ((req, res) => {
 			// push all my friends' ids onto an array
 			var myFriendsIds = [];
 			y.map((z) => {
-				console.log("MY ID: " + x[0]._id);
-				console.log("ID 1: " + z.user_id_one);
-				console.log("ID 2: " + z.user_id_two);
 				if(z.user_id_one.equals(x[0]._id)) {
 					myFriendsIds.push(z.user_id_two);
-					console.log("FRIEND ID ADDED 2: " + z.user_id_two);
 				}
 				else {
 					myFriendsIds.push(z.user_id_one);
-					console.log("FRIEND ID ADDED 1: " + z.user_id_one);
 				}	
 			});
+
 			// find all profiles associated with the friends' ids array
 			var myFriendProfilesObj= User.find({_id:{$in: myFriendsIds}});
 			// send back the found documents
 			myFriendProfilesObj.then((finalObjResp, err) => {	
-				res.send(finalObjResp);
+				res.send({friendObj: finalObjResp});
 			})	
 		})
 	});
@@ -344,7 +306,6 @@ router.post('/get_friend_profiles', ((req, res) => {
 
 router.post('/get_messages', ((req, res) => {
 	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
-
 	var User = require('/home/zach/is_project/server/models/profile_model.js');
 
 	// get my user id
@@ -357,9 +318,46 @@ router.post('/get_messages', ((req, res) => {
 		var myMessageObj = Message.find({$or:[{sender_id: x[0]._id}, {receiver_id: x[0]._id}]});
 		// once my associated friends are fetched
 		myMessageObj.then((y, err) => {
-				res.send(y);
+				res.send({messageObj: y});
 		})
 	});
+}));
+
+router.post('/insert_performance', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+	var tempUser = require('/home/zach/is_project/server/models/temp_user_model.js');
+	
+/*
+	for(i=0; i<50000; i++) {
+		var newTemp = new tempUser();
+		newTemp.uname = 'test' + i;
+		newTemp.upass = 'testP' + i;
+		newTemp.conf_link = 'testLink' + i;
+		newTemp.save();
+	}
+*/
+	res.send('good');
+}));
+
+router.post('/delete_friend', ((req, res) => {
+	var db = require('/home/zach/is_project/server/db/accounts_connec.js');
+
+	var Friend = require('/home/zach/is_project/server/models/friend_model.js');
+	var myFriendObj= Friend.find({$or:[{user_id_one: req.body.user_id_one, user_id_two: req.body.user_id_two}, {user_id_one: req.body.user_id_two, user_id_two: req.body.user_id_one}]});
+	myFriendObj.then((x) => {
+		Friend.findByIdAndRemove(x[0]._id, ((err, x) => {
+			res.send({response:'good'});
+		}));
+	})
+}));
+
+router.post('/user_ip', ((req, res) => {
+	//res.send(user_ip);
+	console.log('hitting');
+  var user_ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
+
+	console.log(user_ip);
+	res.send({ip: user_ip});
 }));
 
 module.exports = router;

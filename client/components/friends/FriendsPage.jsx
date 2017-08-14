@@ -21,7 +21,7 @@ class FriendsPage extends React.Component {
 
 		return (
 			<div>
-			<h4>{this.props.title}</h4>
+			<h1 className="display-4">{this.props.title}</h1>
 			<p>Click on a friend to start messaging</p>
 				<ul className="list-group">
 				{ this.props.myFriendsProfilesObj ? this.props.myFriendsProfilesObj.map((x) => <FriendsLinkContainer messLinkObj = {x} /> ) : '' }

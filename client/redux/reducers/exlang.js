@@ -52,6 +52,11 @@ const apiReducer = (state = [], action) => {
 					profile: action.profile,
 					message: action.message
 			})
+		case 'FETCH_IP_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					userIP: action.userIP,
+			})
 		case 'UPDATE_PROFILE_SUCCESS':
 			return Object.assign({}, state, {
 					isFetching: action.isFetching,
@@ -105,6 +110,16 @@ const apiReducer = (state = [], action) => {
 					isFetching: action.isFetching,
 					message: action.message,
 					myFriendsProfilesObj: action.myFriendsProfilesObj,
+			})
+		case 'FETCH_FRIENDS_PROFILES_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
+			})
+		case 'DELETE_FRIEND_SUCCESS':
+			return Object.assign({}, state, {
+					isFetching: action.isFetching,
+					message: action.message,
 			})
 		case 'SET_NATIVE_VISIBILITY':
 			return Object.assign({}, state, {

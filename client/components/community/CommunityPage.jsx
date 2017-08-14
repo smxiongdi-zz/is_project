@@ -15,6 +15,7 @@ class CommunityPage extends React.Component {
 
 	componentDidMount() {
 		this.props.fetchCommunityList();
+		this.props.fetchMyIP();
 	}
 
 	mapUserLinks(x) {

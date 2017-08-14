@@ -6,7 +6,7 @@ import EditProfilePage from './EditProfilePage.jsx';
 const mapStateToProps = state => {
   return ({
 		username: state.username,
-    title: 'Edit Profile page',
+    title: 'Edit Profile ',
 		profile: state.profile,
     lpmessage: '',
   })

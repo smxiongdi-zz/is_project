@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchCommunityList } from '../.././redux/actions/credActions';
+import { fetchCommunityList, fetchMyIP } from '../.././redux/actions/credActions';
 import CommunityPage from './CommunityPage.jsx';
 
 const mapStateToProps = state => {
@@ -15,6 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return ({
 		fetchCommunityList: () => dispatch(fetchCommunityList()),
+    fetchMyIP: () => dispatch(fetchMyIP()),
   })
 }
 

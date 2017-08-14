@@ -15,6 +15,7 @@ class MessageChainPage extends React.Component {
 	}
 
 	componentDidMount() {
+		if(this.props.profile) { this.props.profile._id == this.props.match.params.user_id ? this.props.history.push('/friends') : ''; }
 		this.props.dispatch(fetchUserDetails({user_id: this.props.match.params.user_id}));
 	}
 
@@ -24,6 +25,8 @@ class MessageChainPage extends React.Component {
 
 	sendMessage() {
 		this.props.dispatch(sendMyMessage({sender_id: this.props.profile._id, receiver_id: this.props.match.params.user_id, msg_content: this.state.response}));
+		this.setState({response: ''});
+		this.props.fetchMyMessages();
 	}
 
 	render() {
@@ -46,6 +49,7 @@ class MessageChainPage extends React.Component {
 
 		return (
 			<div>
+				<div className="container">
 				<h1 className="display-4">{ this.props.selectedUser ? this.props.selectedUser.name : '' }</h1>
 				<ul>
 				{ message_chain ? message_chain.map((x) => <MessageContainer message={x}  />) : 'No messages exist' }
@@ -56,6 +60,7 @@ class MessageChainPage extends React.Component {
 				</div>
 				<button type="button" className="btn btn-outline-primary" onClick={this.sendMessage}>Send message</button>
 				
+				</div>
 			</div>
 		)
 	}

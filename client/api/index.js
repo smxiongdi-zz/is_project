@@ -4,7 +4,7 @@
 export const fetchUsername = () => {
 	const baseUrl = '/api/session';
 	return fetch(baseUrl, {
-			method: "GET",
+			method: "POST",
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export const fetchUserProfile = (user_id) => {
 export const fetchMyProfile = () => {
 	const baseUrl = '/api/profile_load';
 	return fetch(baseUrl, {
-			method: "GET",
+			method: "POST",
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -254,6 +254,65 @@ export const fetchMessages= () => {
 				'Cache': 'no-cache'
 			},
 			credentials: 'include'
+		})
+		.then(res => res.json())
+}
+
+export const testInsertPerf = () => {
+	const baseUrl = '/api/insert_performance';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include'
+		})
+		.then(res => res.json())
+}
+
+export const deleteFriend = (id_pkg) => {
+	const baseUrl = '/api/delete_friend';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
+			body: JSON.stringify(id_pkg)
+		})
+		.then(res => res.json())
+}
+
+export const verifyRecaptcha = (pkg) => {
+	const baseUrl = 'https://www.google.com/recaptcha/api/siteverify';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
+			body: JSON.stringify(pkg)
+		})
+		.then(res => res.json())
+}
+
+export const fetchIP = () => {
+	console.log('CALLING FETCH IP');
+	const baseUrl = '/api/user_ip';
+	return fetch(baseUrl, {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Cache': 'no-cache'
+			},
+			credentials: 'include',
 		})
 		.then(res => res.json())
 }

@@ -36,6 +36,7 @@ class App extends React.Component {
 		this.props.fetchMyDetails();
 		this.props.fetchMyFriendsProfiles();
 		this.props.fetchMyMessages();
+		this.props.fetchMyIP();
 	}
 
 	render() {
@@ -67,7 +68,6 @@ class App extends React.Component {
 			</div>
 		);
 	};
-
 }
 
 export default App;

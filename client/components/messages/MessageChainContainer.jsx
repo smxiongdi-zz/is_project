@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-//import { fetchUserDetails } from '../.././redux/actions/credActions';
+import { fetchMyMessages } from '../.././redux/actions/credActions';
 import MessageChainPage from './MessageChainPage.jsx';
 
 const mapStateToProps = state => {
@@ -17,6 +17,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return ({
 		dispatch,
+		fetchMyMessages: () => dispatch(fetchMyMessages()),
   })
 }
 

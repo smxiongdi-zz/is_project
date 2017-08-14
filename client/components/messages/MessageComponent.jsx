@@ -10,14 +10,17 @@ const MessageComponent = (props) => {
 		let sentDate = new Date(props.message.sent_time);
 		myComponent = 
 		<li className = "list-group-item top-level-message"> 
+		<div className = "container">
 		<div className = "row">
-		<div className = "col-12">
-		{props.selectedUser._id == props.message.sender_id ? props.selectedUser.name : 'You ' } said on {sentDate.toDateString()}:&nbsp;  
+		<div className = "col"><small>
+		{props.selectedUser._id == props.message.sender_id ? props.selectedUser.name : 'You ' } said on {sentDate.toDateString()}  
+		</small>
 		</div>
-		</div><br />
+		</div>
 		<div className = "row">
-		<div className = "col-10">
+		<div className = "col">
 		{props.message.msg_content}
+		</div>
 		</div>
 		</div>
 		</li>
