@@ -4,13 +4,15 @@
 
 /client - react application
 
-# need to implement redux state container - done
-
 	App.jsx - main jsx file from which all components are routed
+
+	/api - self-explanatory
 	
 	/build - transpiled jsx/es6 to js
 	
 	/components - react components - subfolders contain page specific
+	
+	/redux - redux action creators / reducers
 	
 
 /server - express application
