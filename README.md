@@ -25,11 +25,15 @@
 TO DO
 ******
 profiles
+
 	<strike>edit profile view / APIs</strike>
+
 		picture uploads - need to finish express profile image resizer /thumbnail creation
+
 	<strike>view profile / url params to get ID num</strike>
 	
 community
+
 	<strike>search view / url params to retrieve list</strike>
 
 accounts
