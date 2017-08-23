@@ -38,7 +38,6 @@ class Navbar extends React.Component {
 								<div className="nav-link" href="#"><NavLink exact activeClassName="active" to = {{pathname: '/c'}} >Community</NavLink></div>
 							</li>
 							{ this.props.username ? this.state.Profile : '' }
-							{ this.props.username ? this.state.Notifications: '' }
 							{ this.props.username ? this.state.Logout : this.state.Login }
 							{ !this.props.username ? this.state.Register : '' }
 						</ul>

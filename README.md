@@ -28,6 +28,29 @@ TO DO
 ******
 profiles
 
-		picture uploads - need to finish express profile image resizer /thumbnail creation
+	picture uploads - need to finish express profile image resizer /thumbnail creation -- use ffmpeg
+	contact info - social media inputs
 
+dashboard
+
+	friends pane - online, last online 
+	recent activity - latest blogs from friends
+
+account settings
+
+	edit password
+	edit site language	
+	delete account
+
+user stats
+
+	last online
+
+blogs
 	
+	function similar to messages - allow user responses and responses to comments ; essentially have the functionality of a 'thread'
+
+not urgent: 
+	
+	SSL
+	TOS

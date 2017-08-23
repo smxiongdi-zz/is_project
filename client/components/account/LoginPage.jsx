@@ -10,6 +10,7 @@ class LoginPage extends React.Component {
     this.state = {
       inputEmail: '',
       inputPass: '',
+			message: '',
 			captcha: false,
     }
 
@@ -33,9 +34,13 @@ class LoginPage extends React.Component {
 
 	handleSubmit (evt) {
 		evt.preventDefault()
-		const newUser = {email: this.state.inputEmail, pass: this.state.inputPass}
-		this.state.captcha ? this.props.dispatch(loginUser(newUser)) : ''
-		this.setState({captcha: false})
+		if(this.state.inputEmail && this.state.inputPass.length >= 4) {
+			const newUser = {email: this.state.inputEmail, pass: this.state.inputPass}
+			this.state.captcha ? this.props.dispatch(loginUser(newUser)) : ''
+			this.setState({captcha: false})
+		}	else if(!this.state.inputEmail) {
+			this.setState({message: 'Please enter an e-mail'})
+		} else { this.setState({message: 'Password too short'}) }
 	}
 
 	componentDidMount() {
@@ -48,7 +53,6 @@ class LoginPage extends React.Component {
 	render () {
 		this.props.username ? this.showTempMessage() : ''
 		return (
-
 
 			<div>
 				<h2>{this.props.title}</h2>
@@ -71,9 +75,8 @@ class LoginPage extends React.Component {
 
 					<button className="btn btnfield" onClick={this.handleSubmit}>Send</button>
 				</form>
+				{ this.state.message }
 
-
-				// on login - failure or success
 			</div>
 		)
 	}

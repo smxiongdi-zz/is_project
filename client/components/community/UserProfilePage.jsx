@@ -13,9 +13,6 @@ class UserProfilePage extends React.Component {
 	}
 
 	componentDidMount() {
-		if(this.props.profile) { 
-			this.props.profile._id == this.props.match.params.user_id ? this.props.history.push('/p') : ''; 
-		}
 		this.props.dispatch(fetchUserDetails({user_id: this.props.match.params.user_id}));
 		this.props.fetchMyFriends();
 	}
@@ -32,6 +29,7 @@ class UserProfilePage extends React.Component {
 		let userLearning = '';
 		
 		if(this.props.profile) {
+			this.props.profile._id == this.props.match.params.user_id ? this.props.history.push('/p') : ''; 
 			if(!this.state.iRSet) {
 				this.setState({iRSet: 'Loaded'});
 				this.props.dispatch(isRequested({id_one: this.props.profile._id, id_two: this.props.match.params.user_id}));

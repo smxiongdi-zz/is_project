@@ -10,6 +10,7 @@ class RegisterPage extends React.Component {
     this.state = {
       inputEmail: '',
       inputPass: '',
+			message: '',
 			captcha: false,
     }
 
@@ -33,9 +34,13 @@ class RegisterPage extends React.Component {
 
 	handleSubmit (evt) {
 		evt.preventDefault()
-		const newUser = {email: this.state.inputEmail, pass: this.state.inputPass}
-		this.state.captcha ? this.props.dispatch(registerUser(newUser)) : ''
-		this.setState({captcha: false})
+		if(this.state.inputEmail && this.state.inputPass.length >= 4) {
+			const newUser = {email: this.state.inputEmail, pass: this.state.inputPass}
+			this.state.captcha ? this.props.dispatch(registerUser(newUser)) : ''
+			this.setState({captcha: false})
+		} else if(!this.state.inputEmail) {
+			this.setState({message: 'Please enter e-mail'})
+		} else { this.setState({message: 'Password too short'}) }
 	}
 
 	showTempMessage (msg) {
@@ -67,6 +72,7 @@ class RegisterPage extends React.Component {
 
 					<button className="btn btnfield" onClick={this.handleSubmit}>Send</button>
 				</form>
+				{ this.state.message }
 
 			</div>
 		)

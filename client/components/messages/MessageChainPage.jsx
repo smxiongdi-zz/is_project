@@ -20,7 +20,9 @@ class MessageChainPage extends React.Component {
 	}
 
 	handleResponseChange(evt) {
-		this.setState({response: evt.target.value});
+		if(evt.target.value.length < 500) {
+			this.setState({response: evt.target.value});
+		}
 	}
 
 	sendMessage() {

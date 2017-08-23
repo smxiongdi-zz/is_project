@@ -11,15 +11,25 @@ class LandingPage extends React.Component {
 
 	render() {
 		// basic links
-		let ViewFriends = <Link to='/friends'><button type="button" className="btn btn-outline-primary btn-sm">View friends</button></Link>
-		let ViewNotifications = <Link to='/notifications'><button type="button" className="btn btn-outline-primary btn-sm">View notifications</button></Link>
-		let ViewProfile= <Link to='/p'><button type="button" className="btn btn-outline-primary btn-sm">View profile</button></Link>
+		let ViewFriends = <Link to='/friends'>friends</Link>
+		let ViewNotifications = <Link to='/notifications'>notifications</Link>
+		let ViewProfile= <Link to='/p'>profile</Link>
+
+		let myName = '';
+		if(this.props.profile) {
+			myName = <h1 className="display-4">{this.props.profile.name}</h1>
+		} else { myName = '' }
 
 		return (
 			<div className = "container">
-				<h1 className="display-4"> { this.props.username ? this.props.title : '' } </h1>
-				{ this.props.profile ? 'Hello, ' + this.props.profile.name : 'Welcome to exlang, please log in or register.' }
-
+				{myName}
+				<div className = 'col-1'>
+					<ul className = 'nav flex-column'>
+						<li className = 'nav-item'> { ViewProfile } </li>
+						<li className = 'nav-item'> { ViewFriends } </li>
+						<li className = 'nav-item'> { ViewNotifications } </li>
+					</ul>
+				</div>
 
 				// some fodder todos
 				<div className="todos">Configure image resizing on express for uploaded pics</div>

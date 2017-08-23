@@ -11,6 +11,7 @@ var profileSchema = mongoose.Schema({
 	pic: String, //string path in static files
 	loc: String, // user location
 	about_me: String,
+	last_online: Date,
 });
 
 /* profileSchema.methods = {

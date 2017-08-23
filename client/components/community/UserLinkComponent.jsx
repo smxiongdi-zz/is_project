@@ -32,11 +32,19 @@ const UserLinkComponent = (props) => {
 		else {
 			myComponent = 
 			<li className = "list-group-item community-member"> 
+			<div className = 'container commElement'>
 			<Link to ={'/p/' + props.commLinkObj._id}>
-			{props.commLinkObj.name} <br/> 
-			Speaks: {userNative}<br/> 
-			Learning: {userLearning} <br/> 
-			Gender: {props.commLinkObj.sex} </Link>
+			{props.commLinkObj.name} </Link>
+			<div className = 'row'>
+			<div className = 'col-1'> Speaks: </div> <div className = 'col-4'>{userNative} </div>
+			</div>
+			<div className = 'row'>
+			<div className = 'col-1'> Learning: </div> <div className = 'col-4'>{userLearning} </div>
+			</div>
+			<div className = 'row'>
+			<div className = 'col-1'> Gender: </div> <div className = 'col-4'> {props.commLinkObj.sex} </div>
+			</div>
+			</div>
 			</li> 
 		}
 	}

@@ -41,9 +41,11 @@ class EditProfilePage extends React.Component {
 	}
 
 	handleEditName(evt) { 
-		var tempProf = this.state.profile;
-		tempProf.name = evt.target.value;
-		this.updateProfile(tempProf);
+		if (evt.target.value.length < 50) {
+			var tempProf = this.state.profile;
+			tempProf.name = evt.target.value;
+			this.updateProfile(tempProf);
+		}
 	}
 
 	handleEditNative(evt) { 
@@ -95,9 +97,11 @@ class EditProfilePage extends React.Component {
 	}
 
 	handleEditLoc(evt) { 
-		var tempProf = this.state.profile;
-		tempProf.loc = evt.target.value;
-		this.updateProfile(tempProf);
+		if (evt.target.value.length < 50) {
+			var tempProf = this.state.profile;
+			tempProf.loc = evt.target.value;
+			this.updateProfile(tempProf);
+		}
 	}
 
 	handleEditPic(evt) { 
@@ -107,9 +111,11 @@ class EditProfilePage extends React.Component {
 	}
 
 	handleEditAboutMe(evt) { 
-		var tempProf = this.state.profile;
-		tempProf.about_me= evt.target.value;
-		this.updateProfile(tempProf);
+		if (evt.target.value.length < 500) {
+			var tempProf = this.state.profile;
+			tempProf.about_me= evt.target.value;
+			this.updateProfile(tempProf);
+		}
 	}
 
 	updateProfile(newProf) { 
