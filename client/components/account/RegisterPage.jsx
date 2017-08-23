@@ -3,8 +3,6 @@ import Recaptcha from 'react-gcaptcha';
 
 import { registerUser } from '../.././redux/actions/credActions';
 
- // import { verifyCaptcha } from '../.././lib/verifyCaptcha.js';
-
 class RegisterPage extends React.Component {
 
   constructor() {
@@ -13,14 +11,13 @@ class RegisterPage extends React.Component {
       inputEmail: '',
       inputPass: '',
 			captcha: false,
-			message: ''
     }
 
+		// bind 'this'
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showTempMessage = this.showTempMessage.bind(this);
-
 		this.handleRecaptcha = this.handleRecaptcha.bind(this);
   }
 
@@ -31,9 +28,6 @@ class RegisterPage extends React.Component {
     this.setState({inputPass: evt.target.value});
   }
 	handleRecaptcha (key) {
-		console.log('mykey ' + key)
-		//verifyCaptcha(key, '6Lf2CykUAAAAAMv03m_pvF8DL9Wph8fnW14SEwaN')
-		//	.then((x) => console.log(x))
 		this.setState({captcha: true})
 	}
 
@@ -41,16 +35,17 @@ class RegisterPage extends React.Component {
 		evt.preventDefault()
 		const newUser = {email: this.state.inputEmail, pass: this.state.inputPass}
 		this.state.captcha ? this.props.dispatch(registerUser(newUser)) : ''
-		this.state.captcha ? this.showTempMessage (this.props.message) : ''
 		this.setState({captcha: false})
 	}
 
 	showTempMessage (msg) {
-		setTimeout(() => this.props.history.push('/'), 5000)
+		setTimeout(() => this.props.history.push('/'), 1000)
 	}
 
 	render () {
+		this.props.username ? this.showTempMessage() : ''
 		return (
+
 			<div>
 				<h2>{this.props.title}</h2>
 				<form>
@@ -72,18 +67,10 @@ class RegisterPage extends React.Component {
 
 					<button className="btn btnfield" onClick={this.handleSubmit}>Send</button>
 				</form>
-				{this.props.message}
+
 			</div>
 		)
 	}
 }
-
-RegisterPage.propTypes = {
-  inputEmail: React.PropTypes.string.isRequired,
-  inputPass: React.PropTypes.string.isRequired,
-  handlePassChange: React.PropTypes.func,
-  handleEmailChange: React.PropTypes.func
-}
-
 
 export default RegisterPage;

@@ -30,6 +30,7 @@
     "openssl": "^1.1.0",
     "passport": "^0.3.2",
     "promise": "^7.1.1",
+    "prop-types": "^15.5.10",
     "pug": "^2.0.0-rc.2",
     "randomstring": "^1.1.5",
     "react": "^15.5.4",

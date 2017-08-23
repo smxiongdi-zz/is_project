@@ -36,6 +36,7 @@ var topLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		App: APP_DIR + '/App.jsx',
 		AppContainer: APP_DIR + '/AppContainer.jsx',
+		Root: APP_DIR + '/Root.jsx',
 		index: APP_DIR + '/index.jsx',
 		configureStore: APP_DIR + '/configureStore.jsx',
 	},
@@ -45,7 +46,6 @@ var topLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
-/*
 var miscLevelFolderConfig = Object.assign({}, config, {
 	entry: {
 		404: APP_DIR + '/components/misc/404.jsx',
@@ -166,9 +166,8 @@ var messagesLevelFolderConfig = Object.assign({}, config, {
 	}
 });
 
-*/
 
 module.exports = [
-	topLevelFolderConfig,// miscLevelFolderConfig, homeLevelFolderConfig, navLevelFolderConfig, accountLevelFolderConfig, communityLevelFolderConfig, profileLevelFolderConfig, friendsLevelFolderConfig, messagesLevelFolderConfig
+	topLevelFolderConfig, miscLevelFolderConfig, homeLevelFolderConfig, navLevelFolderConfig, accountLevelFolderConfig, communityLevelFolderConfig, profileLevelFolderConfig, friendsLevelFolderConfig, messagesLevelFolderConfig
 ];
 

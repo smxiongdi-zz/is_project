@@ -6,14 +6,17 @@ class UserProfilePage extends React.Component {
 
 	constructor() {
 		super()
+		this.state = {
+			iRSet: '',	
+		}
 		this.sendFriendRequest = this.sendFriendRequest.bind(this)
 	}
 
 	componentDidMount() {
-		if(this.props.profile) { this.props.profile._id == this.props.match.params.user_id ? this.props.history.push('/p') : ''; }
-		console.log("PROPS : " + this.props.match.params.user_id);
+		if(this.props.profile) { 
+			this.props.profile._id == this.props.match.params.user_id ? this.props.history.push('/p') : ''; 
+		}
 		this.props.dispatch(fetchUserDetails({user_id: this.props.match.params.user_id}));
-		this.props.dispatch(isRequested({id_one: this.props.profile._id, id_two: this.props.match.params.user_id}));
 		this.props.fetchMyFriends();
 	}
 
@@ -24,9 +27,16 @@ class UserProfilePage extends React.Component {
 
 	render() {
 		let isFriend = false;
+		let isAlreadyRequested = false;
 		let userSpeaks = '';
 		let userLearning = '';
 		
+		if(this.props.profile) {
+			if(!this.state.iRSet) {
+				this.setState({iRSet: 'Loaded'});
+				this.props.dispatch(isRequested({id_one: this.props.profile._id, id_two: this.props.match.params.user_id}));
+			}
+		}
 
 		if(this.props.selectedUser) {
 			this.props.selectedUser.lang_native.map((x) => {
@@ -51,9 +61,11 @@ class UserProfilePage extends React.Component {
 			});
 		}
 
+		if(this.props.alreadyRequested) { isAlreadyRequested = true; }
+
 		let profileActionButton;
 		if(isFriend) { profileActionButton = sendMessage }
-		else if(this.props.alreadyRequested) { profileActionButton = alreadyRequested }
+		else if(isAlreadyRequested) { profileActionButton = alreadyRequested }
 		else { profileActionButton = addFriend }
 
 		return (

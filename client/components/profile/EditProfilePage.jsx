@@ -10,7 +10,6 @@ class EditProfilePage extends React.Component {
 		this.state = {
 			lang_selection: [ "English", "French", "Spanish", "Chinese", "German", "Russian" ],
 			sex: ["Male", "Female"],
-			profile: { name: 'originalname', lang_native: [''], lang_learning: [''], bday: '', loc: '', sex: '', pic: '', about_me: '' }
 		}
 		this.handleEditName = this.handleEditName.bind(this);
 		this.handleEditNative = this.handleEditNative.bind(this);	
@@ -33,8 +32,12 @@ class EditProfilePage extends React.Component {
 	componentDidMount() {
 
 		// load profile API onto edit fields
-		this.props.profile ? this.setState({profile: this.props.profile}) : '';
+		!this.props.profile ? this.props.fetchMyDetails() : '';
 
+	}
+
+	componentWillMount() {
+		this.setState({profile: this.props.profile});
 	}
 
 	handleEditName(evt) { 
@@ -130,88 +133,145 @@ class EditProfilePage extends React.Component {
 	}
 
 	render() {
-		let ProfileName =
-		<div className="form-group row"> 
-		<label htmlFor="name_field" className="col-5 col-form-label">Profile Name</label> 
-		<div className="col-4">
-		<input className="form-control" type="text" onChange={this.handleEditName} value={this.state.profile.name} id="profile_name_field"/>
-		</div>
-		</div>
-		let Location = 
-		<div className="form-group row">
-		<label htmlFor="loc_field" className="col-5 col-form-label">Location</label>
-		<div className="col-4">
-		<input className="form-control" type="text" onChange={this.handleEditLoc } value={this.state.profile.loc} id="loc_field"/>
-		</div>
-		</div>
-		let NativeLang = 
-		<select id="lang_native" className="custom-select" onChange={this.handleEditNative} value={this.state.profile.lang_native[0]}>
-		<option selected>{this.state.profile.lang_native[0]}</option>
-		{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		let NativeLang1 = 
-		<select id="lang_native2" className="custom-select" onChange={this.handleEditNative2} value={this.state.profile.lang_native[1]}>
-		<option selected>{this.state.profile.lang_native[1] ? this.state.profile.lang_native[1] : '' }</option>
-		<option value=''>No additional language</option>
-		{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		let NativeLang2 =
-		<select id="lang_native3" className="custom-select" onChange={this.handleEditNative3} value={this.state.profile.lang_native[2]}>
-		<option selected>{this.state.profile.lang_native[2] ? this.state.profile.lang_native[2] : '' }</option>
-		<option value=''>No additional language</option>
-		{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		let LearningLang = 
-		<select id="lang_learning" className="custom-select" onChange={this.handleEditLearning} value={this.state.profile.lang_learning[0]}>
-		<option selected>{this.state.profile.lang_learning}</option>
-		{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		let LearningLang1 = 
-		<select id="lang_learning2" className="custom-select" onChange={this.handleEditLearning2} value={this.state.profile.lang_learning[1]}>
-		<option selected>{this.state.profile.lang_learning[1] ? this.state.profile.lang_learning[1] : '' }</option>
-		<option value=''>No additional language</option>
-		{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		let LearningLang2 = 
-		<select id="lang_learning3" className="custom-select" onChange={this.handleEditLearning3} value={this.state.profile.lang_learning[2]}>
-		<option selected>{this.state.profile.lang_learning[2] ? this.state.profile.lang_learning[2] : '' }</option>
-		<option value=''>No additional language</option>
-		{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		let SexOption =
-		<div className="form-group row">
-		<label htmlFor="sex_field" className="col-5 col-form-label">Gender</label>
-		<div className="col-2">
-		<select id="sex" className="custom-select" onChange={this.handleEditSex} value={this.state.profile.sex}>
-		<option selected>{this.state.profile.sex}</option>
-		{this.state.sex.map((x) => <option value = {x}>{x}</option>)}
-		</select>
-		</div>
-		</div>
-		let BDayOption =
-		<div className="form-group row">
-		<label htmlFor="bday_field" className="col-5 col-form-label">Birthday</label>
-		<div className="col-4">
-		<input className="form-control" type="date" onChange={this.handleEditBday} value={this.state.profile.bday} id="bday_select"/>
-		</div>
-		</div>
-		let AboutMe = 
-		<div className="form-group">
-		<label htmlFor="aboutMeText">A little about yourself</label>
-		<textarea className="form-control" rows="3" value={this.state.profile.about_me} onChange={this.handleEditAboutMe}></textarea>
-		</div>
-		let SubmitChange =
-		<button type="submit" className="btn btn-outline-primary" onClick={this.handleEditProfile}>Submit Changes</button>
 
-		let ImageDrop = 
-		<div className="form-group row">
-		<label htmlFor="img_field" className="col-5 col-form-label">Image</label>
-		<div className="col-2">
-		<Dropzone multiple={false} accept="image/*" onDrop={this.onImageDrop}> <p>Drop an image or select a faile to upload</p> </Dropzone>
-		</div>
-		</div>
-	
 
+		let ProfileName = '';
+		let Location = '';
+		let NativeLang = '';
+		let NativeLang1 = '';
+		let NativeLang2 = '';
+		let LearningLang = '';
+		let LearningLang1 = '';
+		let LearningLang2 = '';
+		let SexOption = '';
+		let BDayOption = '';
+		let AboutMe = '';
+		let SubmitChange = '';
+		let ImageDrop = '';
+
+		let LangNativeDropdowns = '';
+		let LangLearningDropdowns = '';
+
+		if(this.props.profile) {
+			if(!this.state.profile) {
+				this.setState({profile: this.props.profile});
+			}
+			ProfileName =
+			<div className="form-group row"> 
+			<label htmlFor="name_field" className="col-5 col-form-label">Profile Name</label> 
+			<div className="col-4">
+			<input className="form-control" type="text" onChange={this.handleEditName} value={this.state.profile.name} id="profile_name_field"/>
+			</div>
+			</div>
+			Location = 
+			<div className="form-group row">
+			<label htmlFor="loc_field" className="col-5 col-form-label">Location</label>
+			<div className="col-4">
+			<input className="form-control" type="text" onChange={this.handleEditLoc } value={this.state.profile.loc} id="loc_field"/>
+			</div>
+			</div>
+			NativeLang = 
+			<select id="lang_native" className="custom-select" onChange={this.handleEditNative} value={this.state.profile.lang_native[0]}>
+			<option selected>{this.state.profile.lang_native[0]}</option>
+			{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			NativeLang1 = 
+			<select id="lang_native2" className="custom-select" onChange={this.handleEditNative2} value={this.state.profile.lang_native[1]}>
+			<option selected>{this.state.profile.lang_native[1] ? this.state.profile.lang_native[1] : '' }</option>
+			<option value=''>No additional language</option>
+			{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			NativeLang2 =
+			<select id="lang_native3" className="custom-select" onChange={this.handleEditNative3} value={this.state.profile.lang_native[2]}>
+			<option selected>{this.state.profile.lang_native[2] ? this.state.profile.lang_native[2] : '' }</option>
+			<option value=''>No additional language</option>
+			{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			LearningLang = 
+			<select id="lang_learning" className="custom-select" onChange={this.handleEditLearning} value={this.state.profile.lang_learning[0]}>
+			<option selected>{this.state.profile.lang_learning}</option>
+			{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			LearningLang1 = 
+			<select id="lang_learning2" className="custom-select" onChange={this.handleEditLearning2} value={this.state.profile.lang_learning[1]}>
+			<option selected>{this.state.profile.lang_learning[1] ? this.state.profile.lang_learning[1] : '' }</option>
+			<option value=''>No additional language</option>
+			{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			LearningLang2 = 
+			<select id="lang_learning3" className="custom-select" onChange={this.handleEditLearning3} value={this.state.profile.lang_learning[2]}>
+			<option selected>{this.state.profile.lang_learning[2] ? this.state.profile.lang_learning[2] : '' }</option>
+			<option value=''>No additional language</option>
+			{this.state.lang_selection.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			SexOption =
+			<div className="form-group row">
+			<label htmlFor="sex_field" className="col-5 col-form-label">Gender</label>
+			<div className="col-2">
+			<select id="sex" className="custom-select" onChange={this.handleEditSex} value={this.state.profile.sex}>
+			<option selected>{this.state.profile.sex}</option>
+			{this.state.sex.map((x) => <option value = {x}>{x}</option>)}
+			</select>
+			</div>
+			</div>
+			BDayOption =
+			<div className="form-group row">
+			<label htmlFor="bday_field" className="col-5 col-form-label">Birthday</label>
+			<div className="col-4">
+			<input className="form-control" type="date" onChange={this.handleEditBday} value={this.state.profile.bday} id="bday_select"/>
+			</div>
+			</div>
+			AboutMe = 
+			<div className="form-group">
+			<label htmlFor="aboutMeText">A little about yourself</label>
+			<textarea className="form-control" rows="3" value={this.state.profile.about_me} onChange={this.handleEditAboutMe}></textarea>
+			</div>
+			SubmitChange =
+			<button type="submit" className="btn btn-outline-primary" onClick={this.handleEditProfile}>Submit Changes</button>
+
+			ImageDrop = 
+			<div className="form-group row">
+			<label htmlFor="img_field" className="col-5 col-form-label">Image</label>
+			<div className="col-2">
+			<Dropzone multiple={false} accept="image/*" onDrop={this.onImageDrop}> <p>Drop an image or click to upload</p> </Dropzone>
+			</div>
+			</div>
+
+			LangNativeDropdowns = 
+			<div className="form-group row">
+			<label htmlFor="lang_native_field" className="col-5 col-form-label">Native language(s)</label>
+			<div className="col-2">{ NativeLang }</div>
+			<div className="col-2">{/* this.state.profile.lang_native[0] ? NativeLang1 : ''*/}
+			{ this.state.profile.lang_native ? 
+			this.state.profile.lang_native[0] ? NativeLang1 : ''
+			: '' }
+			</div>
+			<div className="col-2">{ /*this.state.profile.lang_native[1] ? NativeLang2 : ''*/}
+			{ this.state.profile.lang_native ? 
+			this.state.profile.lang_native[0] ? 
+			this.state.profile.lang_native[1] ? NativeLang2 : ''
+			: '' : ''}
+			</div>
+			</div>
+
+			LangLearningDropdowns =
+			<div className="form-group row">
+			<label htmlFor="lang_learning_field" className="col-5 col-form-label">Learning language(s)</label>
+			<div className="col-2">{ LearningLang }</div>
+			<div className="col-2">
+			{ this.state.profile.lang_learning ? 
+			this.state.profile.lang_learning[0] ? LearningLang1 : ''
+			: '' }
+			</div>
+			<div className="col-2">
+			{ this.state.profile.lang_learning ? 
+			this.state.profile.lang_learning[0] ? 
+			this.state.profile.lang_learning[1] ? LearningLang2 : ''
+			: '' : ''}
+			</div>
+			</div>
+
+		}
 
 
 		return (
@@ -219,23 +279,13 @@ class EditProfilePage extends React.Component {
 				<h1 className="display-4">{this.props.title ? this.props.title : ''}</h1>
 				{ProfileName}
 				{Location}
-				<div className="form-group row">
-					<label htmlFor="lang_native_field" className="col-5 col-form-label">Native language(s)</label>
-					<div className="col-2">{ NativeLang }</div>
-					<div className="col-2">{ this.state.profile.lang_native[0] ? NativeLang1 : ''}</div>
-					<div className="col-2">{ this.state.profile.lang_native[1] ? NativeLang2 : ''}</div>
-				</div>
-				<div className="form-group row">
-					<label htmlFor="lang_learning_field" className="col-5 col-form-label">Learning language(s)</label>
-					<div className="col-2">{ LearningLang }</div>
-					<div className="col-2">{ this.state.profile.lang_learning[0] ? LearningLang1 : ''}</div>
-					<div className="col-2">{ this.state.profile.lang_learning[1] ? LearningLang2 : ''}</div>
-				</div>
+				{LangNativeDropdowns}
+				{LangLearningDropdowns}
 				{SexOption}
 				{BDayOption}
 				{AboutMe}
-				{SubmitChange}
 				{ImageDrop}
+				{SubmitChange}
 			</div>
 		)
 	}

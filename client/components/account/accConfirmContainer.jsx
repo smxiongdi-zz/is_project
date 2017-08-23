@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import accConfirmPage from './accConfirmPage.jsx';
 
 const mapStateToProps = state => {
   return ({
     title: 'Account confirmation',
-		message: 'Thank you for confirming your account',
+		accountMessage: state.accountMessage,
   })
 }
 

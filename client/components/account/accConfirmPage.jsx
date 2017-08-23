@@ -1,10 +1,8 @@
-// react libraries
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { confirmMyAccount } from '../.././redux/actions/credActions';
 
-// components
-
+// account confirm component
 class accConfirmPage extends React.Component {
 
 	componentDidMount() {
@@ -15,7 +13,7 @@ class accConfirmPage extends React.Component {
 		return (
 			<div className = "confirmationPage">
 				<h1 className="display-4">Account Confirmation</h1>
-				{this.props.message ? this.props.message : ''}
+				{this.props.accountMessage ? this.props.accountMessage : ''}
 			</div>
 		);
 	}

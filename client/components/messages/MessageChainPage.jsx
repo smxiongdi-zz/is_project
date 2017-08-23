@@ -24,9 +24,11 @@ class MessageChainPage extends React.Component {
 	}
 
 	sendMessage() {
-		this.props.dispatch(sendMyMessage({sender_id: this.props.profile._id, receiver_id: this.props.match.params.user_id, msg_content: this.state.response}));
-		this.setState({response: ''});
-		this.props.fetchMyMessages();
+		if(this.state.response!='') {
+			this.props.dispatch(sendMyMessage({sender_id: this.props.profile._id, receiver_id: this.props.match.params.user_id, msg_content: this.state.response}));
+			this.setState({response: ''});
+			this.props.fetchMyMessages();
+		}
 	}
 
 	render() {

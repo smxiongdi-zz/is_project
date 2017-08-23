@@ -8,15 +8,11 @@ const mapStateToProps = state => {
 		username: state.username,
 		profile: state.profile,
 		title: 'exlang.io dashboard',
-		lpmessage: '',
 	})
 }
 
 const mapDispatchToProps = dispatch => {
 	return ({
-		loadUser: () => dispatch(fetchCredentials()),
-		loginUser: () => dispatch(loginUser({email: 'zach.noble.smith@gmail.com', pass: 'test'})),
-		testInsertPerformance: () => dispatch(testInsertPerformance()),
 	})
 }
 

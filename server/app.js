@@ -4,7 +4,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var session = require('express-session');
-var cloudinary = require('cloudinary');
 
 // static directory
 app.use(express.static('/home/zach/is_project/client/'));
@@ -22,12 +21,6 @@ app.use(session({
 	saveUninitialized: true,
 	cookie: { secure: false, HttpOnly: false },
 }));
-
-cloudinary.config({
-	cloud_name: 'exlang-io',
-	api_key: '997729394514668',
-	api_secret: '0j5wq1WQe3FM92smitdxwGGCYiQ'
-});
 
 var apiRouter = require('./routes/apiRouter.js');
 var confLinkRouter = require('./routes/confLinkRouter.js');

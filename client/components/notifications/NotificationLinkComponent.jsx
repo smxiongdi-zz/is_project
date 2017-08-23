@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addMyFriend, rejectFriendRequest, fetchMyNotifications } from '../.././redux/actions/credActions';
+import { addMyFriend, rejectFriendRequest, fetchMyNotifications, fetchMyFriends } from '../.././redux/actions/credActions';
 import { Link } from 'react-router-dom';
 
 // const NotificationLinkComponent = (this.props) => {
@@ -19,6 +19,7 @@ class NotificationLinkComponent extends React.Component {
 		// this is just to delete the notification
 		this.props.dispatch(rejectFriendRequest({not_id: this.props.notLinkObj._id}))
 		this.props.dispatch(fetchMyNotifications())
+		this.props.dispatch(fetchMyFriends())
 	}
 
 	rejectFriend() {

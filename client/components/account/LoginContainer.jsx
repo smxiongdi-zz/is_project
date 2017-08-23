@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { loginUser, fetchMyDetails } from '../.././redux/actions/credActions';
 import LoginPage from './LoginPage.jsx';
@@ -6,8 +6,7 @@ import LoginPage from './LoginPage.jsx';
 const mapStateToProps = state => {
   return ({
 		username: state.username,
-    title: 'Login page',
-    lpmessage: 'Please log in',
+    title: 'Please login',
   })
 }
 

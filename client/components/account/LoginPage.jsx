@@ -3,8 +3,6 @@ import Recaptcha from 'react-gcaptcha';
 
 import { loginUser } from '../.././redux/actions/credActions';
 
- // import { verifyCaptcha } from '../.././lib/verifyCaptcha.js';
-
 class LoginPage extends React.Component {
 
   constructor() {
@@ -13,14 +11,13 @@ class LoginPage extends React.Component {
       inputEmail: '',
       inputPass: '',
 			captcha: false,
-			message: ''
     }
 
+		// bind 'this' 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showTempMessage = this.showTempMessage.bind(this);
-
 		this.handleRecaptcha = this.handleRecaptcha.bind(this);
   }
 
@@ -31,9 +28,6 @@ class LoginPage extends React.Component {
     this.setState({inputPass: evt.target.value});
   }
 	handleRecaptcha (key) {
-		console.log('mykey ' + key)
-//		verifyCaptcha({response: key, secret: '6Lf2CykUAAAAAMv03m_pvF8DL9Wph8fnW14SEwaN'})
-		//	.then((x) => console.log(x))
 		this.setState({captcha: true})
 	}
 
@@ -41,16 +35,21 @@ class LoginPage extends React.Component {
 		evt.preventDefault()
 		const newUser = {email: this.state.inputEmail, pass: this.state.inputPass}
 		this.state.captcha ? this.props.dispatch(loginUser(newUser)) : ''
-		this.state.captcha ? this.showTempMessage (this.props.message) : ''
 		this.setState({captcha: false})
 	}
 
-	showTempMessage (msg) {
-		setTimeout(() => { this.props.history.push('/'); window.location.reload(); }, 5000)
+	componentDidMount() {
+	}
+
+	showTempMessage () {
+		setTimeout(() => { this.props.history.push('/'); window.location.reload(); }, 1000)
 	}
 
 	render () {
+		this.props.username ? this.showTempMessage() : ''
 		return (
+
+
 			<div>
 				<h2>{this.props.title}</h2>
 				<form>
@@ -72,18 +71,12 @@ class LoginPage extends React.Component {
 
 					<button className="btn btnfield" onClick={this.handleSubmit}>Send</button>
 				</form>
-				{this.props.message}
+
+
+				// on login - failure or success
 			</div>
 		)
 	}
 }
-
-LoginPage.propTypes = {
-  inputEmail: React.PropTypes.string.isRequired,
-  inputPass: React.PropTypes.string.isRequired,
-  handlePassChange: React.PropTypes.func,
-  handleEmailChange: React.PropTypes.func
-}
-
 
 export default LoginPage;
